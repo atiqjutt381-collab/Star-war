@@ -1,161 +1,208 @@
-<!-- STAR WAR - PART 1 - 299 LINES - ORIGINAL + LOGO + NO KING STREAK + NO ARMY -->
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>STAR WAR ⭐</title>
-<style>*{box-sizing:border-box}body{margin:0;background:#000;color:#fff;font-family:Arial;padding-bottom:90px}.center{text-align:center;padding:14px}.title{font-size:32px;font-weight:900}.title span{color:#ff2d00}.pill{background:#1a1a1a;border:1px solid #ff6a00;padding:6px 12px;border-radius:20px;font-size:12px}.card{background:#111;border:1px solid #333;border-radius:16px;padding:14px;margin:12px}.btn{background:#ff6a00;color:#fff;border:none;padding:13px;width:100%;border-radius:12px;font-weight:900;margin:6px 0;cursor:pointer}.btn2{background:#222}.btnBlue{background:#4a6cff}.battle{display:flex;gap:10px;align-items:center}.p{flex:1;background:#1a1a1a;border:2px solid #ff8c00;border-radius:14px;padding:10px;text-align:center}.p.blue{border-color:#4a6cff}.p img{width:100%;height:140px;object-fit:cover;border-radius:12px}.vs{font-size:26px;font-weight:900;color:#ffd700}.bar{height:14px;background:#222;border-radius:20px;overflow:hidden;display:flex;margin:10px 0}.bar div{height:100%}input,select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #333;background:#1a1a1a;color:#fff}.hidden{display:none!important}.nav{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;border-top:1px solid #333}.nav button{flex:1;background:none;border:none;color:#aaa;padding:10px;font-size:12px}.nav button.on{color:#ff8c00}.logoBox{text-align:center;padding:10px}.logoBox img{width:120px;height:120px;border-radius:50%;border:3px solid #ffd700;object-fit:cover}#resultScreen{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;z-index:99;align-items:center;justify-content:center;padding:20px}#resultScreen.show{display:flex}.resultCard{background:#111;border:2px solid #ffd700;border-radius:20px;padding:20px;text-align:center;width:100%;max-width:380px}.resultCard img{width:130px;height:130px;border-radius:50%;border:4px solid #ffd700;object-fit:cover}.giftRow{display:flex;gap:8px;flex-wrap:wrap}.giftRow button{flex:1;background:#222;border:1px solid #ffd700;color:#fff;padding:10px;border-radius:10px}#giftPop{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);font-size:80px;display:none;z-index:100}#giftPop.show{display:block}#adminPanel{position:fixed;top:0;left:0;right:0;bottom:0;background:#111;z-index:200;display:none;overflow:auto;padding:16px}#adminPanel.show{display:block}.small{font-size:12px;color:#aaa}
-</style></head><body>
-<!-- LOGO - 13 BAAR CLICK = ADMIN -->
-<div class="logoBox"><img src="logo.jpg" id="logoImg" onclick="logoClick()" alt="STAR WAR"><div class="title">STAR <span>WAR</span> ⭐</div><span class="pill">Season 3 • Live Battle</span></div>
-<!-- LOGIN / SIGNUP -->
-<div id="authPage">
-<div class="card" style="text-align:center"><h3>👋 Welcome To STAR WAR</h3><p class="small">1 Phone = 1 Account • Selfie Lazmi Hai</p>
-<div style="display:flex;gap:8px"><button class="btn" id="tabLogin" onclick="switchAuth('login')">Login</button><button class="btn btnBlue" id="tabSignup" onclick="switchAuth('signup')">Signup</button></div>
-<div id="loginBox"><input id="loginPhone" placeholder="Phone - 0343..."><input id="loginPass" type="password" placeholder="Password"><button class="btn" onclick="doLogin()">🔐 LOGIN</button><button class="btn btn2" onclick="guestLogin()">👤 Guest Login - SW-1000</button></div>
-<div id="signupBox" class="hidden"><input id="suName" placeholder="Full Name"><input id="suPhone" placeholder="Phone - 0343..."><input id="suPass" type="password" placeholder="Password"><input id="suCity" placeholder="City - Gojra"><input id="suInvite" placeholder="Invite Code (Optional) - Friend Ka ID"><p class="small">📸 Selfie Verification - 1 Selfie Lazmi - 1 Phone = 1 Account</p><input type="file" id="suSelfie" accept="image/*" onchange="previewSelfie(event)"><img id="selfiePreview" style="width:80px;height:80px;border-radius:50%;display:none;object-fit:cover"><button class="btn" onclick="doSignup()">✅ SIGNUP - Get 125 Coins + ID SW-1001</button><p class="small">Invite Se Aaye Ho To Tumko 20 Coins + Invite Karne Wale Ko 100 Coins!</p></div>
-<p class="small">New User = 125 Coins • Invite = 100 Coins</p></div></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAR WAR</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#000;color:#fff;max-width:420px;margin:auto;min-height:100vh;padding-bottom:90px}
+.top{padding:14px 16px 6px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:900;letter-spacing:1px}
+.logo span{color:#ff7a00;text-shadow:0 0 12px #ff7a00}
+.coin{background:#1a1a1a;border:1px solid #ff9a00;border-radius:20px;padding:7px 12px;font-weight:800}
+.coin b{color:#ffcc00}
+.search{margin:10px 16px;background:#141414;border:1px solid #2a2a2a;border-radius:12px;padding:12px;color:#999}
+.tabs{display:flex;gap:8px;padding:10px 16px;overflow:auto}
+.tab{white-space:nowrap;padding:9px 14px;border-radius:20px;background:#1a1a1a;border:1px solid #333;font-size:13px;font-weight:700;cursor:pointer}
+.tab.active{background:#ff6a00;color:#fff;border-color:#ff6a00;box-shadow:0 0 12px #ff6a0055 inset}
+.page{display:none;padding:0 16px}
+.page.active{display:block}
+.card{background:#111;border:1px solid #ff7a00aa;border-radius:18px;padding:14px;margin-top:12px;box-shadow:inset 0 0 22px #ff6a0022;position:relative;overflow:hidden}
+.card h3{color:#ff8a00;font-size:18px}
+.small{color:#aaa;font-size:12px;margin-top:4px}
+.live{display:inline-block;background:#ff2222;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800;margin:8px 0}
+.battle{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.player{flex:1;text-align:center;background:#0d0d0d;border-radius:14px;padding:12px 6px}
+.player.one{border:1px solid #ff7a00;box-shadow:inset 0 0 16px #ff6a0022}
+.player.two{border:1px solid #3a6bff;box-shadow:inset 0 0 16px #3a6bff22}
+.player img{width:78px;height:78px;border-radius:50%;object-fit:cover;border:3px solid #ff7a00}
+.player.two img{border-color:#3a6bff}
+.player b{display:block;margin-top:8px;font-size:14px}
+.votes{font-size:12px;color:#ccc;margin:6px 0}
+.bar{height:8px;background:#222;border-radius:10px;overflow:hidden}
+.bar i{display:block;height:100%;background:#ff7a00}
+.player.two .bar i{background:#3a6bff}
+.vbtn{width:100%;margin-top:10px;padding:10px;border:none;border-radius:10px;font-weight:900;color:#fff;cursor:pointer}
+.one .vbtn{background:#ff6a00}
+.two .vbtn{background:#2f5bff}
+.vs{font-size:26px;font-weight:900;color:#ff8a00;text-shadow:0 0 12px #ff8a00}
+.timer{text-align:center;margin-top:10px;font-weight:800;color:#ffcc00}
+.stats{display:flex;gap:10px;margin-top:12px}
+.stat{flex:1;background:#111;border:1px solid #333;border-radius:12px;padding:12px;text-align:center}
+.stat b{font-size:18px;display:block}
+.stat span{font-size:11px;color:#aaa}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;background:#ff6a00;color:#fff;font-weight:900;font-size:16px;margin-top:12px;cursor:pointer;box-shadow:inset 0 0 18px #ff8a0033}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.pkg{background:#111;border:1px solid #444;border-radius:14px;padding:14px;text-align:center;cursor:pointer}
+.pkg.sel{border-color:#ff7a00;box-shadow:inset 0 0 16px #ff6a0022}
+.pkg b{font-size:18px;display:block}
+.pkg span{font-size:12px;color:#ffcc00}
+.pkg small{color:#aaa}
+.pay{margin-top:12px;background:#111;border:1px solid #333;border-radius:12px;padding:12px}
+.pay label{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #222;cursor:pointer}
+.pay label:last-child{border:none}
+.profileTop{display:flex;gap:12px;align-items:center;margin-top:12px;background:#111;border:1px solid #ff7a00aa;border-radius:16px;padding:14px;box-shadow:inset 0 0 18px #ff6a0022}
+.profileTop img{width:64px;height:64px;border-radius:50%;border:3px solid #ff7a00;object-fit:cover}
+.prow{display:flex;justify-content:space-between;align-items:center;background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:14px 14px;margin-top:8px;cursor:pointer}
+.prow:hover{border-color:#ff7a00}
+.prow span{font-size:14px;font-weight:700}
+.prow i{color:#ff7a00;font-style:normal;font-weight:900;font-size:18px}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;background:#0d0d0d;border-top:1px solid #333;display:flex;justify-content:space-around;padding:12px 0}
+.nav button{background:none;border:none;color:#999;font-size:11px;cursor:pointer}
+.nav button.active{color:#ff7a00;font-weight:900}
+</style>
+</head>
+<body>
+
+<div class="top">
+<div class="logo">⭐ <span>STAR WAR</span></div>
+<div class="coin">🪙 <b id="myCoins">125</b></div>
+</div>
+<div class="search">🔍 Topup Coins / Search Battle...</div>
+<div class="tabs">
+<div class="tab active" onclick="showTab(this,'home')">Battle</div>
+<div class="tab" onclick="showTab(this,'home')">X GANG WAR</div>
+<div class="tab" onclick="showTab(this,'home')">City War</div>
+<div class="tab" onclick="showTab(this,'topup')">Rewards</div>
+</div>
+
 <!-- HOME / BATTLE -->
-<div id="page-home" class="hidden">
-<div class="card" style="text-align:center;border-color:#ffd700"><b>⏰ Timer: <span id="timer">12:00:00</span> • 🔴 LIVE <span id="liveViewers">842</span> Watching</b><br><span class="small">Total Votes: <span id="totalVotes">0</span> • <span id="liveActivity">Ali Just Voted • Ayesha Just Joined</span></span><br><span class="pill" id="lastWinnerText">🏆 Last Winner: Ayesha Noor</span></div>
-<div class="card"><div style="display:flex;gap:8px"><input id="searchId" placeholder="Search By ID - SW-1001 Ya 1001"><button class="btn btnBlue" style="width:120px" onclick="searchById()">Search</button></div><p id="searchResult" class="small"></p></div>
-<div class="card"><div class="battle">
-<div class="p"><img id="img1" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300" onclick="viewProfile(1)"><h3 id="n1">Rahim Khan</h3><p id="id1">ID: SW-1001</p><p id="v1">0 votes</p><p class="small"><span id="likes1">❤️ 0</span> • <span id="foll1">👥 0</span> • <span id="views1">👀 0</span></p>
-<button class="btn" onclick="vote(1)">VOTE +1 FREE</button><button class="btn btn2" onclick="boost(1)">BOOST +10 Votes - 10 Coins</button>
-<p id="giftCount1">🎁 Gifts: 0</p><div class="giftRow"><button onclick="sendGift(1,'🔥')">🔥 Fire<br>5 Coins</button><button onclick="sendGift(1,'🌹')">🌹 Rose<br>5 Coins</button><button onclick="sendGift(1,'👑')">👑 Crown<br>5 Coins</button></div>
-<button class="btn btn2" onclick="sendSecretGift(1)">🎁 Secret Gift - 5 Coins +2 Votes</button>
-<div style="display:flex;gap:6px"><button class="btn btn2" onclick="likePlayer(1)">❤️ Like</button><button class="btn btn2" onclick="followPlayer(1)">+ Follow</button></div>
-<button class="btn btn2" onclick="reportPlayer(1)">🚨 Report / Block</button></div>
+<div id="home" class="page active">
+<div class="card">
+<div class="live">● LIVE</div>
+<h3>Photo Battle</h3>
+<div class="small">LIVE Season 3 - Ends in <b style="color:#ffcc00" id="timer">00:59:12</b></div>
+<div class="battle">
+<div class="player one">
+<img src="https://i.pravatar.cc/150?img=12">
+<b>PLAYER 1</b><span>Rahim Khan</span>
+<div class="votes">Votes <b id="v1">1264</b> - 56%</div>
+<div class="bar"><i style="width:56%"></i></div>
+<button class="vbtn" onclick="vote(1)">VOTE +1</button>
+</div>
 <div class="vs">VS</div>
-<div class="p blue"><img id="img2" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" onclick="viewProfile(2)"><h3 id="n2">Ayesha Noor</h3><p id="id2">ID: SW-1002</p><p id="v2">0 votes</p><p class="small"><span id="likes2">❤️ 0</span> • <span id="foll2">👥 0</span> • <span id="views2">👀 0</span></p>
-<button class="btn btnBlue" onclick="vote(2)">VOTE +1 FREE</button><button class="btn btn2" onclick="boost(2)">BOOST +10 Votes - 10 Coins</button>
-<p id="giftCount2">🎁 Gifts: 0</p><div class="giftRow"><button onclick="sendGift(2,'🔥')">🔥 Fire<br>5 Coins</button><button onclick="sendGift(2,'🌹')">🌹 Rose<br>5 Coins</button><button onclick="sendGift(2,'👑')">👑 Crown<br>5 Coins</button></div>
-<button class="btn btn2" onclick="sendSecretGift(2)">🎁 Secret Gift - 5 Coins +2 Votes</button>
-<div style="display:flex;gap:6px"><button class="btn btn2" onclick="likePlayer(2)">❤️ Like</button><button class="btn btn2" onclick="followPlayer(2)">+ Follow</button></div>
-<button class="btn btn2" onclick="reportPlayer(2)">🚨 Report / Block</button></div></div>
-<div class="bar"><div id="bar1" style="background:#ff8c00;width:50%"></div><div id="bar2" style="background:#4a6cff;width:50%"></div></div>
-<p id="myVoteText" class="small">You have not voted yet - 1 Phone = 1 Free Vote • Last 1 Min = Secret Vote 🔒</p>
-<p class="small" id="secretVoteText" style="color:#ffd700;display:none">🔒 SECRET VOTE ON - Votes Hidden - Last 1 Minute!</p></div>
-<div class="card"><h3>🎁 Daily Reward</h3><p class="small" id="dailyText">Day 1 = 10 Coins • Day 7 = 100 Coins Bonus • 7 Days Streak</p><button class="btn" onclick="claimDaily()">🎁 Claim Daily Reward</button></div>
-<div class="card" id="challengeCard"><h3>⚔️ Challenge Match - WhatsApp Link</h3><p class="small">Tum Photo + Name - Link Banao - Dost Ko Bhejo - Dost Accept Dabaye - Match Lag Jaye!</p><button class="btn" onclick="createChallenge()">📸 Create Challenge Link - WhatsApp</button><p id="challengeLinkText" class="small"></p><input id="joinName" placeholder="Your Name - For Accept"><input type="file" id="joinPhoto" accept="image/*"><button class="btn btnBlue" onclick="joinAsGuest()">✅ Accept Challenge - Join Match</button><p id="matchStartedText" class="small"></p></div>
-<div class="card"><h3>💬 Comments</h3><input id="commentInput" placeholder="Write comment..."><button class="btn btn2" onclick="addComment()">Post Comment</button><div id="commentList"></div></div>
-<div class="card" style="text-align:center"><button class="btn btn2" onclick="inviteFriend()">📩 Invite Friend - You Get 100 Coins</button><button class="btn btn2" onclick="copyMatchLink()">🔗 Copy Match Link</button></div></div>
-<!-- RESULT -->
-<div id="resultScreen"><div class="resultCard"><div style="font-size:50px">🏆</div><h2 id="resultTitle">YOU WINNER - STYLISH CHAMPION</h2><img id="resultImg" src=""><h3 id="resultName">Winner: Ayesha Noor</h3><p id="resultText">Congratulations! +50 Coins Bonus!</p><p>👑 STYLISH WINNER • STAR WAR CHAMPION</p><button class="btn" onclick="revengeMatch()">🔥 REVENGE MATCH</button><button class="btn btn2" onclick="closeResult()">CONTINUE</button></div></div>
-<div id="giftPop"><span id="giftBig">🎁</span></div>
-<div id="toast" style="position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#ffd700;color:#000;padding:10px 16px;border-radius:20px;display:none;font-weight:800;z-index:300"></div>
-<!-- ADMIN PANEL - LOGO 13 BAAR -->
-<div id="adminPanel"><h2>🔐 ADMIN PANEL</h2><p class="small">Only Admin - Atiq Ur Rehman - 03430864009</p><p>Total Users: <b id="adminTotalUsers">0</b> • Total Votes: <b id="adminTotalVotes">0</b></p>
-<div class="card"><h3>Add Coins To ID</h3><input id="adminCoinId" placeholder="ID - SW-1001 Ya 1001"><input id="adminCoinAmt" placeholder="Coins - 100" type="number"><button class="btn" onclick="adminAddCoins()">Add Coins</button></div>
-<div class="card"><h3>Add Votes</h3><input id="adminVoteP1" placeholder="Votes Player 1" type="number"><input id="adminVoteP2" placeholder="Votes Player 2" type="number"><button class="btn" onclick="adminAddVotes()">Add Votes</button></div>
-<div class="card"><h3>Block User</h3><input id="adminBlockId" placeholder="ID To Block - SW-1001"><button class="btn" style="background:#ff2d00" onclick="adminBlock()">Block User</button></div>
-<div class="card"><h3>Battle Control</h3><button class="btn" onclick="adminStop()">⏸️ Stop Battle</button><button class="btn btnBlue" onclick="adminStart()">▶️ Start Battle</button><button class="btn btn2" onclick="adminReset()">🔄 Reset Votes</button></div>
-<div class="card"><h3>Topup Requests - Approve / Reject</h3><div id="adminTopups"><p class="small">No Requests Yet - Firebase Se Aayenge</p></div></div>
-<button class="btn btn2" onclick="closeAdmin()">Close Admin</button></div>
-<!-- STAR WAR - PART 2 - 299 LINES - GANG + CITY + SUPER + TOPUP + PROFILE + JS -->
-<div id="page-gang" class="hidden"><div class="center"><div class="title">War Zone</div><span class="pill">Gang War • City War • Season 3</span></div>
-<div style="display:flex;gap:8px;margin:0 12px"><button class="btn" onclick="switchWarTab('gang')">⚔️ GANG WAR</button><button class="btn btnBlue" onclick="switchWarTab('city')">🏙️ CITY WAR</button></div>
-<div id="war-gang"><div class="card" style="border:2px dashed #ffd700"><h3>How To Make A Gang?</h3><p class="small" style="text-align:left;line-height:1.9"><b>Step 1:</b> Gang Name - Gojra Tigers<br><b>Step 2:</b> Add 5 Friends IDs - SW-1001...<br><b>Step 3:</b> Create Gang<br><b>Step 4:</b> Get Badge - Invite Friends To Vote - Win!</p></div>
-<div class="card"><h3>👊 Create Your Gang</h3><input id="gangName" placeholder="Gang Name - Gojra Kings"><input id="gangM1" placeholder="Friend 1 ID - SW-1001"><input id="gangM2" placeholder="Friend 2 ID - SW-1002"><input id="gangM3" placeholder="Friend 3 ID - SW-1003"><input id="gangM4" placeholder="Friend 4 ID - SW-1004"><input id="gangM5" placeholder="Friend 5 ID - SW-1005"><button class="btn" onclick="makeGang()">Create Gang - Get Badge</button><p id="gangShow" class="small"></p></div>
-<div class="card"><h3>All Gangs</h3><div id="gangList"></div></div><div class="card"><h3>🏆 Gang War Results</h3><p class="small">No Gang War Finished Yet.</p></div></div>
-<div id="war-city" class="hidden"><div class="card"><h3>🏙️ CITY WAR - Vote Your City!</h3><p class="small">1 Person = 1 Vote Only. All Pakistan Cities.</p>
-<select id="city1Select"><option>Lahore</option><option>Karachi</option><option>Islamabad</option><option>Rawalpindi</option><option>Faisalabad</option><option>Multan</option><option>Hyderabad</option><option>Peshawar</option><option>Quetta</option><option>Gojra</option><option>Gujranwala</option><option>Sialkot</option><option>Bahawalpur</option><option>Sargodha</option><option>Abbottabad</option><option>Sahiwal</option><option>Okara</option><option>Jhang</option><option>Kasur</option><option>Sheikhupura</option><option>Chiniot</option><option>Toba Tek Singh</option><option>Kamalia</option><option>Pir Mahal</option><option>Larkana</option><option>Sukkur</option><option>Mardan</option><option>Swat</option><option>Gilgit</option></select>
-<select id="city2Select"><option>Multan</option><option>Lahore</option><option>Karachi</option><option>Gojra</option><option>Faisalabad</option><option>Peshawar</option></select><button class="btn" onclick="createCityWar()">Create City War</button></div>
-<div class="card"><b>LAHORE vs MULTAN</b><p class="small" id="cityText1">Lahore: 550 • Multan: 450</p><div style="display:flex;gap:8px"><button class="btn" onclick="voteCity('Lahore','Lahore vs Multan')">Vote Lahore</button><button class="btn btnBlue" onclick="voteCity('Multan','Lahore vs Multan')">Vote Multan</button></div></div>
-<div class="card"><b>GOJRA vs ALL CITIES</b><p class="small" id="cityText3">Gojra Votes: 0 - Gojra Is King!</p><button class="btn" onclick="voteCity('Gojra','Gojra vs All')">Vote Gojra - Support Your City</button></div>
-<div class="card"><h3>🏆 City War Results</h3><p class="small" id="cityResultText">No City War Finished Yet.</p></div></div></div>
-<!-- SUPER MATCH -->
-<div id="page-super" class="hidden"><div class="center"><div class="title">Super Match</div><span class="pill">Weekly Big Battle • Winner 500 Coins + Crown</span></div>
-<div class="card" style="text-align:center;border-color:#ffd700"><b>⏰ Super Timer: <span id="superTimer">12:00:00</span></b><br><span class="small">🔴 LIVE <span id="superViewers">1200</span> Watching • Winner Gets 500 Coins + 👑 Crown</span></div>
-<div class="card"><div class="battle"><div class="p"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300"><h3>Super King Ali</h3><p>ID: SW-2001</p><p id="superV1">0 votes</p><button class="btn" onclick="voteSuper(1)">Vote Super King</button></div><div class="vs">VS</div><div class="p blue"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300"><h3>Super Queen Sara</h3><p>ID: SW-2002</p><p id="superV2">0 votes</p><button class="btn btnBlue" onclick="voteSuper(2)">Vote Super Queen</button></div></div></div>
-<div class="card"><button class="btn" onclick="joinSuper()">🏆 Join Super Match - Top 2 Only</button><p class="small">Only Top 2 Players Can Join Super Match. Winner = 500 Coins + King Crown.</p></div></div>
-<!-- LEADERBOARD -->
-<div id="page-lead" class="hidden"><div class="center"><div class="title">Leaderboard</div><span class="pill">🏆 Top Stars • Season 3</span></div><div class="card" style="text-align:center"><b style="color:#ffd700;font-size:18px">👑 STAR OF THE DAY</b><p class="small" id="starDay">⭐ STAR OF THE DAY: Loading...</p></div><div class="card"><div id="leadList"></div></div></div>
+<div class="player two">
+<img src="https://i.pravatar.cc/150?img=47">
+<b>PLAYER 2</b><span>Ayesha Noor</span>
+<div class="votes">Votes <b id="v2">1003</b> - 44%</div>
+<div class="bar"><i style="width:44%"></i></div>
+<button class="vbtn" onclick="vote(2)">VOTE +1</button>
+</div>
+</div>
+<div class="timer">⏰ <span id="timer2">00:59:12</span> Remaining</div>
+</div>
+
+<div class="stats">
+<div class="stat"><b id="totalV">2267</b><span>Total Votes</span></div>
+<div class="stat"><b>842</b><span>Viewers Watching</span></div>
+</div>
+
+<div class="card">
+<h3>🔥 CHALLENGE MATCH</h3>
+<div class="small">Ali Raza vs Sara Khan - Starts in 10 min</div>
+<button class="btn" onclick="alert('Challenge Match Joined!')">JOIN CHALLENGE</button>
+</div>
+
+<div class="card">
+<h3>Your Contribution</h3>
+<div class="small">+5 pts - You voted for Rahim Khan</div>
+</div>
+</div>
+
 <!-- TOPUP -->
-<div id="page-topup" class="hidden"><div class="center"><div class="title">Topup Coins</div><span class="pill">Instant • Secure</span></div>
-<div class="card" style="text-align:center"><b>YOUR BALANCE</b><br><b style="font-size:26px;color:#ff9a00"><span id="coinBal">125</span> Coins</b><br><span id="myIdShow" class="small">Your ID: SW-1001</span></div>
-<h3 style="margin-left:12px">🪙 COIN PACKAGES</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px">
-<div class="card" style="text-align:center" onclick="selectCoin(50,50)">🪙<h3>50 Coins</h3><p>Rs 50</p></div><div class="card" style="text-align:center;border-color:#ffd700" onclick="selectCoin(100,100)">🪙🪙<h3>100 Coins</h3><p>Rs 100</p><span class="pill">100 Rs = 100 Votes</span></div><div class="card" style="text-align:center" onclick="selectCoin(200,200)">💰<h3>200 Coins</h3><p>Rs 200</p></div><div class="card" style="text-align:center" onclick="selectCoin(500,500)">👑<h3>500 Coins</h3><p>Rs 500</p></div></div>
-<div class="card"><h3>Topup By ID</h3><input id="topupId" placeholder="Enter ID - SW-1001 Ya Sirf 1001"><p class="small">Empty = For Yourself. ID = For Friend.</p></div>
-<div class="card"><h3>💳 PAYMENT - ONLY EASYPAISA</h3><b style="color:#00c853">Easypaisa</b><br><b>03430864009</b><br><span class="small">Atiq Ur Rehman</span></div>
-<input id="trx" placeholder="Transaction ID - After Payment" style="margin:0 12px;width:calc(100% - 24px)"><button class="btn" id="payBtn" onclick="buy()" style="margin:10px 12px;width:calc(100% - 24px)">PAY NOW • Rs 100</button><p class="small" id="topupMsg" style="text-align:center"></p><p class="small" style="text-align:center">You will receive <b id="coinReceive">100 Coins</b></p>
-<div class="card"><h3>⏳ My Topup Requests</h3><div id="myTopups"></div></div></div>
+<div id="topup" class="page">
+<div class="card">
+<h3>Topup Coins</h3>
+<div class="small">Instant - Secure - Bonus for Season 3</div>
+<div style="margin-top:12px;background:#1a1a1a;border-radius:12px;padding:12px;display:flex;justify-content:space-between"><span>YOUR BALANCE</span><b style="color:#ffcc00"><span id="bal2">125</span> Coins</b></div>
+<div class="grid">
+<div class="pkg" onclick="selectPkg(this,100,100)"><b>100 Coins</b><span>Rs 100</span><br><small>Basic</small></div>
+<div class="pkg" onclick="selectPkg(this,300,300)"><b>300 Coins</b><span>Rs 300</span><br><small>+30 Bonus</small></div>
+<div class="pkg" onclick="selectPkg(this,500,500)"><b>500 Coins</b><span>Rs 500</span><br><small>POPULAR +75</small></div>
+<div class="pkg sel" onclick="selectPkg(this,1200,900)"><b>1000 Coins</b><span>Rs 900</span><br><small>BEST VALUE +200</small></div>
+</div>
+<div class="pay">
+<b>PAYMENT METHOD</b>
+<label><input type="radio" name="pay" checked> 💚 Easypaisa Wallet - App / Account</label>
+<label><input type="radio" name="pay"> 💙 JazzCash Wallet - Mobile / Account</label>
+</div>
+<button class="btn" id="payBtn" onclick="payNow()">PAY NOW - Rs 900</button>
+<div class="small" style="text-align:center;margin-top:8px">You will receive <b style="color:#ffcc00">1200 Coins</b> +200 bonus</div>
+</div>
+</div>
+
+<!-- LEADERBOARD -->
+<div id="leader" class="page">
+<div class="card"><h3>🏆 Leaderboard</h3><div class="small">Top Players - Season 3</div>
+<div class="prow"><span>1. Rahim Khan - 1264 Votes</span><i>›</i></div>
+<div class="prow"><span>2. Ayesha Noor - 1003 Votes</span><i>›</i></div>
+<div class="prow"><span>3. Ali Raza - 890 Votes</span><i>›</i></div>
+<div class="prow"><span>4. Sara Khan - 750 Votes</span><i>›</i></div>
+</div>
+</div>
+
 <!-- PROFILE -->
-<div id="page-profile" class="hidden"><div class="center"><div class="title">Profile</div></div>
-<div class="card" style="text-align:center;border-color:#ffd700"><img id="profImg" src="logo.jpg" style="width:110px;height:110px;border-radius:50%;object-fit:cover"><br><input type="file" id="profPhotoInput" accept="image/*" onchange="changeProfPhoto(event)" style="width:180px"><h3 id="welcome">Welcome Guest</h3><p id="myInfo" class="small"></p><p id="myIdProfile" style="color:#ffd700;font-weight:800">ID: SW-1001</p><p>Coins: <b id="profCoins">125</b> 🪙</p><p><span class="pill" id="myLikesShow">❤️ 0 Likes</span> <span class="pill" id="myFollowersShow">👥 0 Followers</span> <span class="pill" id="myViewsShow">👀 0 Views</span></p></div>
-<div class="card"><h3>✏️ Edit Profile</h3><input id="editName" placeholder="Name"><input id="editBio" placeholder="Bio"><input id="editCity" placeholder="City - Gojra"><button class="btn" onclick="saveProfile()">Save Profile</button></div>
-<div class="card"><h3>🔐 Change Password</h3><input id="oldPass" type="password" placeholder="Old Password"><input id="newPass" type="password" placeholder="New Password"><button class="btn btn2" onclick="changePass()">Change Password</button></div>
-<div class="card"><h3>👀 Who Viewed My Profile</h3><div id="viewersList"><p class="small">No One Viewed Yet.</p></div></div>
-<div class="card"><h3>⚙️ Options</h3><p class="small">📄 Terms - Photo battle entertainment only. No bad photo. No fake votes. Coins entertainment only. No cash refund.</p><p class="small">❓ FAQ - ID After Signup SW-1001. Vote Home Se. Topup Easypaisa Se. Photo Profile Se Change.</p><p class="small">💬 Help: WhatsApp 03430864009</p><button class="btn btn2" onclick="installApp()">📲 Install App - INSTALLED - STAR WAR</button></div>
-<button class="btn" style="background:#ff2d00;margin:10px 12px;width:calc(100% - 24px)" onclick="logout()">🚪 LOGOUT</button></div>
-<!-- NAV -->
-<div class="nav" id="bottomNav" style="display:none"><button onclick="show('home')" id="nb-home" class="on">🏠 Home</button><button onclick="show('gang')" id="nb-gang">⚔️ Gang War</button><button onclick="show('super')" id="nb-super">🏆 Super</button><button onclick="show('lead')" id="nb-lead">🏆 Leaderboard</button><button onclick="show('topup')" id="nb-topup">🪙 Topup</button><button onclick="show('profile')" id="nb-profile">👤 Profile</button></div>
-<script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";import {getDatabase,ref,onValue,set,get,push,update,remove} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
-const firebaseConfig={apiKey:"AIzaSyBByFbfFgagKDi-75jQLNqiYQYB1eKfvFQ",authDomain:"star-war-bed3a.firebaseapp.com",databaseURL:"https://star-war-bed3a-default-rtdb.firebaseio.com",projectId:"star-war-bed3a",storageBucket:"star-war-bed3a.firebasestorage.app",messagingSenderId:"476407141290",appId:"1:476407141290:web:cafd3a8488ced1abad51d3"};
-const app=initializeApp(firebaseConfig);const db=getDatabase(app);
-let votes={1:1264,2:1003},superVotes={1:500,2:450},coins=125,me={id:'SW-1001',name:'Guest',phone:'Guest'},voted='',myVotedPlayer=0,selPrice=100,selCoins=100,battleOn=true,giftCounts={1:0,2:0},cityVotes={Lahore:550,Multan:450,Faisalabad:500,Gojra:0},cityVotedMap={},boostCount=0,logoClicks=0,myLikes=0,myFollowers=0,myViews=0,dailyClaimed=false,usersCount=0;
-let $=id=>document.getElementById(id);
-function fixId(id){if(!id)return"";id=id.toString().trim().toUpperCase();if(id.startsWith("SW-"))return id;if(/^\d+$/.test(id))return"SW-"+id;return id;}
-function toast(m){let t=$('toast');t.innerText=m;t.style.display='block';setTimeout(()=>t.style.display='none',2500);}window.toast=toast;
-window.logoClick=()=>{logoClicks++;if(logoClicks>=13){logoClicks=0;$('adminPanel').classList.add('show');toast('Admin Panel Open!');loadAdminTopups();}};
-window.closeAdmin=()=>$('adminPanel').classList.remove('show');
-window.switchAuth=t=>{let l=t==='login';$('loginBox').classList.toggle('hidden',!l);$('signupBox').classList.toggle('hidden',l);};
-window.previewSelfie=e=>{let f=e.target.files[0];if(f){let r=new FileReader();r.onload=ev=>{let im=$('selfiePreview');im.src=ev.target.result;im.style.display='block';};r.readAsDataURL(f);}};
-window.doSignup=async()=>{let n=$('suName').value.trim(),ph=$('suPhone').value.trim(),ps=$('suPass').value.trim(),city=$('suCity').value.trim(),inv=$('suInvite').value.trim();if(!n||!ph||!ps)return toast('Name + Phone + Password Lazmi Hai');if(!$('suSelfie').files[0])return toast('Selfie Lazmi Hai - Selfie Verification');let snap=await get(ref(db,'users'));let cnt=snap.exists()?Object.keys(snap.val()).length:0;let newId='SW-'+(1001+cnt);let bonus=125;if(inv){bonus+=20;toast('Invite Bonus +20 Coins! Invite Karne Wale Ko +100 Coins!');}me={id:newId,name:n,phone:ph};coins=bonus;await set(ref(db,'users/'+newId),{name:n,phone:ph,city:city,coins:bonus,time:new Date().toString()});localStorage.setItem('star_user',JSON.stringify(me));showApp();toast('Signup Done! ID: '+newId+' • '+bonus+' Coins!');};
-window.doLogin=async()=>{let ph=$('loginPhone').value.trim(),ps=$('loginPass').value.trim();if(!ph||!ps)return toast('Phone + Password Likho');let snap=await get(ref(db,'users'));if(snap.exists()){for(let k in snap.val()){if(snap.val()[k].phone===ph){me={id:k,name:snap.val()[k].name,phone:ph};coins=snap.val()[k].coins||125;localStorage.setItem('star_user',JSON.stringify(me));showApp();return toast('Login Done! Welcome '+me.name);}}}toast('Account Nahi Mila - Signup Karo');};
-window.guestLogin=()=>{me={id:'SW-1000',name:'Guest',phone:'Guest'};coins=125;localStorage.setItem('star_user',JSON.stringify(me));showApp();toast('Guest Login - SW-1000');};
-function showApp(){$('authPage').classList.add('hidden');$('page-home').classList.remove('hidden');$('bottomNav').style.display='flex';$('welcome').innerText='Welcome '+me.name;$('myIdProfile').innerText='ID: '+me.id;$('myIdShow').innerText='Your ID: '+me.id;$('myInfo').innerText=me.name+' • '+me.phone;updateCoinsUI();updateBattle();}
-window.show=p=>{['home','gang','super','lead','topup','profile'].forEach(x=>{let e=$('page-'+x);if(e)e.classList.add('hidden')});$('page-'+p).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));let b=$('nb-'+p);if(b)b.classList.add('on');if(p==='lead')renderLead();if(p==='gang')loadGangs();};
-window.switchWarTab=t=>{let g=t==='gang';$('war-gang').classList.toggle('hidden',!g);$('war-city').classList.toggle('hidden',g);};
-window.vote=async w=>{if(!battleOn)return toast('Battle Stopped by Admin!');if(voted)return toast('You already voted! 1 Phone = 1 Vote');votes[w]++;myVotedPlayer=w;voted='yes';localStorage.setItem('star_voted','yes');$('myVoteText').innerText='You voted for '+(w===1?$('n1').innerText:$('n2').innerText);await set(ref(db,'votes'),votes);updateBattle();toast('Vote Done! Free Vote!');};
-window.boost=async w=>{if(boostCount>=1)return toast('Boost Already Used - Only 1 Time');if(coins<10){toast('Not enough coins! Topup first.');window.show('topup');return;}coins-=10;boostCount++;votes[w]+=10;await set(ref(db,'votes'),votes);updateBattle();updateCoinsUI();toast('Boost Done! +10 Votes!');};
-window.sendGift=async(w,emoji)=>{if(coins<5){toast('Not Enough Coins - Topup Now!');window.show('topup');return;}coins-=5;updateCoinsUI();giftCounts[w]++;$('giftCount'+w).innerText='🎁 Gifts: '+giftCounts[w];let pop=$('giftPop');$('giftBig').innerText=emoji;pop.classList.add('show');setTimeout(()=>pop.classList.remove('show'),900);votes[w]+=1;await set(ref(db,'votes'),votes);updateBattle();toast('Gift Sent '+emoji+' +1 Vote!');};
-window.sendSecretGift=async w=>{if(coins<5){toast('Not Enough Coins - Topup Now!');window.show('topup');return;}coins-=5;updateCoinsUI();giftCounts[w]++;votes[w]+=2;await set(ref(db,'votes'),votes);updateBattle();toast('Secret Gift Sent! No One Knows! +2 Votes!');};
-function updateBattle(){let t=votes[1]+votes[2]||1,p1=Math.round(votes[1]/t*100);let secret=(battleEndTime-Date.now())<60000;if(secret){$('v1').innerText='🔒 ??? votes';$('v2').innerText='🔒 ??? votes';$('secretVoteText').style.display='block';}else{$('v1').innerText=votes[1].toLocaleString()+' votes';$('v2').innerText=votes[2].toLocaleString()+' votes';$('secretVoteText').style.display='none';}$('bar1').style.width=p1+'%';$('bar2').style.width=(100-p1)+'%';$('totalVotes').innerText=t.toLocaleString();$('adminTotalVotes').innerText=t;let win=votes[1]>=votes[2]?$('n1').innerText:$('n2').innerText;$('starDay').innerText='⭐ STAR OF THE DAY: '+win;$('lastWinnerText').innerText='🏆 Last Winner: '+win;}
-function updateCoinsUI(){$('coinBal').innerText=coins;$('profCoins').innerText=coins;if(me)update(ref(db,'users/'+me.id),{coins:coins});}
-window.closeResult=()=>$('resultScreen').classList.remove('show');
-window.revengeMatch=()=>{closeResult();votes={1:0,2:0};set(ref(db,'votes'),votes);localStorage.removeItem('star_voted');voted='';myVotedPlayer=0;toast('🔥 REVENGE MATCH STARTED!');};
-function showResult(){let winPlayer=votes[1]>=votes[2]?1:2;let winName=winPlayer===1?$('n1').innerText:$('n2').innerText;let winImg=winPlayer===1?$('img1').src:$('img2').src;if(myVotedPlayer===winPlayer){coins+=50;updateCoinsUI();$('resultTitle').innerText='🏆 YOU WINNER - STYLISH CHAMPION 🏆';$('resultText').innerText='Congratulations! Your player won! +50 Coins Bonus!';}else{$('resultTitle').innerText='YOU LOSER - TRY AGAIN';$('resultText').innerText='Your player lost. Try REVENGE MATCH!';}$('resultImg').src=winImg;$('resultName').innerText='Winner: '+winName;$('resultScreen').classList.add('show');set(ref(db,'lastWinner'),{name:winName,time:new Date().toString()});}
-window.voteCity=async(city,warKey)=>{if(cityVotedMap[warKey])return toast('You Already Voted - 1 Person = 1 Vote');cityVotedMap[warKey]=city;cityVotes[city]=(cityVotes[city]||0)+1;updateCityUI();toast('You Voted For '+city+'!');};
-function updateCityUI(){$('cityText1').innerText='Lahore: '+cityVotes.Lahore+' • Multan: '+cityVotes.Multan;$('cityText3').innerText='Gojra Votes: '+cityVotes.Gojra+' - Gojra Is King!';}
-window.createCityWar=()=>{let c1=$('city1Select').value,c2=$('city2Select').value;if(c1===c2)return toast('Select 2 Different Cities');toast('City War Created: '+c1+' vs '+c2);};
-window.makeGang=()=>{let g=$('gangName').value.trim();if(!g)return toast('Enter gang name');$('gangShow').innerText='Gang Created: '+g+' - Badge: 🏆 '+g+' WARRIOR Unlocked!';loadGangs();};
-function loadGangs(){let g=$('gangName').value;if(g)$('gangList').innerHTML='<div><b>🏆 '+g+'</b> - Badge: '+g+' WARRIOR</div>';}
-function renderLead(){let list=[{n:$('n1').innerText,v:votes[1],img:$('img1').src},{n:$('n2').innerText,v:votes[2],img:$('img2').src}];list.sort((a,b)=>b.v-a.v);$('leadList').innerHTML=list.map((x,i)=>'<div style="display:flex;gap:10px;align-items:center;padding:10px;border-bottom:1px solid #222"><b>#'+(i+1)+'</b><img src="'+x.img+'" style="width:50px;height:50px;border-radius:50%"><div><b>'+x.n+'</b><br><span>'+x.v+' Votes</span></div><span style="margin-left:auto">'+(i===0?'👑 KING':'')+'</span></div>').join('');}
-window.selectCoin=(c,price)=>{selCoins=c;selPrice=price;$('payBtn').innerText='PAY NOW • Rs '+price;$('coinReceive').innerText=c+' Coins';};
-window.buy=async()=>{let t=$('trx').value.trim();let topId=fixId($('topupId').value.trim()||me.id);if(!t)return toast('Enter Transaction ID after payment to 03430864009');let k=await push(ref(db,'topups'),{topupId:topId,pack:selCoins,price:selPrice,trx:t,status:'PENDING',time:new Date().toString()});$('topupMsg').innerText='Request Sent: '+selCoins+' Coins to '+topId+' - PENDING - Admin will approve!';$('myTopups').innerHTML+='<p class="small">'+selCoins+' Coins to '+topId+' - PENDING - TRX: '+t+'</p>';toast('Request Sent!');};
-window.createChallenge=()=>{let roomId='ROOM-'+Date.now().toString().slice(-6);let link=location.href.split('?')[0]+'?room='+roomId;$('challengeLinkText').innerText='Challenge Link: '+link;window.open('https://api.whatsapp.com/send?text='+encodeURIComponent('I Challenge You In STAR WAR! Accept: '+link),'_blank');toast('Match Room Created!');};
-window.joinAsGuest=()=>{let n=$('joinName').value.trim();if(!n)return toast('Enter Your Name');$('matchStartedText').innerText='✅ Match Started - Both Players Ready!';toast('Match Started!');};
-window.addComment=()=>{let v=$('commentInput').value.trim();if(!v)return toast('Write Comment First');let d=document.createElement('div');d.innerText=v+' - '+(me?me.name:'Guest');$('commentList').prepend(d);$('commentInput').value='';toast('Comment Posted!');};
-window.saveProfile=()=>{let nn=$('editName').value.trim();if(!nn)return toast('Enter Name');$('welcome').innerText='Welcome '+nn;me.name=nn;toast('Profile Saved!');};
-window.changePass=()=>{if(!$('oldPass').value||!$('newPass').value)return toast('Old + New Password Likho');toast('Password Changed!');};
-window.changeProfPhoto=e=>{let f=e.target.files[0];if(f){let r=new FileReader();r.onload=ev=>{$('profImg').src=ev.target.result;};r.readAsDataURL(f);toast('Photo Changed!');}};
-window.logout=()=>{localStorage.removeItem('star_user');toast('Logged Out');location.reload();};
-window.likePlayer=w=>{myLikes++;$('likes'+w).innerText='❤️ '+myLikes;toast('Liked!');};
-window.followPlayer=w=>{myFollowers++;$('foll'+w).innerText='👥 '+myFollowers;toast('Followed!');};
-window.viewProfile=w=>{myViews++;toast('Viewing Profile: '+(w===1?$('n1').innerText:$('n2').innerText));$('viewersList').innerHTML='<p class="small">'+me.name+' Viewed - Just Now</p>';};
-window.reportPlayer=w=>{toast('Reported + Blocked Player '+w);};
-window.searchById=()=>{let id=fixId($('searchId').value);if(!id)return toast('Enter ID');$('searchResult').innerText='Found: '+id+' - Profile Open!';toast('Found: '+id);};
-window.claimDaily=()=>{if(dailyClaimed)return toast('Already Claimed Today!');dailyClaimed=true;coins+=10;updateCoinsUI();toast('Daily Reward +10 Coins! Day 7 = 100 Coins!');};
-window.inviteFriend=()=>{window.open('https://api.whatsapp.com/send?text='+encodeURIComponent('Join STAR WAR! My ID: '+me.id+' - You Get 20 Coins! https://starwar.com'),' _blank');toast('Invite Sent! You Get 100 Coins When Friend Joins!');};
-window.copyMatchLink=()=>{navigator.clipboard.writeText(location.href);toast('Link Copied!');};
-window.installApp=()=>{toast('INSTALLED - STAR WAR - App Installed!');};
-window.voteSuper=w=>{superVotes[w]++;$('superV'+w).innerText=superVotes[w]+' votes';toast('Super Vote Done!');};
-window.joinSuper=()=>{toast('Super Match Joined! Top 2 Only - Good Luck!');};
-// ADMIN FUNCTIONS
-window.adminAddCoins=async()=>{let id=fixId($('adminCoinId').value),amt=parseInt($('adminCoinAmt').value);if(!id||!amt)return toast('ID + Coins Likho');let snap=await get(ref(db,'users/'+id));let cur=snap.exists()?(snap.val().coins||0):0;await update(ref(db,'users/'+id),{coins:cur+amt});toast('Added '+amt+' Coins To '+id);};
-window.adminAddVotes=async()=>{let a=parseInt($('adminVoteP1').value||0),b=parseInt($('adminVoteP2').value||0);votes[1]+=a;votes[2]+=b;await set(ref(db,'votes'),votes);updateBattle();toast('Votes Added!');};
-window.adminBlock=async()=>{let id=fixId($('adminBlockId').value);if(!id)return toast('Enter ID');await set(ref(db,'blocked/'+id),{time:new Date().toString()});toast('Blocked: '+id);};
-window.adminStop=()=>{battleOn=false;toast('Battle Stopped by Admin');};
-window.adminStart=()=>{battleOn=true;toast('Battle Started');};
-window.adminReset=async()=>{votes={1:0,2:0};await set(ref(db,'votes'),votes);updateBattle();toast('Votes Reset!');};
-async function loadAdminTopups(){let snap=await get(ref(db,'topups'));if(!snap.exists())return;let html='';for(let k in snap.val()){let t=snap.val()[k];html+='<div style="border:1px solid #333;padding:10px;margin:6px 0;border-radius:10px"><b>'+t.pack+' Coins to '+t.topupId+'</b><br>TRX: '+t.trx+' • '+t.status+'<br><button class="btn" onclick="approveTopup(\''+k+'\',\''+t.topupId+'\','+t.pack+')">Approve</button><button class="btn btn2" onclick="rejectTopup(\''+k+'\')">Reject</button></div>';}$('adminTopups').innerHTML=html;}
-window.approveTopup=async(k,uid,amt)=>{let snap=await get(ref(db,'users/'+uid));let cur=snap.exists()?(snap.val().coins||0):0;await update(ref(db,'users/'+uid),{coins:cur+amt});await update(ref(db,'topups/'+k),{status:'APPROVED'});if(uid===me.id){coins+=amt;updateCoinsUI();}toast('Approved '+amt+' Coins To '+uid);loadAdminTopups();};
-window.rejectTopup=async k=>{await update(ref(db,'topups/'+k),{status:'REJECTED'});toast('Rejected');loadAdminTopups();};
-// TIMER 12 HOURS
-let battleEndTime=Date.now()+12*3600*1000;let matchEnded=false;
-setInterval(()=>{let sec=Math.floor((battleEndTime-Date.now())/1000);if(sec<0){if(!matchEnded){matchEnded=true;showResult();setTimeout(()=>{battleEndTime=Date.now()+12*3600*1000;votes={1:0,2:0};set(ref(db,'votes'),votes);voted='';matchEnded=false;toast('Match Ended - New Match Started - 12 Hours!');},4000);}sec=0;}
-let h=String(Math.floor(sec/3600)).padStart(2,'0'),m=String(Math.floor(sec%3600/60)).padStart(2,'0'),ss=String(sec%60).padStart(2,'0');$('timer').innerText=h+':'+m+':'+ss;$('superTimer').innerText=h+':'+m+':'+ss;},1000);
-setInterval(()=>{let v=842+Math.floor(Math.random()*40);$('liveViewers').innerText=v;$('superViewers').innerText=1200+Math.floor(Math.random()*50);},5000);
-onValue(ref(db,'votes'),s=>{if(s.exists()){votes=s.val();updateBattle();}});
-onValue(ref(db,'users'),s=>{if(s.exists()){usersCount=Object.keys(s.val()).length;$('adminTotalUsers').innerText=usersCount;}});
-let saved=localStorage.getItem('star_user');if(saved){me=JSON.parse(saved);showApp();}
-updateBattle();updateCoinsUI();updateCityUI();
-</script></body></html>
+<div id="profile" class="page">
+<div class="profileTop">
+<img src="https://i.pravatar.cc/150?img=12">
+<div><b style="font-size:18px">Rahim Khan</b><br><span style="color:#aaa;font-size:12px">ID: SW-1254 | Level 12</span><br><span style="color:#ffcc00;font-weight:800">🪙 125 Coins</span></div>
+</div>
+<div class="prow" onclick="alert('My Battles')"><span>⚔️ My Battles</span><i>›</i></div>
+<div class="prow" onclick="alert('My Rewards')"><span>🎁 My Rewards</span><i>›</i></div>
+<div class="prow" onclick="alert('Topup History')"><span>🧾 Topup History</span><i>›</i></div>
+<div class="prow" onclick="alert('My Gang')"><span>👥 My Gang</span><i>›</i></div>
+<div class="prow" onclick="alert('Settings')"><span>⚙️ Settings</span><i>›</i></div>
+<div class="prow" onclick="alert('Help & Support')"><span>❓ Help & Support</span><i>›</i></div>
+<div class="prow" onclick="alert('Logout')"><span>🚪 Logout</span><i>›</i></div>
+<button class="btn" onclick="goPage('topup')">TOPUP COINS</button>
+</div>
+
+<div class="nav">
+<button class="active" onclick="goPage('home',this)">🏠<br>Home</button>
+<button onclick="goPage('home',this)">⚔️<br>Gang War</button>
+<button onclick="goPage('leader',this)">🏆<br>Leaderboard</button>
+<button onclick="goPage('topup',this)">🎁<br>Rewards</button>
+<button onclick="goPage('profile',this)">👤<br>Profile</button>
+</div>
+
+<script>
+let coins=125, v1=1264, v2=1003, selCoins=1200, selPrice=900;
+let sec=59*60+12;
+function goPage(id,btn){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+if(btn){document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+window.scrollTo(0,0);
+}
+function showTab(el,page){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');goPage(page);}
+function vote(n){
+if(n==1){v1++;document.getElementById('v1').innerText=v1;}else{v2++;document.getElementById('v2').innerText=v2;}
+document.getElementById('totalV').innerText=v1+v2;
+alert('Vote Done! +1 Added');
+}
+function selectPkg(el,c,p){document.querySelectorAll('.pkg').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');selCoins=c;selPrice=p;document.getElementById('payBtn').innerText='PAY NOW - Rs '+p;}
+function payNow(){
+let m=document.querySelector('input[name="pay"]:checked').parentElement.innerText;
+coins+=selCoins;document.getElementById('myCoins').innerText=coins;document.getElementById('bal2').innerText=coins;
+alert('Payment Success!\n'+selCoins+' Coins Added\nMethod: '+m);
+goPage('home');
+}
+setInterval(()=>{
+sec--;if(sec<0)sec=59*60+12;
+let h=String(Math.floor(sec/3600)).padStart(2,'0'),m=String(Math.floor(sec%3600/60)).padStart(2,'0'),s=String(sec%60).padStart(2,'0');
+let t=h+':'+m+':'+s;document.getElementById('timer').innerText=t;document.getElementById('timer2').innerText=t;
+},1000);
+</script>
+</body>
+</html>
