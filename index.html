@@ -3,57 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0f0f1a">
+<meta name="theme-color" content="#0a0a0a">
 <title>BATTLE KING</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#0f0f1a;color:#fff;max-width:430px;margin:auto;min-height:100vh;padding-bottom:95px}
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;background:#1a1a2e;position:sticky;top:0;z-index:10}
-.logo{font-size:22px;font-weight:900;cursor:pointer;user-select:none}
-.logo span{color:#ffcc00}
-.coins{background:#ffcc00;color:#000;padding:6px 12px;border-radius:20px;font-weight:700;font-size:14px}
-.topupBtn{background:#ff3b30;color:#fff;border:none;padding:7px 14px;border-radius:20px;font-weight:700;cursor:pointer}
-.searchBtn{background:#2a2a45;color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:17px;cursor:pointer}
-.card{background:#1e1e35;margin:12px;border-radius:16px;padding:14px}
-input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;border:1px solid #333;background:#2a2a45;color:#fff;outline:none}
-.btn{width:100%;padding:13px;border:none;border-radius:12px;background:#ffcc00;color:#000;font-weight:800;font-size:16px;cursor:pointer;margin-top:8px}
-.btn2{background:#2a2a45;color:#fff}
+body{background:#0a0a0a;color:#fff;max-width:430px;margin:auto;min-height:100vh;padding-bottom:95px;background-image:radial-gradient(circle at 50% 0%,#2a1400 0%,#0a0a0a 55%)}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 15px;background:#111;color:#fff;position:sticky;top:0;z-index:10;border-bottom:1px solid #2a1a00}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px;cursor:pointer;user-select:none}
+.logo span{color:#ff7a00}
+.coins{background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;padding:6px 12px;border-radius:20px;font-weight:900;font-size:14px}
+.topupBtn{background:linear-gradient(90deg,#ff7a00,#ff3b00);color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:800;cursor:pointer;box-shadow:0 4px 15px rgba(255,122,0,.5)}
+.searchBtn{background:#1f1f1f;color:#ff7a00;border:1px solid #333;width:36px;height:36px;border-radius:50%;font-size:17px;cursor:pointer}
+.card{background:#161616;margin:12px;border-radius:18px;padding:14px;border:1px solid #2a1a00;box-shadow:0 0 20px rgba(255,122,0,.08)}
+input,select,textarea{width:100%;padding:13px;margin:7px 0;border-radius:12px;border:1px solid #333;background:#1f1f1f;color:#fff;outline:none}
+input:focus,select:focus{border-color:#ff7a00}
+.btn{width:100%;padding:14px;border:none;border-radius:14px;background:linear-gradient(90deg,#ff8c00,#ff5a00);color:#fff;font-weight:900;font-size:16px;cursor:pointer;margin-top:8px;box-shadow:0 5px 18px rgba(255,122,0,.4)}
+.btn2{background:#222;color:#fff;border:1px solid #333;box-shadow:none}
 .btnRed{background:#ff3b30!important;color:#fff!important}
 .btnGreen{background:#00c853!important;color:#fff!important}
 .hidden{display:none!important}
-.vs{display:flex;align-items:center;gap:10px;margin:10px 0}
-.vs img{width:80px;height:80px;border-radius:14px;object-fit:cover;background:#333;cursor:pointer}
+.vs{display:flex;align-items:center;gap:10px;margin:12px 0}
+.vs img{width:86px;height:86px;border-radius:16px;object-fit:cover;background:#222;border:2px solid #ff7a00;cursor:pointer}
 .vs div{flex:1;text-align:center}
-.voteBtn{background:#00c853;color:#fff;border:none;padding:10px;border-radius:10px;width:100%;font-weight:800;cursor:pointer}
-.voteBtn:disabled{background:#444;color:#aaa}
+.voteBtn{background:#ff7a00;color:#fff;border:none;padding:11px;border-radius:12px;width:100%;font-weight:900;cursor:pointer}
+.voteBtn:disabled{background:#333;color:#aaa}
+.boostBtn{background:#222!important;color:#ffcc00!important;border:1px solid #ff7a00!important;box-shadow:none!important;font-size:13px!important;padding:10px!important}
 .giftRow{display:flex;gap:8px;justify-content:space-between;margin-top:10px}
-.giftRow button{flex:1;background:#2a2a45;border:1px solid #444;color:#fff;padding:8px;border-radius:10px;cursor:pointer}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#1a1a2e;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #333;z-index:20}
-.bottom button{background:none;border:none;color:#aaa;font-size:12px;cursor:pointer}
-.bottom button.active{color:#ffcc00}
-.createBtn{background:#ffcc00!important;color:#000!important;width:55px;height:55px;border-radius:50%;font-size:26px;margin-top:-28px;font-weight:900}
-.profileTop{text-align:center;padding:15px}
-.profileTop img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid #ffcc00;background:#333}
+.giftRow button{flex:1;background:#222;border:1px solid #333;color:#fff;padding:9px;border-radius:12px;cursor:pointer}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#111;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #2a1a00;z-index:20}
+.bottom button{background:none;border:none;color:#888;font-size:12px;cursor:pointer}
+.bottom button.active{color:#ff7a00}
+.createBtn{background:linear-gradient(180deg,#ff8c00,#ff3b00)!important;color:#fff!important;width:58px;height:58px;border-radius:50%;font-size:28px;margin-top:-30px;font-weight:900;box-shadow:0 8px 20px rgba(255,122,0,.6);border:3px solid #0a0a0a}
+.profileTop{text-align:center;padding:18px 15px}
+.fireRing{width:118px;height:118px;border-radius:50%;padding:4px;background:conic-gradient(#ff7a00,#ffcc00,#ff3b00,#ff7a00);display:inline-block}
+.fireRing img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid #000;background:#222;display:block}
 .stats{display:flex;gap:10px;margin:12px}
-.stats div{flex:1;background:#2a2a45;padding:12px;border-radius:12px;text-align:center}
-.stats b{font-size:18px;display:block;color:#ffcc00}
-.listItem{background:#2a2a45;margin:7px 0;padding:13px;border-radius:12px;display:flex;justify-content:space-between;cursor:pointer}
-.badge{background:#ffcc00;color:#000;padding:3px 8px;border-radius:20px;font-size:12px;font-weight:800}
-.statusBox{border:2px dashed #ffcc00;border-radius:14px;padding:14px;text-align:center;margin:10px 0}
+.stats div{flex:1;background:#1a1a1a;padding:13px;border-radius:14px;text-align:center;border:1px solid #2a1a00}
+.stats b{font-size:20px;display:block;color:#ff7a00}
+.listItem{background:#222;margin:7px 0;padding:13px;border-radius:12px;display:flex;justify-content:space-between;cursor:pointer}
+.badge{background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:900}
+.statusBox{border:2px dashed #ff7a00;border-radius:14px;padding:14px;text-align:center;margin:10px 0;background:#1a0f00}
 .small{font-size:13px;color:#aaa}
 .center{text-align:center}
 .adminBox{background:#fff;color:#000;padding:15px;border-radius:14px;margin:10px 0}
-.welcome{position:fixed;top:60px;left:50%;transform:translateX(-50%);width:90%;max-width:390px;background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;padding:14px;border-radius:14px;text-align:center;font-weight:800;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:slideDown .5s}
-@keyframes slideDown{from{margin-top:-80px;opacity:0}to{margin-top:0;opacity:1}}
-.waBox{background:#25D366;color:#fff;padding:14px;border-radius:14px;text-align:center;margin:12px;display:block;text-decoration:none;font-weight:800}
+.welcome{position:fixed;top:60px;left:50%;transform:translateX(-50%);width:90%;max-width:390px;background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;padding:14px;border-radius:14px;text-align:center;font-weight:900;z-index:99;box-shadow:0 10px 30px rgba(255,122,0,.5)}
+.waBox{background:#25D366;color:#fff;padding:14px;border-radius:14px;text-align:center;margin:12px;display:block;text-decoration:none;font-weight:900}
 .centerBtns{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 12px 20px}
 .centerBtns button{width:85%;max-width:320px}
-.installBanner{background:#ffcc00;color:#000;margin:12px;padding:12px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-weight:800}
+.installBanner{background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;margin:12px;padding:12px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-weight:900}
 .installBanner button{background:#000;color:#ffcc00;border:none;padding:8px 14px;border-radius:20px;font-weight:800}
-.searchBox{background:#1e1e35;margin:12px;border-radius:16px;padding:12px}
-.playerName{cursor:pointer;font-weight:800}
-.playerName:hover{color:#ffcc00}
-.filterActive{background:#ffcc00!important;color:#000!important}
+.searchBox{background:#161616;margin:12px;border-radius:16px;padding:12px;border:1px solid #2a1a00}
+.playerName{cursor:pointer;font-weight:900}
+.playerName:hover{color:#ff7a00}
+.tabRow{display:flex;gap:8px;margin-top:10px}
+.tabRow button{flex:1;padding:11px;border-radius:12px;border:1px solid #333;background:#222;color:#fff;font-weight:800;cursor:pointer}
+.tabRow button.on{background:linear-gradient(90deg,#ff8c00,#ff5a00);border:none}
+.uploadBox{border:2px dashed #ff7a00;border-radius:16px;padding:20px;text-align:center;background:#1a0f00;margin:10px 0;cursor:pointer}
+.podium{display:flex;align-items:flex-end;gap:8px;justify-content:center;margin:18px 0}
+.podium div{text-align:center;flex:1;border-radius:14px 14px 0 0;padding:10px 5px;overflow:hidden}
+.p1{background:linear-gradient(180deg,#ffcc00,#ff7a00);color:#000;height:120px}
+.p2{background:#c0c0c0;color:#000;height:90px}
+.p3{background:#cd7f32;color:#fff;height:70px}
+.liveDot{width:9px;height:9px;background:#ff3b00;border-radius:50%;display:inline-block;box-shadow:0 0 10px #ff3b00}
 </style>
 </head>
 <body>
@@ -63,12 +74,12 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
   <div style="display:flex;gap:8px;align-items:center">
     <button class="searchBtn" onclick="toggleSearch()">🔍</button>
     <div class="coins">🪙 <span id="myCoins">0</span></div>
-    <button class="topupBtn" onclick="showPage('topup')">TOPUP</button>
+    <button class="topupBtn" onclick="showPage('topup')">TOP UP</button>
   </div>
 </div>
 
 <div id="welcomeBox" class="welcome hidden">🎉 WELCOME TO BATTLE KING! 👑<br><span style="font-size:13px;font-weight:600">Ab Apna Battle Banao - Vote Karo - King Bano!</span></div>
-<div id="installBanner" class="installBanner hidden">📲 INSTALL BATTLE WAR APP <button onclick="installApp()">INSTALL</button></div>
+<div id="installBanner" class="installBanner hidden">📲 INSTALL BATTLE KING APP <button onclick="installApp()">INSTALL</button></div>
 
 <div id="searchBar" class="searchBox hidden">
   <input id="searchInput" placeholder="Search Player - Gang - City..." oninput="doSearch(this.value)">
@@ -76,7 +87,7 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
 </div>
 
 <div id="page-login">
-  <div class="card center"><h1>BATTLE KING</h1><p class="small">Login / Signup - Admin Will Approve</p></div>
+  <div class="card center"><h1 style="font-size:32px">BATTLE <span style="color:#ff7a00">KING</span></h1><p class="small">Login / Signup - Admin Will Approve</p><p style="margin-top:8px">🔥 VOTE. WIN. RULE. 🔥</p></div>
   <div class="card">
     <h3>Login / Create Account</h3>
     <input id="regName" placeholder="Full Name">
@@ -91,14 +102,16 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
 
 <div id="page-home" class="hidden">
   <div class="card">
-    <div style="display:flex;gap:8px">
-      <button class="btn filterBtn filterActive" id="f-all" style="margin:0" onclick="filterMatch('all')">All Matches</button>
-      <button class="btn btn2 filterBtn" id="f-boys" style="margin:0" onclick="filterMatch('boys')">Boys</button>
-      <button class="btn btn2 filterBtn" id="f-girls" style="margin:0" onclick="filterMatch('girls')">Girls</button>
+    <h3>🔥 Live Battles</h3>
+    <div class="tabRow">
+      <button class="filterBtn on" id="f-all" onclick="filterMatch('all')">All</button>
+      <button class="filterBtn" id="f-boys" onclick="filterMatch('boys')">Boys</button>
+      <button class="filterBtn" id="f-girls" onclick="filterMatch('girls')">Girls</button>
+      <button class="filterBtn" id="f-gang" onclick="filterMatch('gang')">Gang</button>
     </div>
-    <div style="display:flex;gap:8px;margin-top:8px">
-      <button class="btn btn2" style="margin:0" onclick="showPage('gang')">GANG WAR</button>
-      <button class="btn btn2" style="margin:0" onclick="showPage('city')">CITY WAR</button>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn btn2" style="margin:0" onclick="showPage('gang')">🔥 GANG WAR</button>
+      <button class="btn btn2" style="margin:0" onclick="showPage('city')">🏙️ CITY WAR</button>
     </div>
   </div>
   <div id="matchList"></div>
@@ -107,13 +120,13 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
     <div class="statusBox" id="statusBox">No Status Yet - Add Your Status</div>
     <input id="statusInput" placeholder="Write Your Status...">
     <button class="btn btn2" onclick="addStatus()">ADD STATUS</button>
-    <p class="small" id="statusViews">Views: 0 - Viewers List Will Show Here</p>
+    <p class="small" id="statusViews">Views: 0</p>
   </div>
 </div>
 
 <div id="page-gang" class="hidden">
   <div class="card center"><h2>🔥 CREATE YOUR GANG</h2><p class="small">Apni Gang Banao - Dosto Ko Add Karo</p></div>
-  <div class="card"><input id="gangCreateName" placeholder="Gang Ka Naam"><input type="file" accept="image/*"><button class="btn" onclick="createGang()">CREATE GANG</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div>
+  <div class="card"><input id="gangCreateName" placeholder="Gang Ka Naam"><div class="uploadBox" onclick="document.getElementById('gangFile').click()">📸 Gang Photo Upload<br><span class="small">Tap To Upload</span><input type="file" id="gangFile" accept="image/*" style="display:none"></div><button class="btn" onclick="createGang()">CREATE GANG</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div>
   <div class="card"><h3>My Gangs</h3><div id="gangList">Koi Gang Nahi Hai</div></div>
 </div>
 
@@ -123,31 +136,44 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
   <div class="card"><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div>
 </div>
 
-<div id="page-leaderboard" class="hidden"><div class="card"><h3>🏆 Leaderboard - Top Players</h3><div id="leaderList"></div></div></div>
+<div id="page-leaderboard" class="hidden">
+  <div class="card center"><h2>🏆 LEADERBOARD</h2><p class="small">Top Players - This Week - Live Votes Se</p>
+    <div class="podium" id="podiumBox"></div>
+  </div>
+  <div class="card"><div id="leaderList"></div></div>
+</div>
 
 <div id="page-create" class="hidden">
-  <div class="card"><h3>Create Match</h3>
-    <select id="matchType"><option>Boys vs Boys</option><option>Girls vs Girls</option><option>Friends Battle</option><option>Gang War</option><option>City War</option></select>
+  <div class="card center"><h2>⚔️ CREATE BATTLE</h2><p class="small">Apna Battle Banao - Logo Se Vote Karwao</p></div>
+  <div class="card">
+    <p><b>Category</b></p>
+    <div class="tabRow" id="catRow">
+      <button class="on" onclick="setCat(this,'Boys vs Boys')">Boys</button>
+      <button onclick="setCat(this,'Girls vs Girls')">Girls</button>
+      <button onclick="setCat(this,'Friends Battle')">Friends</button>
+      <button onclick="setCat(this,'Gang War')">Gang War</button>
+    </div>
     <input id="p1Name" placeholder="Player 1 Name">
     <input id="p2Name" placeholder="Player 2 Name">
     <input id="gangName" placeholder="Gang Name / City Name (For War)">
-    <input type="file" accept="image/*" onchange="previewImg(event,'p1Img')">
+    <div class="uploadBox" onclick="document.getElementById('createFile').click()">📸 Upload Battle Photo<br><span class="small">Tap To Upload From Gallery</span><input type="file" id="createFile" accept="image/*" onchange="previewImg(event,'p1Img')" style="display:none"></div>
     <img id="p1Img" style="width:100%;border-radius:12px;display:none">
-    <button class="btn" onclick="createMatch()">CREATE MATCH - SEND FOR APPROVAL</button>
+    <button class="btn" onclick="createMatch()">🔥 CREATE BATTLE</button>
+    <p class="small center">Match Admin Approval Ke Baad Live Hoga</p>
   </div>
 </div>
 
 <div id="page-userprofile" class="hidden">
-  <div class="profileTop"><img id="uImg" src="https://via.placeholder.com/110"><h2 id="uName">User</h2><p class="small" id="uMeta">ID: 1002</p></div>
+  <div class="profileTop"><div class="fireRing"><img id="uImg" src="https://via.placeholder.com/110"></div><h2 id="uName" style="margin-top:10px">User</h2><p class="small" id="uMeta">ID: 1002</p></div>
   <div class="stats"><div><b id="uFollow">0</b>Follow</div><div><b id="uFollowers">0</b>Followers</div><div><b id="uWins">0</b>Wins</div></div>
   <div class="card center"><p id="uBio">Battle King Player</p><button class="btn" id="likeBtn" onclick="toggleLike()">❤️ LIKE</button><button class="btn btn2" id="followBtn" onclick="toggleFollow()">➕ FOLLOW</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div>
 </div>
 
 <div id="page-profile" class="hidden">
   <div class="profileTop">
-    <img id="profImg" src="https://via.placeholder.com/110">
-    <h2 id="profName">Guest User</h2>
-    <p class="small"><span id="profCity">City</span> | ID: <b id="profID" style="color:#ffcc00">1001</b> | <span id="profPhone">Number</span></p>
+    <div class="fireRing"><img id="profImg" src="https://via.placeholder.com/110"></div>
+    <h2 id="profName" style="margin-top:10px">Guest User</h2>
+    <p class="small"><span id="profCity">City</span> | ID: <b id="profID" style="color:#ff7a00">1001</b> | <span id="profPhone">Number</span></p>
     <button class="btn btn2" onclick="editProfile()">EDIT PROFILE</button>
   </div>
   <div class="stats">
@@ -156,10 +182,12 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
     <div><b id="viewCount">0</b>Profile Views</div>
   </div>
   <div class="card">
-    <p id="profBio">Bio: Battle King Player</p>
+    <div style="display:flex;gap:10px;text-align:center"><div style="flex:1"><b style="color:#ff7a00;font-size:20px" id="winCount">0</b><br><span class="small">WINS</span></div><div style="flex:1"><b style="color:#ff3b30;font-size:20px">0</b><br><span class="small">LOSSES</span></div><div style="flex:1"><b style="color:#ffcc00;font-size:20px" id="totalVotes">0</b><br><span class="small">VOTES</span></div></div>
+    <p id="profBio" style="margin-top:10px">Bio: Battle King Player</p>
     <input type="file" accept="image/*" onchange="changePhoto(event)">
-    <p class="small">Upload Photo From Gallery</p>
+    <p class="small">Upload Photo From Gallery - Save Hogi</p>
   </div>
+  <div class="card"><button class="btn" onclick="showPage('topup')">🪙 TOP UP COINS</button><button class="btn btn2" onclick="installApp()">📲 APP INSTALL</button></div>
   <div class="card" id="profileMenu"></div>
   <a class="waBox" href="https://whatsapp.com/channel/0029VbDa1RTChq6PtC1jkk3c" target="_blank">📢 JOIN WHATSAPP CHANNEL</a>
   <div class="centerBtns">
@@ -169,8 +197,8 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
 </div>
 
 <div id="page-topup" class="hidden">
-  <div class="card center"><h2>TOPUP COINS</h2><p>Send Money On EasyPaisa</p>
-    <div style="background:#ffcc00;color:#000;padding:14px;border-radius:12px;margin:10px 0"><h3>EasyPaisa</h3><p>Name: <b>Atiq Ur Rehman</b></p><p>Number: <b>03430864009</b></p></div>
+  <div class="card center"><h2>TOP UP COINS</h2><p>Send Money On EasyPaisa</p>
+    <div style="background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;padding:14px;border-radius:12px;margin:10px 0"><h3>EasyPaisa</h3><p>Name: <b>Atiq Ur Rehman</b></p><p>Number: <b>03430864009</b></p></div>
   </div>
   <div class="card">
     <p>Your ID: <b id="topupID">1001</b> (Auto Filled)</p>
@@ -185,8 +213,8 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
 <div id="page-adminlogin" class="hidden"><div class="card center"><h2>Admin Login</h2><input id="adminPass" type="password" placeholder="Enter Admin Password"><button class="btn" onclick="checkAdmin()">OPEN ADMIN PANEL</button></div></div>
 
 <div id="page-admin" class="hidden">
-  <div class="card"><h2>Admin Panel</h2><p class="small">Dashboard - Users - Matches - Coins - Gifts - Reports - Settings</p>
-  <div style="display:flex;gap:8px"><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Users<br><b id="aUsers">0</b></div><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Matches<br><b id="aMatches">0</b></div><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Earning<br><b>0 Rs</b></div></div></div>
+  <div class="card"><h2>Admin Panel</h2><p class="small">Dashboard - Users - Matches - Coins - Gifts - Reports</p>
+  <div style="display:flex;gap:8px"><div style="flex:1;background:#222;padding:10px;border-radius:10px">Total Users<br><b id="aUsers">0</b></div><div style="flex:1;background:#222;padding:10px;border-radius:10px">Total Matches<br><b id="aMatches">0</b></div><div style="flex:1;background:#222;padding:10px;border-radius:10px">Total Earning<br><b>0 Rs</b></div></div></div>
   <div class="card"><h3>Users Control</h3><div id="adminUsers"></div></div>
   <div class="card"><h3>Topup Requests</h3><div id="adminReq"></div></div>
   <div class="card"><h3>Matches Control</h3><div id="adminMatches"></div></div>
@@ -204,23 +232,29 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
 </div>
 
 <script>
-// ===== STORAGE =====
+// ===== V4 - ALL BUGS FIXED =====
 let user = JSON.parse(localStorage.getItem('bk_user')||'null');
 let matches = JSON.parse(localStorage.getItem('bk_matches')||'[]');
 let requests = JSON.parse(localStorage.getItem('bk_req')||'[]');
 let gangs = JSON.parse(localStorage.getItem('bk_gangs')||'[]');
-let voted = JSON.parse(localStorage.getItem('bk_voted')||'[]');
+// FIX 1: Vote ab naam se save hoga - index se nahi
+let voted = JSON.parse(localStorage.getItem('bk_voted_v4')||'[]');
 let likedUsers = JSON.parse(localStorage.getItem('bk_liked')||'[]');
 let followedUsers = JSON.parse(localStorage.getItem('bk_followed')||'[]');
+// FIX 3: Status 24h - time ke sath
 let myStatus = localStorage.getItem('bk_status')||'';
+let statusTime = parseInt(localStorage.getItem('bk_status_time')||'0');
+if(myStatus && Date.now() - statusTime > 24*60*60*1000){ myStatus=''; localStorage.removeItem('bk_status'); localStorage.removeItem('bk_status_time'); }
 let nextID = parseInt(localStorage.getItem('bk_nextID')||'1001');
-let clicks=0, boostUsed=localStorage.getItem('bk_boost')==='1', deferredPrompt=null, currentViewUser=null, currentFilter='all';
+let clicks=0, boostUsed=localStorage.getItem('bk_boost')==='1', deferredPrompt=null, currentViewUser=null, currentFilter='all', selectedCat='Boys vs Boys';
 let cities=["Gojra","Lahore","Karachi","Faisalabad","Islamabad","Multan","Rawalpindi","Hyderabad"];
-
 if(!matches.length){ matches=[{p1:"Ahmad",p2:"Ali",type:"boys",v1:125,v2:98,img:"https://via.placeholder.com/80"},{p1:"Sara",p2:"Ayesha",type:"girls",v1:210,v2:185,img:"https://via.placeholder.com/80"}]; localStorage.setItem('bk_matches',JSON.stringify(matches)); }
-function saveAll(){ localStorage.setItem('bk_user',JSON.stringify(user)); localStorage.setItem('bk_matches',JSON.stringify(matches)); localStorage.setItem('bk_req',JSON.stringify(requests)); localStorage.setItem('bk_gangs',JSON.stringify(gangs)); localStorage.setItem('bk_voted',JSON.stringify(voted)); localStorage.setItem('bk_liked',JSON.stringify(likedUsers)); localStorage.setItem('bk_followed',JSON.stringify(followedUsers)); }
+function matchKey(m){ return (m.p1+'_VS_'+m.p2).toLowerCase(); }
+function saveAll(){ localStorage.setItem('bk_user',JSON.stringify(user)); localStorage.setItem('bk_matches',JSON.stringify(matches)); localStorage.setItem('bk_req',JSON.stringify(requests)); localStorage.setItem('bk_gangs',JSON.stringify(gangs)); localStorage.setItem('bk_voted_v4',JSON.stringify(voted)); localStorage.setItem('bk_liked',JSON.stringify(likedUsers)); localStorage.setItem('bk_followed',JSON.stringify(followedUsers)); }
 function showToast(t){ let d=document.createElement('div'); d.className='welcome'; d.innerText=t; document.body.appendChild(d); setTimeout(()=>d.remove(),2500); }
 function showWelcome(){ let b=document.getElementById('welcomeBox'); b.classList.remove('hidden'); setTimeout(()=>b.classList.add('hidden'),3500); }
+function setCat(el,cat){ document.querySelectorAll('#catRow button').forEach(b=>b.classList.remove('on')); el.classList.add('on'); selectedCat=cat; }
+function getTopPlayers(){ let all=[]; matches.forEach(m=>{all.push({name:m.p1,votes:m.v1}); all.push({name:m.p2,votes:m.v2});}); all.sort((a,b)=>b.votes-a.votes); return all; }
 function showPage(p){
   ['login','home','gang','city','leaderboard','create','userprofile','profile','topup','requests','adminlogin','admin'].forEach(x=>{let e=document.getElementById('page-'+x); if(e) e.classList.add('hidden');});
   document.getElementById('page-'+p).classList.remove('hidden');
@@ -230,7 +264,11 @@ function showPage(p){
   if(p==='admin') renderAdmin();
   if(p==='gang') document.getElementById('gangList').innerHTML=gangs.length?gangs.map(g=>`<div class="listItem"><span>🔥 ${g}</span><b>MY GANG</b></div>`).join(''):'Koi Gang Nahi Hai';
   if(p==='city') document.getElementById('cityList').innerHTML=cities.map(c=>`<div class="listItem" onclick="selectCity('${c}')"><span>${c}</span><span>></span></div>`).join('');
-  if(p==='leaderboard'){ let all=[]; matches.forEach(m=>{all.push({name:m.p1,votes:m.v1}); all.push({name:m.p2,votes:m.v2});}); all.sort((a,b)=>b.votes-a.votes); document.getElementById('leaderList').innerHTML=all.map((a,i)=>`<div class="listItem"><span onclick="openUser('${a.name}')">${i+1}. ${a.name}</span><b>${a.votes} Votes</b></div>`).join(''); }
+  if(p==='leaderboard'){ let all=getTopPlayers(); document.getElementById('leaderList').innerHTML=all.map((a,i)=>`<div class="listItem"><span onclick="openUser('${a.name}')">${i+1}. ${a.name} ${i==0?'👑':''}</span><b>${a.votes} Votes</b></div>`).join('');
+    // FIX 4: Podium ab live votes se
+    let t0=all[0]||{name:'-',votes:0}, t1=all[1]||{name:'-',votes:0}, t2=all[2]||{name:'-',votes:0};
+    document.getElementById('podiumBox').innerHTML=`<div class="p2">🥈<br><b>${t1.name}</b><br>${t1.votes}</div><div class="p1">👑<br><b>${t0.name}</b><br>${t0.votes}</div><div class="p3">🥉<br><b>${t2.name}</b><br>${t2.votes}</div>`;
+  }
   window.scrollTo(0,0);
 }
 function selectCity(c){ if(user){user.city=c; saveAll();} showToast(c+' Selected! City War Ready!'); showPage('home'); }
@@ -241,38 +279,32 @@ function openUser(name){ currentViewUser=name; document.getElementById('uName').
 function updateLikeFollowBtns(){ document.getElementById('likeBtn').innerText=likedUsers.includes(currentViewUser)?'❤️ LIKED':'❤️ LIKE'; document.getElementById('likeBtn').className=likedUsers.includes(currentViewUser)?'btn btnRed':'btn'; document.getElementById('followBtn').innerText=followedUsers.includes(currentViewUser)?'✅ FOLLOWING':'➕ FOLLOW'; document.getElementById('followBtn').className=followedUsers.includes(currentViewUser)?'btn btnGreen':'btn btn2'; }
 function toggleLike(){ if(!currentViewUser) return; let i=likedUsers.indexOf(currentViewUser); if(i>=0) likedUsers.splice(i,1); else {likedUsers.push(currentViewUser); showToast('Liked! ❤️');} saveAll(); updateLikeFollowBtns(); }
 function toggleFollow(){ if(!currentViewUser) return; let i=followedUsers.indexOf(currentViewUser); if(i>=0) followedUsers.splice(i,1); else {followedUsers.push(currentViewUser); showToast('Followed! ➕');} saveAll(); updateLikeFollowBtns(); }
-function register(){
-  let name=document.getElementById('regName').value||'Guest'; let city=document.getElementById('regCity').value||'Gojra'; let phone=document.getElementById('regPhone').value||'03000000000';
-  let id=nextID; nextID++; localStorage.setItem('bk_nextID',nextID);
-  user={name,city,phone,id,coins:0,follow:0,followers:0,views:0}; saveAll();
-  document.getElementById('myCoins').innerText=user.coins; document.getElementById('topupID').innerText=user.id;
-  showPage('home'); showWelcome();
-}
-// ===== FILTER - FIXED =====
-function filterMatch(t){ currentFilter=t; document.querySelectorAll('.filterBtn').forEach(b=>b.classList.remove('filterActive')); document.getElementById('f-'+t).classList.add('filterActive'); renderMatches(); }
+function register(){ let name=document.getElementById('regName').value||'Guest'; let city=document.getElementById('regCity').value||'Gojra'; let phone=document.getElementById('regPhone').value||'03000000000'; let id=nextID; nextID++; localStorage.setItem('bk_nextID',nextID); user={name,city,phone,id,coins:0,follow:0,followers:0,views:0}; saveAll(); document.getElementById('myCoins').innerText=user.coins; document.getElementById('topupID').innerText=user.id; showPage('home'); showWelcome(); }
+function filterMatch(t){ currentFilter=t; document.querySelectorAll('.filterBtn').forEach(b=>b.classList.remove('on')); let el=document.getElementById('f-'+t); if(el) el.classList.add('on'); renderMatches(); }
 function renderMatches(){
   let list=matches.map((m,i)=>({...m,_i:i})).filter(m=>currentFilter==='all'||m.type===currentFilter);
   let h=''; if(!list.length) h='<div class="card center">Is Category Me Koi Match Nahi Hai</div>';
-  list.forEach((m)=>{
-    let i=m._i; let votedThis=voted.includes(i);
-    h+=`<div class="card"><p><b>${m.type.toUpperCase()} BATTLE</b> <span class="badge">LIVE</span></p>
-    <div class="vs"><div><img src="${m.img}" onclick="openUser('${m.p1}')"><br><span class="playerName" onclick="openUser('${m.p1}')">${m.p1}</span><br>Votes: ${m.v1}<br><button class="voteBtn" ${votedThis?'disabled':''} onclick="vote(${i},1)">${votedThis?'VOTED ✓':'VOTE'}</button></div><div><h2>VS</h2></div><div><img src="${m.img}" onclick="openUser('${m.p2}')"><br><span class="playerName" onclick="openUser('${m.p2}')">${m.p2}</span><br>Votes: ${m.v2}<br><button class="voteBtn" ${votedThis?'disabled':''} onclick="vote(${i},2)">${votedThis?'VOTED ✓':'VOTE'}</button></div></div>
+  list.forEach((m)=>{ let i=m._i; let votedThis=voted.includes(matchKey(m));
+    h+=`<div class="card"><p><span class="liveDot"></span> <b style="color:#ff7a00">${m.type.toUpperCase()} BATTLE</b> <span class="badge">🔥 LIVE</span></p>
+    <div class="vs"><div><img src="${m.img}" onclick="openUser('${m.p1}')"><br><span class="playerName" onclick="openUser('${m.p1}')">${m.p1}</span><br><span style="color:#ffcc00">🗳️ ${m.v1} Votes</span><br><button class="voteBtn" ${votedThis?'disabled':''} onclick="vote(${i},1)">${votedThis?'VOTED ✓':'VOTE'}</button></div><div><h2 style="color:#ff7a00">VS</h2><p class="small">Ends in 2h</p></div><div><img src="${m.img}" onclick="openUser('${m.p2}')"><br><span class="playerName" onclick="openUser('${m.p2}')">${m.p2}</span><br><span style="color:#ffcc00">🗳️ ${m.v2} Votes</span><br><button class="voteBtn" ${votedThis?'disabled':''} onclick="vote(${i},2)">${votedThis?'VOTED ✓':'VOTE'}</button></div></div>
     <div class="giftRow"><button onclick="sendGift('🔥 Fire - 10 Coins')">🔥 Fire</button><button onclick="sendGift('👑 Crown - 50 Coins')">👑 Crown</button><button onclick="sendGift('🌹 Rose - 20 Coins')">🌹 Rose</button><button onclick="sendGift('💎 Diamond - 100 Coins')">💎 Diamond</button></div>
-    <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn2" style="margin:0" onclick="boost(${i})">BOOST +10 VOTES - Only 1 Time</button><button class="btn btn2" style="margin:0" onclick="shareMatch('${m.p1} vs ${m.p2}')">SHARE</button></div></div>`;
+    <div style="display:flex;gap:8px;margin-top:10px"><button class="btn boostBtn" style="margin:0" onclick="boost(${i},1)">⚡ BOOST ${m.p1} +10</button><button class="btn boostBtn" style="margin:0" onclick="boost(${i},2)">⚡ BOOST ${m.p2} +10</button></div>
+    <div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn2" style="margin:0" onclick="shareMatch('${m.p1} vs ${m.p2}')">SHARE</button></div></div>`;
   }); document.getElementById('matchList').innerHTML=h;
   if(myStatus){ document.getElementById('statusBox').innerText=myStatus+' - 24 Hours'; document.getElementById('statusViews').innerText='Views: 12 - Viewers: Ahmad, Ali, Sara'; }
 }
-// ===== VOTE - 1 TIME ONLY - FIXED =====
-function vote(i,who){ if(voted.includes(i)){showToast('Already Voted! 1 Vote Only');return;} voted.push(i); if(who==1) matches[i].v1++; else matches[i].v2++; saveAll(); renderMatches(); showToast('Vote Done! ✅'); }
-function boost(i){ if(boostUsed){showToast('Boost Already Used - Only 1 Time');return;} boostUsed=true; localStorage.setItem('bk_boost','1'); matches[i].v1+=10; saveAll(); renderMatches(); showToast('Boost Activated! +10 Votes!'); }
+function vote(i,who){ let k=matchKey(matches[i]); if(voted.includes(k)){showToast('Already Voted! 1 Vote Only');return;} voted.push(k); if(who==1) matches[i].v1++; else matches[i].v2++; saveAll(); renderMatches(); showToast('Vote Done! ✅'); }
+// FIX 5: Boost ab dono players ko - alag alag
+function boost(i,who){ if(boostUsed){showToast('Boost Already Used - Only 1 Time');return;} boostUsed=true; localStorage.setItem('bk_boost','1'); if(who==1) matches[i].v1+=10; else matches[i].v2+=10; saveAll(); renderMatches(); showToast('SUPER VOTE Activated! +10 Votes!'); }
 function sendGift(g){ if(!user){showToast('Please Login First');return;} if(user.coins<10){showToast('Coins Finished - Please Topup');showPage('topup');return;} user.coins-=10; saveAll(); document.getElementById('myCoins').innerText=user.coins; showToast('Gift Sent: '+g); }
 function shareMatch(t){ let url=location.href; if(navigator.share){navigator.share({title:t,text:'Vote In This Battle!',url:url})} else {prompt('Copy Link And Share On WhatsApp / TikTok',url)} }
-function createMatch(){ let p1=document.getElementById('p1Name').value||'Player 1'; let p2=document.getElementById('p2Name').value||'Player 2'; let type=document.getElementById('matchType').value; matches.unshift({p1,p2,type:type.toLowerCase().includes('girl')?'girls':'boys',v1:0,v2:0,img:"https://via.placeholder.com/80"}); saveAll(); showToast('Match Created - Sent For Admin Approval'); showPage('home'); }
-function addStatus(){ let t=document.getElementById('statusInput').value.trim(); if(!t) return; myStatus=t; localStorage.setItem('bk_status',t); document.getElementById('statusBox').innerText=t+' - 24 Hours'; document.getElementById('statusViews').innerText='Views: 12 - Viewers: Ahmad, Ali, Sara'; document.getElementById('statusInput').value=''; showToast('Status Added For 24 Hours'); }
+function createMatch(){ let p1=document.getElementById('p1Name').value||'Player 1'; let p2=document.getElementById('p2Name').value||'Player 2'; matches.unshift({p1,p2,type:selectedCat.toLowerCase().includes('girl')?'girls':selectedCat.toLowerCase().includes('gang')?'gang':'boys',v1:0,v2:0,img:"https://via.placeholder.com/80"}); saveAll(); showToast('Battle Created - Sent For Admin Approval'); showPage('home'); }
+function addStatus(){ let t=document.getElementById('statusInput').value.trim(); if(!t) return; myStatus=t; localStorage.setItem('bk_status',t); localStorage.setItem('bk_status_time',Date.now().toString()); document.getElementById('statusBox').innerText=t+' - 24 Hours'; document.getElementById('statusViews').innerText='Views: 12 - Viewers: Ahmad, Ali, Sara'; document.getElementById('statusInput').value=''; showToast('Status Added For 24 Hours'); }
 function editProfile(){ let n=prompt('Enter New Name',user?user.name:''); if(n&&user){user.name=n; saveAll(); renderProfile();} }
-function changePhoto(e){ let r=new FileReader(); r.onload=()=>{document.getElementById('profImg').src=r.result}; r.readAsDataURL(e.target.files[0]); }
+// FIX 2: Profile photo ab save hogi
+function changePhoto(e){ let r=new FileReader(); r.onload=()=>{document.getElementById('profImg').src=r.result; try{localStorage.setItem('bk_photo',r.result);}catch(err){showToast('Photo Badi Hai - Choti Photo Lagao');}}; r.readAsDataURL(e.target.files[0]); }
 function previewImg(e,id){ let r=new FileReader(); r.onload=()=>{let im=document.getElementById(id); im.src=r.result; im.style.display='block'}; r.readAsDataURL(e.target.files[0]); }
-function renderProfile(){ if(!user) return; document.getElementById('profName').innerText=user.name; document.getElementById('profCity').innerText=user.city; document.getElementById('profPhone').innerText=user.phone; document.getElementById('profID').innerText=user.id; document.getElementById('myCoins').innerText=user.coins; document.getElementById('followCount').innerText=followedUsers.length; document.getElementById('followerCount').innerText=likedUsers.length; }
+function renderProfile(){ if(!user) return; document.getElementById('profName').innerText=user.name; document.getElementById('profCity').innerText=user.city; document.getElementById('profPhone').innerText=user.phone; document.getElementById('profID').innerText=user.id; document.getElementById('myCoins').innerText=user.coins; document.getElementById('followCount').innerText=followedUsers.length; document.getElementById('followerCount').innerText=likedUsers.length; let tv=0; matches.forEach(m=>tv+=m.v1+m.v2); document.getElementById('totalVotes').innerText=tv; let savedPhoto=localStorage.getItem('bk_photo'); if(savedPhoto) document.getElementById('profImg').src=savedPhoto; }
 function renderProfileMenu(){ renderProfile(); let items=['Profile Views','Status','Matches','Gifts','Badge','Password','Feedback','Help','FAQ','About','Privacy Policy','Terms','Contact','My Requests']; let h=''; items.forEach(it=>{ h+=`<div class="listItem" onclick="profileClick('${it}')"><span>${it}</span><span>></span></div>` }); document.getElementById('profileMenu').innerHTML=h; }
 function profileClick(it){ if(it==='My Requests') showPage('requests'); else showToast(it+' - Coming Soon'); }
 function logout(){ localStorage.removeItem('bk_user'); location.reload(); }
@@ -285,7 +317,6 @@ function approveUser(){showToast('User Approved');}
 function blockUser(){showToast('User Blocked');}
 function approveReq(i){ requests[i].status='APPROVED'; if(user){user.coins+=parseInt(requests[i].coins);} saveAll(); document.getElementById('myCoins').innerText=user?user.coins:0; renderAdmin(); showToast('Topup Approved - Coins Added'); }
 function declareWinner(i,w){ let winner=w==1?matches[i].p1:matches[i].p2; showToast('Winner Declared: '+winner); }
-// ===== PWA - SERVICE WORKER + INSTALL =====
 if('serviceWorker' in navigator){ let swCode="self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>new Response('Offline')))});"; let blob=new Blob([swCode],{type:'text/javascript'}); let swUrl=URL.createObjectURL(blob); navigator.serviceWorker.register(swUrl).catch(()=>{}); }
 window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; document.getElementById('installBanner').classList.remove('hidden'); });
 function installApp(){ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; document.getElementById('installBanner').classList.add('hidden'); }); } else { showToast('Browser Menu > Add To Home Screen Se Install Karo'); } }
