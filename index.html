@@ -9,7 +9,8 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
 body{background:#080808;color:#fff;max-width:430px;margin:auto;min-height:100vh;padding-bottom:100px}
 .topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#0a0a0a;position:sticky;top:0;z-index:20}
-.logo{font-size:25px;font-weight:900}.logo span{color:#ff6a00}
+.logo{font-size:22px;font-weight:900;display:flex;align-items:center;gap:8px}.logo span{color:#ff6a00}
+.logoImg{width:38px;height:38px;border-radius:10px;object-fit:cover;border:2px solid #ff6a00;box-shadow:0 0 12px rgba(255,106,0,.5)}
 .coins{background:linear-gradient(90deg,#ffc400,#ff6a00);color:#000;padding:7px 13px;border-radius:20px;font-weight:900;font-size:14px}
 .topupBtn{background:#ff6a00;color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:800}
 .searchBtn{background:#1c1c1c;color:#fff;border:1px solid #2a2a2a;width:38px;height:38px;border-radius:50%}
@@ -54,7 +55,10 @@ input:focus,textarea:focus{border-color:#ff6a00}
 .hero{margin:14px;border-radius:22px;overflow:hidden;position:relative;height:150px}.hero img{width:100%;height:100%;object-fit:cover}.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95),rgba(0,0,0,.2))}.heroTxt{position:absolute;left:16px;bottom:14px;z-index:2}.heroTxt h2{font-size:24px}.heroTxt p{font-size:13px;color:#ffc400;font-weight:800}
 .ticker{background:#1a1a1a;border:1px solid #2a2a2a;margin:0 14px;padding:10px 12px;border-radius:14px;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden}
 .err{color:#ff5a5a;font-size:13px;font-weight:700}
-.splash{position:fixed;inset:0;background:#080808;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}.splash h1{font-size:44px}.splash h1 span{color:#ff6a00}
+.splash{position:fixed;inset:0;background:#080808;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}.splash h1{font-size:44px}.splash h1 span{color:#ff6a00}
+.splashLogo{width:130px;height:130px;border-radius:26px;border:3px solid #ff6a00;object-fit:cover;box-shadow:0 0 35px rgba(255,106,0,.7)}
+.loginLogo{width:95px;height:95px;border-radius:22px;border:2px solid #ff6a00;object-fit:cover;box-shadow:0 0 20px rgba(255,106,0,.5)}
+.loginTagline{background:linear-gradient(90deg,#ffc400,#ff6a00);color:#000;padding:8px 14px;border-radius:20px;font-weight:900;font-size:14px;display:inline-block;margin-top:8px}
 .reward{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:998;display:flex;align-items:center;justify-content:center}.rewardBox{background:#161616;border:2px solid #ff6a00;border-radius:22px;padding:24px;width:85%;max-width:320px;text-align:center}
 .detailHead{display:flex;align-items:center;gap:10px;margin-bottom:6px}.detailHead button{background:#1e1e1e;color:#fff;border:1px solid #2a2a2a;padding:8px 14px;border-radius:12px;font-weight:800}
 .viewer{display:flex;gap:10px;align-items:center;background:#1e1e1e;padding:12px;border-radius:14px;margin:8px 0}.viewer img{width:44px;height:44px;border-radius:50%;object-fit:cover}
@@ -64,16 +68,16 @@ input:focus,textarea:focus{border-color:#ff6a00}
 </head>
 <body>
 
-<div id="splash" class="splash"><h1>BATTLE <span>KING</span></h1><p>🔥 VOTE. WIN. RULE. 🔥</p></div>
+<div id="splash" class="splash"><img src="logo.png" class="splashLogo" onerror="this.style.display='none'"><h1>BATTLE <span>KING</span></h1><p>🔥 VOTE. WIN. RULE. 🔥</p></div>
 <div id="dailyReward" class="reward hidden"><div class="rewardBox"><h2>🎁 DAILY REWARD!</h2><p style="margin:12px 0">+20 Coins FREE!</p><button class="btn" onclick="claimReward()">CLAIM +20 COINS</button></div></div>
 
-<div class="topbar" id="topbar"><div class="logo" id="secretLogo">BATTLE <span>KING</span></div><div style="display:flex;gap:8px;align-items:center"><button class="searchBtn" onclick="toggleSearch()">🔍</button><div class="coins">🪙 <span id="myCoins">0</span></div><button class="topupBtn" onclick="showPage('topup')">TOP UP</button></div></div>
+<div class="topbar" id="topbar"><div class="logo" id="secretLogo"><img src="logo.png" class="logoImg" onerror="this.style.display='none'"><span>BATTLE <span>KING</span></span></div><div style="display:flex;gap:8px;align-items:center"><button class="searchBtn" onclick="toggleSearch()">🔍</button><div class="coins">🪙 <span id="myCoins">0</span></div><button class="topupBtn" onclick="showPage('topup')">TOP UP</button></div></div>
 <div id="welcomeBox" class="welcome hidden">🎉 WELCOME TO BATTLE KING! 👑</div>
 <div id="installBanner" class="installBanner hidden">📲 INSTALL BATTLE KING <button onclick="installApp()">INSTALL</button></div>
 <div id="searchBar" class="searchBox hidden"><input id="searchInput" placeholder="Search Player..." oninput="doSearch(this.value)"><div id="searchResult" class="small"></div></div>
 
 <div id="page-login">
-  <div class="card center"><h1 style="font-size:34px">BATTLE <span style="color:#ff6a00">KING</span></h1><p class="small">Login / Signup</p><p style="margin-top:8px">🔥 VOTE. WIN. RULE. 🔥</p></div>
+  <div class="card center"><img src="logo.png" class="loginLogo" onerror="this.style.display='none'"><h1 style="font-size:34px;margin-top:10px">BATTLE <span style="color:#ff6a00">KING</span></h1><p class="small">Login / Signup</p><div class="loginTagline">🇵🇰 Pakistan Biggest Photo Battle</div><p style="margin-top:10px">🔥 VOTE. WIN. RULE. 🔥</p></div>
   <div class="card"><h3>Login / Create Account</h3>
     <input id="regName" placeholder="Full Name *">
     <input id="regCity" placeholder="City *">
@@ -194,7 +198,7 @@ function openDetail(what){
   if(what==='Feedback'){body=`<textarea id="feedbackText" rows="4" placeholder="App Kaisi Lagi? Kya Behtar Ho Sakta Hai? Likho..."></textarea><button class="btn" onclick="saveFeedback()">FEEDBACK BHEJO</button><p style="margin-top:10px"><b>Tumhara Feedback:</b></p>${feedbacks.length?feedbacks.map(f=>`<div class="listItem"><span>${f}</span><span>✅</span></div>`).join(''):'<p class="small">Abhi Koi Feedback Nahi</p>'}`;}
   if(what==='Help'){body=`<p><b>🆘 HELP CENTER</b></p><br><p><b>Vote Kaise Karun?</b><br>Home Pe Kisi Battle Pe VOTE Dabao - 1 Vote Free Hai</p><br><p><b>Coins Kaise Lun?</b><br>TOP UP Dabao - EasyPaisa 03430864009 Pe Paise Bhejo - Txn ID Likho - Admin Approve Karega</p><br><p><b>Battle Kaise Banaun?</b><br>CREATE BATTLE Dabao - 2 Naam Likho - Photo Lagao - CREATE Dabao</p><br><p><b>Gang Photo Kaise Lagau?</b><br>GANG WAR Me Ja Ke Photo Select Karo - Gang List Me Dikhayegi</p><br><p><b>City Filter Kaise Hataun?</b><br>Home Pe CITY FILTER HATAO Dabao</p><br><a class="waBox" href="https://wa.me/923430864009" target="_blank">📞 WHATSAPP PE RABTA KARO</a>`;}
   if(what==='FAQ'){body=`<p><b>Q: App Free Hai?</b><br>A: Haan - Signup Free Hai - Vote Free Hai</p><br><p><b>Q: 1 Battle Me Kitne Vote Kar Sakte Hain?</b><br>A: Sirf 1 Vote - Lekin BOOST Se +10 Milte Hain</p><br><p><b>Q: Coins Kahan Use Hote Hain?</b><br>A: Gift Bhejne Aur BOOST Karne Me</p><br><p><b>Q: Winner Kaise Banta Hai?</b><br>A: Jis Ke Zyada Vote - Wo Winner - Admin Declare Karega</p><br><p><b>Q: City Filter Kya Hai?</b><br>A: City Select Karo To Sirf Usi City Ke Battle Dikhayenge</p>`;}
-  if(what==='About'){body=`<div class="center"><h2>BATTLE <span style="color:#ff6a00">KING</span> 👑</h2><p style="margin-top:10px">Version: V8.1 - FINAL</p><p>Pakistan Ka No.1 Voting Battle App</p><p class="small" style="margin-top:10px">Gojra Se Shuru - Pure Pakistan Tak!<br>Vote Karo - Jeeto - King Bano!</p><p style="margin-top:12px"><b>Admin:</b> Atiq Ur Rehman<br><b>City:</b> Gojra, Punjab<br><b>EasyPaisa:</b> 03430864009</p></div>`;}
+  if(what==='About'){body=`<div class="center"><img src="logo.png" style="width:80px;height:80px;border-radius:18px;border:2px solid #ff6a00" onerror="this.style.display='none'"><h2>BATTLE <span style="color:#ff6a00">KING</span> 👑</h2><p style="margin-top:10px">Version: V9.0 - FINAL</p><p>Pakistan Biggest Photo Battle</p><p class="small" style="margin-top:10px">Gojra Se Shuru - Pure Pakistan Tak!<br>Vote Karo - Jeeto - King Bano!</p><p style="margin-top:12px"><b>Admin:</b> Atiq Ur Rehman<br><b>City:</b> Gojra, Punjab<br><b>EasyPaisa:</b> 03430864009</p></div>`;}
   if(what==='Privacy Policy'){body=`<p><b>PRIVACY POLICY - BATTLE KING</b></p><br><p>1. Hum Tumhara Naam, City Aur Number Sirf Account Ke Liye Lete Hain.</p><br><p>2. Tumhara Password Kisi Ko Nahi Dikhaya Jayega.</p><br><p>3. Tumhari Photo Sirf Tumhare Profile Pe Dikhayi Jayegi.</p><br><p>4. Tumhara Data Kisi Teesre Bande Ko Nahi Diya Jayega.</p><br><p>5. Tum Chaaho To Account Delete Karwa Sakte Ho - Contact Karo.</p><br><p>6. Coins / Payment Ki Detail Sirf Admin Dekhega.</p>`;}
   if(what==='Terms'){body=`<p><b>TERMS & CONDITIONS</b></p><br><p>1. 13+ Age Wale Hi Account Bana Sakte Hain.</p><br><p>2. Ghalat Naam / Fake Photo Pe Account Block Ho Sakta Hai.</p><br><p>3. 1 Battle Me Sirf 1 Vote Allowed Hai.</p><br><p>4. Coins Wapis Nahi Honge - Topup Soch Samajh Ke Karo.</p><br><p>5. Gali / Ghalat Status Pe Account Block Hoga.</p><br><p>6. Winner Ka Faisla Admin Ka Hoga - Final Hoga.</p>`;}
   if(what==='Contact'){body=`<div class="center"><h2>📞 CONTACT US</h2><p style="margin:10px 0">Koi Masla Hai? Direct Rabta Karo!</p></div><div class="listItem"><span>👤 Admin Name</span><b>Atiq Ur Rehman</b></div><div class="listItem"><span>📱 WhatsApp / EasyPaisa</span><b>03430864009</b></div><div class="listItem"><span>🏙️ City</span><b>Gojra</b></div><a class="waBox" href="https://wa.me/923430864009" target="_blank">💬 WHATSAPP KHOLO</a><a class="waBox" style="background:#ff6a00" href="https://whatsapp.com/channel/0029VbDa1RTChq6PtC1jkk3c" target="_blank">📢 WHATSAPP CHANNEL JOIN KARO</a>`;}
