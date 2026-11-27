@@ -2,207 +2,188 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>STAR WAR</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#000;color:#fff;max-width:420px;margin:auto;min-height:100vh;padding-bottom:90px}
-.top{padding:14px 16px 6px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:26px;font-weight:900;letter-spacing:1px}
-.logo span{color:#ff7a00;text-shadow:0 0 12px #ff7a00}
-.coin{background:#1a1a1a;border:1px solid #ff9a00;border-radius:20px;padding:7px 12px;font-weight:800}
-.coin b{color:#ffcc00}
-.search{margin:10px 16px;background:#141414;border:1px solid #2a2a2a;border-radius:12px;padding:12px;color:#999}
-.tabs{display:flex;gap:8px;padding:10px 16px;overflow:auto}
-.tab{white-space:nowrap;padding:9px 14px;border-radius:20px;background:#1a1a1a;border:1px solid #333;font-size:13px;font-weight:700;cursor:pointer}
-.tab.active{background:#ff6a00;color:#fff;border-color:#ff6a00;box-shadow:0 0 12px #ff6a0055 inset}
-.page{display:none;padding:0 16px}
-.page.active{display:block}
-.card{background:#111;border:1px solid #ff7a00aa;border-radius:18px;padding:14px;margin-top:12px;box-shadow:inset 0 0 22px #ff6a0022;position:relative;overflow:hidden}
-.card h3{color:#ff8a00;font-size:18px}
-.small{color:#aaa;font-size:12px;margin-top:4px}
-.live{display:inline-block;background:#ff2222;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800;margin:8px 0}
-.battle{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
-.player{flex:1;text-align:center;background:#0d0d0d;border-radius:14px;padding:12px 6px}
-.player.one{border:1px solid #ff7a00;box-shadow:inset 0 0 16px #ff6a0022}
-.player.two{border:1px solid #3a6bff;box-shadow:inset 0 0 16px #3a6bff22}
-.player img{width:78px;height:78px;border-radius:50%;object-fit:cover;border:3px solid #ff7a00}
-.player.two img{border-color:#3a6bff}
-.player b{display:block;margin-top:8px;font-size:14px}
-.votes{font-size:12px;color:#ccc;margin:6px 0}
-.bar{height:8px;background:#222;border-radius:10px;overflow:hidden}
-.bar i{display:block;height:100%;background:#ff7a00}
-.player.two .bar i{background:#3a6bff}
-.vbtn{width:100%;margin-top:10px;padding:10px;border:none;border-radius:10px;font-weight:900;color:#fff;cursor:pointer}
-.one .vbtn{background:#ff6a00}
-.two .vbtn{background:#2f5bff}
-.vs{font-size:26px;font-weight:900;color:#ff8a00;text-shadow:0 0 12px #ff8a00}
-.timer{text-align:center;margin-top:10px;font-weight:800;color:#ffcc00}
-.stats{display:flex;gap:10px;margin-top:12px}
-.stat{flex:1;background:#111;border:1px solid #333;border-radius:12px;padding:12px;text-align:center}
-.stat b{font-size:18px;display:block}
-.stat span{font-size:11px;color:#aaa}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;background:#ff6a00;color:#fff;font-weight:900;font-size:16px;margin-top:12px;cursor:pointer;box-shadow:inset 0 0 18px #ff8a0033}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.pkg{background:#111;border:1px solid #444;border-radius:14px;padding:14px;text-align:center;cursor:pointer}
-.pkg.sel{border-color:#ff7a00;box-shadow:inset 0 0 16px #ff6a0022}
-.pkg b{font-size:18px;display:block}
-.pkg span{font-size:12px;color:#ffcc00}
-.pkg small{color:#aaa}
-.pay{margin-top:12px;background:#111;border:1px solid #333;border-radius:12px;padding:12px}
-.pay label{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #222;cursor:pointer}
-.pay label:last-child{border:none}
-.profileTop{display:flex;gap:12px;align-items:center;margin-top:12px;background:#111;border:1px solid #ff7a00aa;border-radius:16px;padding:14px;box-shadow:inset 0 0 18px #ff6a0022}
-.profileTop img{width:64px;height:64px;border-radius:50%;border:3px solid #ff7a00;object-fit:cover}
-.prow{display:flex;justify-content:space-between;align-items:center;background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:14px 14px;margin-top:8px;cursor:pointer}
-.prow:hover{border-color:#ff7a00}
-.prow span{font-size:14px;font-weight:700}
-.prow i{color:#ff7a00;font-style:normal;font-weight:900;font-size:18px}
-.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;background:#0d0d0d;border-top:1px solid #333;display:flex;justify-content:space-around;padding:12px 0}
-.nav button{background:none;border:none;color:#999;font-size:11px;cursor:pointer}
-.nav button.active{color:#ff7a00;font-weight:900}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:#000;color:#fff;overflow-x:hidden;min-height:100vh}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(1px 1px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 130px 90px,#fff,transparent),radial-gradient(1px 1px at 70px 160px,#fff,transparent),radial-gradient(2px 2px at 200px 50px,#ffcc00,transparent),radial-gradient(1px 1px at 300px 150px,#fff,transparent);background-size:350px 250px;opacity:.7}
+.fire-edge{position:fixed;inset:0;pointer-events:none;z-index:1;box-shadow:inset 0 0 45px 12px rgba(255,90,0,.55),inset 0 0 90px 25px rgba(255,40,0,.30)}
+.fire-edge:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 0% 0%,rgba(255,120,0,.45),transparent 35%),radial-gradient(ellipse at 100% 0%,rgba(255,120,0,.45),transparent 35%),radial-gradient(ellipse at 0% 100%,rgba(255,80,0,.45),transparent 35%),radial-gradient(ellipse at 100% 100%,rgba(255,80,0,.45),transparent 35%)}
+.app{position:relative;z-index:2;max-width:480px;margin:0 auto;padding:12px 12px 95px;min-height:100vh}
+.top{display:flex;align-items:center;justify-content:space-between;padding:6px 2px}
+.logo{font-size:28px;font-weight:900;letter-spacing:1px;cursor:pointer;user-select:none;line-height:1;text-align:center}
+.logo span{color:#ff8c00}.logo small{display:block;font-size:10px;letter-spacing:6px;color:#fff;font-weight:700}
+.coins-pill{background:#111;border:1px solid #ff8c00;border-radius:20px;padding:7px 12px;font-weight:900;font-size:14px}
+.coins-pill b{color:#ffcc00}
+.install{background:#ff8c00;color:#000;border:0;border-radius:20px;padding:8px 14px;font-weight:900;font-size:12px}
+.title{font-size:32px;font-weight:900;text-align:center;margin:14px 0 4px;color:#ff8c00;text-shadow:0 0 18px rgba(255,140,0,.7)}
+.sub{text-align:center;color:#ccc;font-size:13px;margin-bottom:12px}
+.card{background:linear-gradient(180deg,#1a1208,#0a0a0a);border:1px solid #ff6a00;border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 0 0 1px rgba(255,140,0,.2),0 0 28px rgba(255,90,0,.35),inset 0 0 22px rgba(255,90,0,.12);position:relative;overflow:hidden}
+.card h3{color:#ff8c00;font-size:18px;margin-bottom:8px}
+.card p{color:#ddd;font-size:13px;line-height:1.5}
+.btn{width:100%;border:0;border-radius:12px;padding:14px;font-weight:900;font-size:15px;cursor:pointer;margin-top:10px}
+.btn-orange{background:#ff8c00;color:#000}.btn-blue{background:#2563eb;color:#fff}.btn-green{background:#16a34a;color:#fff}.btn-dark{background:#222;color:#fff;border:1px solid #444}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.mini{background:#141414;border:1px solid #333;border-radius:14px;padding:12px;text-align:center}
+.mini b{font-size:20px;color:#ffcc00}.mini span{font-size:11px;color:#aaa}
+input,select{width:100%;background:#111;border:1px solid #444;color:#fff;border-radius:10px;padding:12px;margin-top:8px;font-size:14px;outline:none}
+input:focus{border-color:#ff8c00}
+.battle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.player{background:#000;border:2px solid #333;border-radius:16px;overflow:hidden;text-align:center;padding-bottom:10px}
+.player img{width:100%;height:180px;object-fit:cover;display:block;background:#222}
+.player.winner{border-color:#ffcc00;box-shadow:0 0 20px rgba(255,204,0,.6)}
+.player h4{margin:8px 0 2px}.player small{color:#aaa}
+.vote-btn{border:0;border-radius:10px;padding:10px;width:90%;font-weight:900;margin-top:8px;cursor:pointer}
+.v1{background:#ff8c00}.v2{background:#2563eb;color:#fff}
+.row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid #222;font-size:14px}
+.row b{color:#ffcc00}
+.badge{background:#ff8c00;color:#000;font-size:11px;padding:3px 8px;border-radius:20px;font-weight:900}
+.hidden{display:none!important}
+.center{text-align:center}.small{font-size:12px;color:#aaa;line-height:1.5}
+.progress{height:10px;background:#222;border-radius:20px;overflow:hidden;margin:8px 0}.progress i{display:block;height:100%;background:#ff8c00}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:#0a0a0a;border-top:1px solid #333;display:flex;z-index:10;max-width:480px;margin:0 auto}
+.bottom button{flex:1;background:none;border:0;color:#aaa;padding:10px 2px 8px;font-size:11px;cursor:pointer}.bottom button.active{color:#ff8c00}.bottom button div{font-size:20px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}.modal-box{background:#111;border:1px solid #ff8c00;border-radius:18px;padding:20px;width:100%;max-width:420px;max-height:90vh;overflow:auto}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#ff8c00;color:#000;font-weight:900;padding:10px 16px;border-radius:20px;z-index:99;font-size:13px}
+.timer{font-size:22px;font-weight:900;color:#ffcc00;text-align:center}
 </style>
 </head>
 <body>
+<div class="stars"></div><div class="fire-edge"></div>
+<div id="toast" class="toast hidden"></div>
 
+<div class="app">
 <div class="top">
-<div class="logo">⭐ <span>STAR WAR</span></div>
-<div class="coin">🪙 <b id="myCoins">125</b></div>
-</div>
-<div class="search">🔍 Topup Coins / Search Battle...</div>
-<div class="tabs">
-<div class="tab active" onclick="showTab(this,'home')">Battle</div>
-<div class="tab" onclick="showTab(this,'home')">X GANG WAR</div>
-<div class="tab" onclick="showTab(this,'home')">City War</div>
-<div class="tab" onclick="showTab(this,'topup')">Rewards</div>
+<div class="logo" id="logo">STAR<span> WAR</span><small>STAR WAR</small></div>
+<div style="display:flex;gap:8px;align-items:center"><div class="coins-pill">🪙 <b id="myCoins">100</b></div><button class="install" onclick="showPage('topup')">TOPUP</button></div>
 </div>
 
-<!-- HOME / BATTLE -->
-<div id="home" class="page active">
+<!-- SPLASH / TERMS -->
+<div id="page-welcome">
+<div class="title">WELCOME TO<br>STAR WAR</div><p class="sub">Photo Battle - Gang War - Win Coins - Win Rewards</p>
+<div class="card"><h3>🔥 STAR WAR</h3><p>Vote for best photos. Challenge friends. Win coins. Top the Leaderboard.</p><button class="btn btn-orange" onclick="showPage('terms')">START NOW</button></div>
+<div class="card"><h3>🏆 How To Play</h3><p>1. Get Coins From Topup<br>2. Vote In Photo Battle<br>3. Challenge In Gang War<br>4. Win Rewards Daily</p></div>
+</div>
+
+<div id="page-terms" class="hidden">
+<div class="title">TERMS &<br>CONDITIONS</div>
+<div class="card"><p>1. This app is for entertainment only.<br>2. You must be 13+ to use this app.<br>3. Coins have no cash value.<br>4. Do not upload abusive photos.<br>5. Admin decision will be final.<br>6. Fake votes are not allowed.<br>7. By continuing you agree to all terms.</p>
+<label style="font-size:13px;display:flex;gap:8px;margin-top:12px"><input type="checkbox" id="agree" style="width:18px"> I Agree To Terms & Conditions</label>
+<button class="btn btn-orange" onclick="agreeTerms()">I AGREE & CONTINUE</button></div>
+</div>
+
+<!-- HOME -->
+<div id="page-home" class="hidden">
+<div class="title">PHOTO BATTLE</div><p class="sub">Vote For Your Favourite - Win Coins</p>
+<div class="timer" id="battleTimer">02:00</div><p class="center small">Battle Ends Soon - Vote Now</p>
 <div class="card">
-<div class="live">● LIVE</div>
-<h3>Photo Battle</h3>
-<div class="small">LIVE Season 3 - Ends in <b style="color:#ffcc00" id="timer">00:59:12</b></div>
 <div class="battle">
-<div class="player one">
-<img src="https://i.pravatar.cc/150?img=12">
-<b>PLAYER 1</b><span>Rahim Khan</span>
-<div class="votes">Votes <b id="v1">1264</b> - 56%</div>
-<div class="bar"><i style="width:56%"></i></div>
-<button class="vbtn" onclick="vote(1)">VOTE +1</button>
+<div class="player" id="p1Box"><img id="p1Img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400"><h4 id="p1Name">Player 1</h4><small id="p1Votes">Votes: 125</small><br><button class="vote-btn v1" onclick="vote(1)">VOTE +1 🗳️</button></div>
+<div class="player" id="p2Box"><img id="p2Img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"><h4 id="p2Name">Player 2</h4><small id="p2Votes">Votes: 98</small><br><button class="vote-btn v2" onclick="vote(2)">VOTE +1 🗳️</button></div>
 </div>
-<div class="vs">VS</div>
-<div class="player two">
-<img src="https://i.pravatar.cc/150?img=47">
-<b>PLAYER 2</b><span>Ayesha Noor</span>
-<div class="votes">Votes <b id="v2">1003</b> - 44%</div>
-<div class="bar"><i style="width:44%"></i></div>
-<button class="vbtn" onclick="vote(2)">VOTE +1</button>
+<button class="btn btn-orange" onclick="showPage('challenge')">⚔️ CHALLENGE FRIEND</button>
+<button class="btn btn-dark" onclick="uploadPhoto()">📸 UPLOAD YOUR PHOTO</button>
+<input type="file" id="fileInput" accept="image/*" class="hidden">
 </div>
-</div>
-<div class="timer">⏰ <span id="timer2">00:59:12</span> Remaining</div>
-</div>
-
-<div class="stats">
-<div class="stat"><b id="totalV">2267</b><span>Total Votes</span></div>
-<div class="stat"><b>842</b><span>Viewers Watching</span></div>
-</div>
-
-<div class="card">
-<h3>🔥 CHALLENGE MATCH</h3>
-<div class="small">Ali Raza vs Sara Khan - Starts in 10 min</div>
-<button class="btn" onclick="alert('Challenge Match Joined!')">JOIN CHALLENGE</button>
-</div>
-
-<div class="card">
-<h3>Your Contribution</h3>
-<div class="small">+5 pts - You voted for Rahim Khan</div>
-</div>
+<div class="grid3"><div class="mini"><b id="statUsers">1,250</b><br><span>Total Users</span></div><div class="mini"><b id="statVotes">8,420</b><br><span>Total Votes</span></div><div class="mini"><b id="statBattles">320</b><br><span>Battles</span></div></div>
+<div class="card"><h3>🎁 Daily Reward</h3><p>Claim your free daily coins now!</p><button class="btn btn-green" onclick="claimDaily()">CLAIM 50 FREE COINS</button></div>
 </div>
 
 <!-- TOPUP -->
-<div id="topup" class="page">
-<div class="card">
-<h3>Topup Coins</h3>
-<div class="small">Instant - Secure - Bonus for Season 3</div>
-<div style="margin-top:12px;background:#1a1a1a;border-radius:12px;padding:12px;display:flex;justify-content:space-between"><span>YOUR BALANCE</span><b style="color:#ffcc00"><span id="bal2">125</span> Coins</b></div>
-<div class="grid">
-<div class="pkg" onclick="selectPkg(this,100,100)"><b>100 Coins</b><span>Rs 100</span><br><small>Basic</small></div>
-<div class="pkg" onclick="selectPkg(this,300,300)"><b>300 Coins</b><span>Rs 300</span><br><small>+30 Bonus</small></div>
-<div class="pkg" onclick="selectPkg(this,500,500)"><b>500 Coins</b><span>Rs 500</span><br><small>POPULAR +75</small></div>
-<div class="pkg sel" onclick="selectPkg(this,1200,900)"><b>1000 Coins</b><span>Rs 900</span><br><small>BEST VALUE +200</small></div>
+<div id="page-topup" class="hidden">
+<div class="title">TOPUP COINS</div><p class="sub">Buy Coins - Support Your Player</p>
+<div class="card"><h3>🪙 Select Pack</h3>
+<div class="grid2" id="packs"></div>
+<p class="small" style="margin-top:10px">Payment: JazzCash / EasyPaisa / Bank Transfer<br>Send payment and send screenshot on WhatsApp. Coins will be added by Admin.</p>
+<button class="btn btn-green" onclick="buyPack()">BUY NOW - SEND SCREENSHOT</button></div>
+<div class="card"><h3>💳 Payment Details</h3><p>JazzCash: 0300-1234567<br>EasyPaisa: 0300-1234567<br>Account Title: STAR WAR</p></div>
 </div>
-<div class="pay">
-<b>PAYMENT METHOD</b>
-<label><input type="radio" name="pay" checked> 💚 Easypaisa Wallet - App / Account</label>
-<label><input type="radio" name="pay"> 💙 JazzCash Wallet - Mobile / Account</label>
-</div>
-<button class="btn" id="payBtn" onclick="payNow()">PAY NOW - Rs 900</button>
-<div class="small" style="text-align:center;margin-top:8px">You will receive <b style="color:#ffcc00">1200 Coins</b> +200 bonus</div>
-</div>
+
+<!-- GANG WAR / CHALLENGE -->
+<div id="page-challenge" class="hidden">
+<div class="title">GANG WAR</div><p class="sub">Challenge - 1 vs 1 Battle</p>
+<div class="card"><h3>⚔️ Create Challenge</h3>
+<input id="chName" placeholder="Enter Your Name">
+<input id="chOpp" placeholder="Enter Opponent Name / ID e.g. 1001">
+<select id="chCoins"><option value="50">Bet: 50 Coins</option><option value="100">Bet: 100 Coins</option><option value="200">Bet: 200 Coins</option><option value="500">Bet: 500 Coins</option></select>
+<button class="btn btn-orange" onclick="createChallenge()">CREATE CHALLENGE</button></div>
+<div class="card"><h3>🔥 Live Challenges</h3><div id="challengeList"></div></div>
 </div>
 
 <!-- LEADERBOARD -->
-<div id="leader" class="page">
-<div class="card"><h3>🏆 Leaderboard</h3><div class="small">Top Players - Season 3</div>
-<div class="prow"><span>1. Rahim Khan - 1264 Votes</span><i>›</i></div>
-<div class="prow"><span>2. Ayesha Noor - 1003 Votes</span><i>›</i></div>
-<div class="prow"><span>3. Ali Raza - 890 Votes</span><i>›</i></div>
-<div class="prow"><span>4. Sara Khan - 750 Votes</span><i>›</i></div>
+<div id="page-leaderboard" class="hidden">
+<div class="title">LEADERBOARD</div><p class="sub">Top Players - This Week</p>
+<div class="card" id="leaderList"></div>
 </div>
+
+<!-- REWARDS -->
+<div id="page-rewards" class="hidden">
+<div class="title">REWARDS</div><p class="sub">Complete Tasks - Earn Coins</p>
+<div class="card"><h3>🎁 Daily Check-In</h3><p>Login daily and get coins.</p><button class="btn btn-green" onclick="claimDaily()">CLAIM 50 COINS</button></div>
+<div class="card"><h3>👥 Invite Friends</h3><p>Invite 1 Friend = 100 Coins</p><p>Your Invite Code: <b style="color:#ffcc00" id="inviteCode">STAR1001</b></p><button class="btn btn-blue" onclick="copyInvite()">COPY INVITE LINK</button></div>
+<div class="card"><h3>🏆 Top 3 Reward</h3><p>1st Place: 5000 Coins<br>2nd Place: 3000 Coins<br>3rd Place: 1000 Coins</p></div>
 </div>
 
 <!-- PROFILE -->
-<div id="profile" class="page">
-<div class="profileTop">
-<img src="https://i.pravatar.cc/150?img=12">
-<div><b style="font-size:18px">Rahim Khan</b><br><span style="color:#aaa;font-size:12px">ID: SW-1254 | Level 12</span><br><span style="color:#ffcc00;font-weight:800">🪙 125 Coins</span></div>
-</div>
-<div class="prow" onclick="alert('My Battles')"><span>⚔️ My Battles</span><i>›</i></div>
-<div class="prow" onclick="alert('My Rewards')"><span>🎁 My Rewards</span><i>›</i></div>
-<div class="prow" onclick="alert('Topup History')"><span>🧾 Topup History</span><i>›</i></div>
-<div class="prow" onclick="alert('My Gang')"><span>👥 My Gang</span><i>›</i></div>
-<div class="prow" onclick="alert('Settings')"><span>⚙️ Settings</span><i>›</i></div>
-<div class="prow" onclick="alert('Help & Support')"><span>❓ Help & Support</span><i>›</i></div>
-<div class="prow" onclick="alert('Logout')"><span>🚪 Logout</span><i>›</i></div>
-<button class="btn" onclick="goPage('topup')">TOPUP COINS</button>
+<div id="page-profile" class="hidden">
+<div class="title">MY PROFILE</div>
+<div class="card center"><div style="font-size:60px">👤</div><h3 id="profileName">Player 1001</h3><p>User ID: <b style="color:#ffcc00" id="profileId">1001</b> | Coins: <b style="color:#ffcc00" id="profileCoins">100</b></p><p class="small">Total Votes: <span id="profileVotes">12</span> | Wins: <span id="profileWins">3</span></p>
+<input id="editName" placeholder="Change Your Name"><button class="btn btn-orange" onclick="saveName()">SAVE NAME</button></div>
+<div class="card"><h3>📊 My Stats</h3><div class="row"><span>Battles Played</span><b>15</b></div><div class="row"><span>Battles Won</span><b>8</b></div><div class="row"><span>Total Coins Earned</span><b>2,450</b></div></div>
 </div>
 
-<div class="nav">
-<button class="active" onclick="goPage('home',this)">🏠<br>Home</button>
-<button onclick="goPage('home',this)">⚔️<br>Gang War</button>
-<button onclick="goPage('leader',this)">🏆<br>Leaderboard</button>
-<button onclick="goPage('topup',this)">🎁<br>Rewards</button>
-<button onclick="goPage('profile',this)">👤<br>Profile</button>
+<!-- ADMIN -->
+<div id="page-admin" class="hidden">
+<div class="title" style="color:#ff0000">ADMIN PANEL</div><p class="sub">Secret Admin - Only For Owner</p>
+<div class="grid2"><div class="mini"><b id="adminUsers">1,251</b><br><span>Total Users</span></div><div class="mini"><b id="adminCoins">125,400</b><br><span>Total Coins</span></div></div>
+<div class="card"><h3>🪙 Send Coins To User</h3><input id="sendId" placeholder="User ID e.g. 1001"><input id="sendCoins" type="number" placeholder="Coins e.g. 100"><button class="btn btn-green" onclick="adminSend()">SEND COINS</button><p class="small" id="adminMsg" style="margin-top:8px;color:#16a34a"></p></div>
+<div class="card"><h3>👥 All Users</h3><div id="adminUserList"></div></div>
+<div class="card"><h3>⚙️ Admin Actions</h3><button class="btn btn-dark" onclick="showToast('Leaderboard Reset Done')">RESET LEADERBOARD</button><button class="btn btn-dark" onclick="showToast('All Battles Reset')">RESET BATTLES</button><button class="btn btn-orange" onclick="showPage('home')">BACK TO APP</button></div>
 </div>
+
+</div>
+
+<div class="bottom" id="bottomNav">
+<button onclick="showPage('home')" data-p="home"><div>🏠</div>Home</button>
+<button onclick="showPage('challenge')" data-p="challenge"><div>⚔️</div>Gang War</button>
+<button onclick="showPage('leaderboard')" data-p="leaderboard"><div>🏆</div>Leaderboard</button>
+<button onclick="showPage('rewards')" data-p="rewards"><div>🎁</div>Rewards</button>
+<button onclick="showPage('profile')" data-p="profile"><div>👤</div>Profile</button>
+</div>
+
+<!-- ADMIN MODAL HINT -->
+<div id="adminModal" class="modal hidden"><div class="modal-box"><h3 style="color:#ff8c00">Admin Panel Unlocked!</h3><p class="small" style="margin:10px 0">You clicked logo 13 times. Secret Admin Panel Opened.</p><button class="btn btn-orange" onclick="closeAdminModal()">OPEN ADMIN PANEL</button></div></div>
 
 <script>
-let coins=125, v1=1264, v2=1003, selCoins=1200, selPrice=900;
-let sec=59*60+12;
-function goPage(id,btn){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-if(btn){document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
-window.scrollTo(0,0);
-}
-function showTab(el,page){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');goPage(page);}
-function vote(n){
-if(n==1){v1++;document.getElementById('v1').innerText=v1;}else{v2++;document.getElementById('v2').innerText=v2;}
-document.getElementById('totalV').innerText=v1+v2;
-alert('Vote Done! +1 Added');
-}
-function selectPkg(el,c,p){document.querySelectorAll('.pkg').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');selCoins=c;selPrice=p;document.getElementById('payBtn').innerText='PAY NOW - Rs '+p;}
-function payNow(){
-let m=document.querySelector('input[name="pay"]:checked').parentElement.innerText;
-coins+=selCoins;document.getElementById('myCoins').innerText=coins;document.getElementById('bal2').innerText=coins;
-alert('Payment Success!\n'+selCoins+' Coins Added\nMethod: '+m);
-goPage('home');
-}
-setInterval(()=>{
-sec--;if(sec<0)sec=59*60+12;
-let h=String(Math.floor(sec/3600)).padStart(2,'0'),m=String(Math.floor(sec%3600/60)).padStart(2,'0'),s=String(sec%60).padStart(2,'0');
-let t=h+':'+m+':'+s;document.getElementById('timer').innerText=t;document.getElementById('timer2').innerText=t;
-},1000);
+let coins=parseInt(localStorage.getItem('sw_coins')||'100');
+let myId=localStorage.getItem('sw_id')||'1001';
+let myName=localStorage.getItem('sw_name')||'Player 1001';
+let votes1=125, votes2=98, clicks=0, selectedPack=100;
+let users=[{id:1001,name:'Player 1001',coins:100},{id:1002,name:'Ali Khan',coins:250},{id:1003,name:'Sara',coins:500},{id:1004,name:'Ahmed',coins:120},{id:1005,name:'Fatima',coins:800}];
+let leaders=[{n:'Ahmed Khan',v:1250},{n:'Sara Ali',v:1100},{n:'Ali Raza',v:980},{n:'Fatima',v:850},{n:'Usman',v:720}];
+let packs=[{c:50,p:100},{c:100,p:180},{c:200,p:350},{c:500,p:800},{c:1000,p:1500},{c:2000,p:2800}];
+function showToast(t){let e=document.getElementById('toast');e.textContent=t;e.classList.remove('hidden');setTimeout(()=>e.classList.add('hidden'),2500)}
+function updateUI(){document.getElementById('myCoins').textContent=coins;document.getElementById('profileCoins').textContent=coins;document.getElementById('profileId').textContent=myId;document.getElementById('profileName').textContent=myName;document.getElementById('inviteCode').textContent='STAR'+myId;document.getElementById('p1Votes').textContent='Votes: '+votes1;document.getElementById('p2Votes').textContent='Votes: '+votes2;document.getElementById('p1Name').textContent=myName;localStorage.setItem('sw_coins',coins)}
+function showPage(p){['welcome','terms','home','topup','challenge','leaderboard','rewards','profile','admin'].forEach(x=>document.getElementById('page-'+x).classList.add('hidden'));document.getElementById('page-'+p).classList.remove('hidden');document.getElementById('bottomNav').style.display=(p==='welcome'||p==='terms'||p==='admin')?'none':'flex';document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.p===p));if(p==='leaderboard')renderLeaders();if(p==='admin')renderAdmin();window.scrollTo(0,0)}
+function agreeTerms(){if(!document.getElementById('agree').checked){showToast('Please Tick I Agree');return}showPage('home')}
+function vote(w){if(coins<1){showToast('Not Enough Coins - Topup Now');showPage('topup');return}coins--;if(w===1){votes1++;document.getElementById('p1Box').classList.add('winner');document.getElementById('p2Box').classList.remove('winner')}else{votes2++;document.getElementById('p2Box').classList.add('winner');document.getElementById('p1Box').classList.remove('winner')}updateUI();showToast('Vote Done! +1 Vote')}
+function claimDaily(){coins+=50;updateUI();showToast('50 Free Coins Added!')}
+function copyInvite(){navigator.clipboard&&navigator.clipboard.writeText('Join STAR WAR! Code: STAR'+myId);showToast('Invite Link Copied!')}
+function saveName(){let v=document.getElementById('editName').value.trim();if(!v){showToast('Enter Name');return}myName=v;localStorage.setItem('sw_name',v);updateUI();showToast('Name Saved!')}
+function renderPacks(){document.getElementById('packs').innerHTML=packs.map((p,i)=>`<div class="mini" onclick="selectPack(${i},this)" style="cursor:pointer;border-color:${i===1?'#ff8c00':'#333'}"><b>${p.c} Coins</b><br><span>Rs ${p.p}</span><br><span class="badge" style="margin-top:6px;display:inline-block">${i===1?'POPULAR':'BUY'}</span></div>`).join('')}
+function selectPack(i,el){selectedPack=packs[i].c;document.querySelectorAll('#packs .mini').forEach(m=>m.style.borderColor='#333');el.style.borderColor='#ff8c00';showToast(packs[i].c+' Coins Selected')}
+function buyPack(){showToast(selectedPack+' Coins Order Sent - Send Screenshot');}
+function createChallenge(){let n=document.getElementById('chName').value||myName;let o=document.getElementById('chOpp').value||'1002';let c=document.getElementById('chCoins').value;let d=document.createElement('div');d.className='row';d.innerHTML=`<span>${n} VS ${o} - ${c} Coins</span><b style="cursor:pointer" onclick="this.parentElement.remove();showToast('Challenge Accepted!')">ACCEPT</b>`;document.getElementById('challengeList').prepend(d);showToast('Challenge Created!')}
+function renderLeaders(){document.getElementById('leaderList').innerHTML=leaders.map((l,i)=>`<div class="row"><span>${i+1}. ${i===0?'🥇':i===1?'🥈':i===2?'🥉':'👤'} ${l.n}</span><b>${l.v} Votes</b></div>`).join('')}
+function renderAdmin(){document.getElementById('adminUserList').innerHTML=users.map(u=>`<div class="row"><span>ID ${u.id} - ${u.name}</span><b>${u.coins} Coins</b></div>`).join('')}
+function adminSend(){let id=document.getElementById('sendId').value;let c=parseInt(document.getElementById('sendCoins').value);if(!id||!c){showToast('Enter ID and Coins');return}let u=users.find(x=>String(x.id)===String(id));if(u)u.coins+=c;else users.push({id:parseInt(id),name:'User '+id,coins:c});if(String(id)===String(myId)){coins+=c;updateUI()}renderAdmin();document.getElementById('adminMsg').textContent=c+' Coins Sent To ID '+id+' Successfully!';showToast('Coins Sent!')}
+function uploadPhoto(){document.getElementById('fileInput').click()}
+document.getElementById('fileInput').addEventListener('change',e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=ev=>{document.getElementById('p1Img').src=ev.target.result;showToast('Photo Uploaded!')};r.readAsDataURL(f)});
+document.getElementById('logo').addEventListener('click',()=>{clicks++;if(clicks>=13){clicks=0;document.getElementById('adminModal').classList.remove('hidden')}});
+function closeAdminModal(){document.getElementById('adminModal').classList.add('hidden');showPage('admin')}
+let sec=120;setInterval(()=>{sec--;if(sec<0)sec=120;let m=String(Math.floor(sec/60)).padStart(2,'0'),s=String(sec%60).padStart(2,'0');document.getElementById('battleTimer').textContent=m+':'+s},1000);
+renderPacks();renderLeaders();document.getElementById('challengeList').innerHTML=`<div class="row"><span>Ali VS Sara - 100 Coins</span><b>Live</b></div><div class="row"><span>Ahmed VS Usman - 200 Coins</span><b>Live</b></div>`;updateUI();showPage('welcome');
 </script>
 </body>
 </html>
