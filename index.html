@@ -3,325 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#080808">
 <title>BATTLE KING</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#0a0a0a;color:#fff;max-width:430px;margin:auto;min-height:100vh;padding-bottom:95px;background-image:radial-gradient(circle at 50% 0%,#2a1400 0%,#0a0a0a 55%)}
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 15px;background:#111;color:#fff;position:sticky;top:0;z-index:10;border-bottom:1px solid #2a1a00}
-.logo{font-size:24px;font-weight:900;letter-spacing:1px;cursor:pointer;user-select:none}
-.logo span{color:#ff7a00}
-.coins{background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;padding:6px 12px;border-radius:20px;font-weight:900;font-size:14px}
-.topupBtn{background:linear-gradient(90deg,#ff7a00,#ff3b00);color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:800;cursor:pointer;box-shadow:0 4px 15px rgba(255,122,0,.5)}
-.searchBtn{background:#1f1f1f;color:#ff7a00;border:1px solid #333;width:36px;height:36px;border-radius:50%;font-size:17px;cursor:pointer}
-.card{background:#161616;margin:12px;border-radius:18px;padding:14px;border:1px solid #2a1a00;box-shadow:0 0 20px rgba(255,122,0,.08)}
-input,select,textarea{width:100%;padding:13px;margin:7px 0;border-radius:12px;border:1px solid #333;background:#1f1f1f;color:#fff;outline:none}
-input:focus,select:focus{border-color:#ff7a00}
-.btn{width:100%;padding:14px;border:none;border-radius:14px;background:linear-gradient(90deg,#ff8c00,#ff5a00);color:#fff;font-weight:900;font-size:16px;cursor:pointer;margin-top:8px;box-shadow:0 5px 18px rgba(255,122,0,.4)}
-.btn2{background:#222;color:#fff;border:1px solid #333;box-shadow:none}
-.btnRed{background:#ff3b30!important;color:#fff!important}
-.btnGreen{background:#00c853!important;color:#fff!important}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:#080808;color:#fff;max-width:430px;margin:auto;min-height:100vh;padding-bottom:100px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#0a0a0a;position:sticky;top:0;z-index:20}
+.logo{font-size:25px;font-weight:900}.logo span{color:#ff6a00}
+.coins{background:linear-gradient(90deg,#ffc400,#ff6a00);color:#000;padding:7px 13px;border-radius:20px;font-weight:900;font-size:14px}
+.topupBtn{background:#ff6a00;color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:800}
+.searchBtn{background:#1c1c1c;color:#fff;border:1px solid #2a2a2a;width:38px;height:38px;border-radius:50%}
+.card{background:#121212;margin:14px;border-radius:22px;padding:14px;border:1px solid #1f1f1f}
+input,select,textarea{width:100%;padding:14px;margin:8px 0;border-radius:14px;border:1px solid #2a2a2a;background:#1a1a1a;color:#fff;outline:none;font-size:15px}
+input:focus,textarea:focus{border-color:#ff6a00}
+.btn{width:100%;padding:15px;border:none;border-radius:16px;background:linear-gradient(90deg,#ff7a00,#ff3d00);color:#fff;font-weight:900;font-size:16px;cursor:pointer;margin-top:8px}
+.btn2{background:#1e1e1e!important;color:#fff!important;border:1px solid #2a2a2a!important;box-shadow:none!important}
+.btnRed{background:#ff2d2d!important}
 .hidden{display:none!important}
-.vs{display:flex;align-items:center;gap:10px;margin:12px 0}
-.vs img{width:86px;height:86px;border-radius:16px;object-fit:cover;background:#222;border:2px solid #ff7a00;cursor:pointer}
-.vs div{flex:1;text-align:center}
-.voteBtn{background:#ff7a00;color:#fff;border:none;padding:11px;border-radius:12px;width:100%;font-weight:900;cursor:pointer}
-.voteBtn:disabled{background:#333;color:#aaa}
-.boostBtn{background:#222!important;color:#ffcc00!important;border:1px solid #ff7a00!important;box-shadow:none!important;font-size:13px!important;padding:10px!important}
-.giftRow{display:flex;gap:8px;justify-content:space-between;margin-top:10px}
-.giftRow button{flex:1;background:#222;border:1px solid #333;color:#fff;padding:9px;border-radius:12px;cursor:pointer}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#111;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #2a1a00;z-index:20}
-.bottom button{background:none;border:none;color:#888;font-size:12px;cursor:pointer}
-.bottom button.active{color:#ff7a00}
-.createBtn{background:linear-gradient(180deg,#ff8c00,#ff3b00)!important;color:#fff!important;width:58px;height:58px;border-radius:50%;font-size:28px;margin-top:-30px;font-weight:900;box-shadow:0 8px 20px rgba(255,122,0,.6);border:3px solid #0a0a0a}
-.profileTop{text-align:center;padding:18px 15px}
-.fireRing{width:118px;height:118px;border-radius:50%;padding:4px;background:conic-gradient(#ff7a00,#ffcc00,#ff3b00,#ff7a00);display:inline-block}
-.fireRing img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid #000;background:#222;display:block}
-.stats{display:flex;gap:10px;margin:12px}
-.stats div{flex:1;background:#1a1a1a;padding:13px;border-radius:14px;text-align:center;border:1px solid #2a1a00}
-.stats b{font-size:20px;display:block;color:#ff7a00}
-.listItem{background:#222;margin:7px 0;padding:13px;border-radius:12px;display:flex;justify-content:space-between;cursor:pointer}
-.badge{background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:900}
-.statusBox{border:2px dashed #ff7a00;border-radius:14px;padding:14px;text-align:center;margin:10px 0;background:#1a0f00}
-.small{font-size:13px;color:#aaa}
-.center{text-align:center}
-.adminBox{background:#fff;color:#000;padding:15px;border-radius:14px;margin:10px 0}
-.welcome{position:fixed;top:60px;left:50%;transform:translateX(-50%);width:90%;max-width:390px;background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;padding:14px;border-radius:14px;text-align:center;font-weight:900;z-index:99;box-shadow:0 10px 30px rgba(255,122,0,.5)}
-.waBox{background:#25D366;color:#fff;padding:14px;border-radius:14px;text-align:center;margin:12px;display:block;text-decoration:none;font-weight:900}
-.centerBtns{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 12px 20px}
-.centerBtns button{width:85%;max-width:320px}
-.installBanner{background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;margin:12px;padding:12px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-weight:900}
-.installBanner button{background:#000;color:#ffcc00;border:none;padding:8px 14px;border-radius:20px;font-weight:800}
-.searchBox{background:#161616;margin:12px;border-radius:16px;padding:12px;border:1px solid #2a1a00}
-.playerName{cursor:pointer;font-weight:900}
-.playerName:hover{color:#ff7a00}
-.tabRow{display:flex;gap:8px;margin-top:10px}
-.tabRow button{flex:1;padding:11px;border-radius:12px;border:1px solid #333;background:#222;color:#fff;font-weight:800;cursor:pointer}
-.tabRow button.on{background:linear-gradient(90deg,#ff8c00,#ff5a00);border:none}
-.uploadBox{border:2px dashed #ff7a00;border-radius:16px;padding:20px;text-align:center;background:#1a0f00;margin:10px 0;cursor:pointer}
-.podium{display:flex;align-items:flex-end;gap:8px;justify-content:center;margin:18px 0}
-.podium div{text-align:center;flex:1;border-radius:14px 14px 0 0;padding:10px 5px;overflow:hidden}
-.p1{background:linear-gradient(180deg,#ffcc00,#ff7a00);color:#000;height:120px}
-.p2{background:#c0c0c0;color:#000;height:90px}
-.p3{background:#cd7f32;color:#fff;height:70px}
-.liveDot{width:9px;height:9px;background:#ff3b00;border-radius:50%;display:inline-block;box-shadow:0 0 10px #ff3b00}
+.battle{margin:14px;background:#121212;border-radius:24px;overflow:hidden;border:1px solid #222}
+.battleHead{display:flex;justify-content:space-between;padding:13px 14px}
+.live{background:#ff2d2d;color:#fff;font-size:11px;font-weight:900;padding:5px 10px;border-radius:20px}
+.vsWrap{display:flex;height:210px;position:relative}
+.vsWrap .side{flex:1;position:relative;overflow:hidden;cursor:pointer}
+.vsWrap .side img{width:100%;height:100%;object-fit:cover}
+.vsWrap .side:after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95),rgba(0,0,0,.1) 55%)}
+.vsWrap .info{position:absolute;left:0;right:0;bottom:10px;z-index:2;text-align:center}
+.vsWrap .info b{font-size:17px;display:block}
+.vsWrap .info span{font-size:13px;color:#ffc400;font-weight:800}
+.vsCircle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;background:#fff;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;z-index:3;box-shadow:0 0 0 4px rgba(255,106,0,.4)}
+.voteRow{display:flex;gap:10px;padding:12px}.voteBtn{flex:1;background:linear-gradient(90deg,#ff7a00,#ff3d00);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:900}.voteBtn:disabled{background:#2a2a2a;color:#888}
+.bar{height:7px;background:#2a2a2a;margin:0 14px;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#ffc400,#ff6a00)}
+.barTxt{display:flex;justify-content:space-between;padding:8px 14px 2px;font-size:12px;color:#aaa}
+.giftRow{display:flex;gap:8px;padding:10px 14px}.giftRow button{flex:1;background:#1e1e1e;border:1px solid #2a2a2a;color:#fff;padding:10px 4px;border-radius:13px}
+.boostRow{display:flex;gap:8px;padding:0 14px 14px}.boostRow button{flex:1;background:#1a1200!important;border:1px solid #ff6a00!important;color:#ffc400!important;padding:10px;border-radius:13px;font-weight:800;font-size:12px}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#0f0f0f;display:flex;justify-content:space-around;padding:11px 0 8px;border-top:1px solid #222;z-index:20;align-items:flex-end}.bottom button{background:none;border:none;color:#777;font-size:11px}.bottom button.active{color:#ff6a00}.bottom b{font-size:19px;display:block}
+.createBtn{background:linear-gradient(180deg,#ff7a00,#ff3d00)!important;color:#fff!important;padding:10px 12px!important;border-radius:16px!important;font-size:11px!important;font-weight:900!important;line-height:1.3!important;border:none!important;margin-top:-22px!important;box-shadow:0 8px 20px rgba(255,106,0,.6)!important;width:auto!important;height:auto!important}
+.profileTop{text-align:center;padding:20px 15px}.fireRing{width:126px;height:126px;border-radius:50%;padding:4px;background:conic-gradient(#ff6a00,#ffc400,#ff3d00,#ff6a00);display:inline-block}.fireRing img{width:118px;height:118px;border-radius:50%;object-fit:cover;border:4px solid #000;background:#222}
+.stats{display:flex;gap:10px;margin:14px}.stats div{flex:1;background:#141414;padding:14px;border-radius:16px;text-align:center}.stats b{font-size:21px;color:#ff6a00;display:block}
+.listItem{background:#1e1e1e;margin:8px 0;padding:14px;border-radius:14px;display:flex;justify-content:space-between;cursor:pointer;align-items:center}
+.statusBox{border:2px dashed #ff6a00;border-radius:16px;padding:16px;text-align:center;margin:10px 0;background:#1a0f00}
+.small{font-size:13px;color:#999}.center{text-align:center}.adminBox{background:#fff;color:#000;padding:14px;border-radius:14px;margin:10px 0}
+.welcome{position:fixed;top:64px;left:50%;transform:translateX(-50%);width:90%;max-width:390px;background:linear-gradient(90deg,#ffc400,#ff6a00);color:#000;padding:14px;border-radius:16px;text-align:center;font-weight:900;z-index:99}
+.waBox{background:#22c55e;color:#fff;padding:15px;border-radius:16px;text-align:center;margin:14px;display:block;text-decoration:none;font-weight:900}
+.centerBtns{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 14px 20px}.centerBtns button{width:88%}
+.installBanner{background:linear-gradient(90deg,#ffc400,#ff6a00);color:#000;margin:14px;padding:13px;border-radius:16px;display:flex;justify-content:space-between;font-weight:900}.installBanner button{background:#000;color:#ffc400;border:none;padding:8px 14px;border-radius:20px}
+.searchBox{background:#141414;margin:14px;border-radius:16px;padding:12px}
+.tabRow{display:flex;gap:8px;margin-top:12px}.tabRow button{flex:1;padding:12px;border-radius:14px;border:1px solid #2a2a2a;background:#1e1e1e;color:#fff;font-weight:800}.tabRow button.on{background:linear-gradient(90deg,#ff7a00,#ff3d00);border:none}
+.uploadBox{border:2px dashed #ff6a00;border-radius:18px;padding:22px;text-align:center;background:#1a0f00;margin:10px 0}
+.podium{display:flex;align-items:flex-end;gap:10px;justify-content:center;margin:18px 0}.podium div{text-align:center;flex:1;border-radius:16px 16px 0 0;padding:12px 5px}.p1{background:linear-gradient(180deg,#ffc400,#ff6a00);color:#000;height:128px}.p2{background:#d1d1d1;color:#000;height:96px}.p3{background:#c97b3a;color:#fff;height:76px}
+.hero{margin:14px;border-radius:22px;overflow:hidden;position:relative;height:150px}.hero img{width:100%;height:100%;object-fit:cover}.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95),rgba(0,0,0,.2))}.heroTxt{position:absolute;left:16px;bottom:14px;z-index:2}.heroTxt h2{font-size:24px}.heroTxt p{font-size:13px;color:#ffc400;font-weight:800}
+.ticker{background:#1a1a1a;border:1px solid #2a2a2a;margin:0 14px;padding:10px 12px;border-radius:14px;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden}
+.err{color:#ff5a5a;font-size:13px;font-weight:700}
+.splash{position:fixed;inset:0;background:#080808;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}.splash h1{font-size:44px}.splash h1 span{color:#ff6a00}
+.reward{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:998;display:flex;align-items:center;justify-content:center}.rewardBox{background:#161616;border:2px solid #ff6a00;border-radius:22px;padding:24px;width:85%;max-width:320px;text-align:center}
+.detailHead{display:flex;align-items:center;gap:10px;margin-bottom:6px}.detailHead button{background:#1e1e1e;color:#fff;border:1px solid #2a2a2a;padding:8px 14px;border-radius:12px;font-weight:800}
+.viewer{display:flex;gap:10px;align-items:center;background:#1e1e1e;padding:12px;border-radius:14px;margin:8px 0}.viewer img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.gangCard{display:flex;gap:12px;align-items:center;background:#1e1e1e;padding:12px;border-radius:14px;margin:8px 0}.gangCard img{width:56px;height:56px;border-radius:12px;object-fit:cover}
+.cityActive{background:linear-gradient(90deg,#ff7a00,#ff3d00)!important;color:#fff!important;border:none!important}
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="logo" id="secretLogo">BATTLE <span>KING</span></div>
-  <div style="display:flex;gap:8px;align-items:center">
-    <button class="searchBtn" onclick="toggleSearch()">🔍</button>
-    <div class="coins">🪙 <span id="myCoins">0</span></div>
-    <button class="topupBtn" onclick="showPage('topup')">TOP UP</button>
-  </div>
-</div>
+<div id="splash" class="splash"><h1>BATTLE <span>KING</span></h1><p>🔥 VOTE. WIN. RULE. 🔥</p></div>
+<div id="dailyReward" class="reward hidden"><div class="rewardBox"><h2>🎁 DAILY REWARD!</h2><p style="margin:12px 0">+20 Coins FREE!</p><button class="btn" onclick="claimReward()">CLAIM +20 COINS</button></div></div>
 
-<div id="welcomeBox" class="welcome hidden">🎉 WELCOME TO BATTLE KING! 👑<br><span style="font-size:13px;font-weight:600">Ab Apna Battle Banao - Vote Karo - King Bano!</span></div>
-<div id="installBanner" class="installBanner hidden">📲 INSTALL BATTLE KING APP <button onclick="installApp()">INSTALL</button></div>
-
-<div id="searchBar" class="searchBox hidden">
-  <input id="searchInput" placeholder="Search Player - Gang - City..." oninput="doSearch(this.value)">
-  <div id="searchResult" class="small"></div>
-</div>
+<div class="topbar" id="topbar"><div class="logo" id="secretLogo">BATTLE <span>KING</span></div><div style="display:flex;gap:8px;align-items:center"><button class="searchBtn" onclick="toggleSearch()">🔍</button><div class="coins">🪙 <span id="myCoins">0</span></div><button class="topupBtn" onclick="showPage('topup')">TOP UP</button></div></div>
+<div id="welcomeBox" class="welcome hidden">🎉 WELCOME TO BATTLE KING! 👑</div>
+<div id="installBanner" class="installBanner hidden">📲 INSTALL BATTLE KING <button onclick="installApp()">INSTALL</button></div>
+<div id="searchBar" class="searchBox hidden"><input id="searchInput" placeholder="Search Player..." oninput="doSearch(this.value)"><div id="searchResult" class="small"></div></div>
 
 <div id="page-login">
-  <div class="card center"><h1 style="font-size:32px">BATTLE <span style="color:#ff7a00">KING</span></h1><p class="small">Login / Signup - Admin Will Approve</p><p style="margin-top:8px">🔥 VOTE. WIN. RULE. 🔥</p></div>
-  <div class="card">
-    <h3>Login / Create Account</h3>
-    <input id="regName" placeholder="Full Name">
-    <input id="regCity" placeholder="City">
-    <input id="regPhone" placeholder="Mobile Number">
-    <input id="regPass" type="password" placeholder="Password">
-    <input id="regAge" placeholder="Age">
+  <div class="card center"><h1 style="font-size:34px">BATTLE <span style="color:#ff6a00">KING</span></h1><p class="small">Login / Signup</p><p style="margin-top:8px">🔥 VOTE. WIN. RULE. 🔥</p></div>
+  <div class="card"><h3>Login / Create Account</h3>
+    <input id="regName" placeholder="Full Name *">
+    <input id="regCity" placeholder="City *">
+    <input id="regPhone" placeholder="Mobile Number * 0300...">
+    <input id="regPass" type="password" placeholder="Password *">
+    <input id="regAge" placeholder="Age *">
+    <p id="loginErr" class="err"></p>
     <button class="btn" onclick="register()">CREATE ACCOUNT / LOGIN</button>
-    <p class="small center" style="margin-top:10px">Your ID Will Be Assigned Automatically - Starting From 1001<br>After Signup, Wait For Admin Approval.</p>
-  </div>
+    <p class="small center" style="margin-top:10px">Bina Signup Ke App Nahi Khulegi</p></div>
+  <div class="hero"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800"><div class="heroTxt"><h2>👑 Aaj Ki Queen</h2><p>Sara • 237 Votes • Gojra</p></div></div>
 </div>
 
 <div id="page-home" class="hidden">
-  <div class="card">
-    <h3>🔥 Live Battles</h3>
-    <div class="tabRow">
-      <button class="filterBtn on" id="f-all" onclick="filterMatch('all')">All</button>
-      <button class="filterBtn" id="f-boys" onclick="filterMatch('boys')">Boys</button>
-      <button class="filterBtn" id="f-girls" onclick="filterMatch('girls')">Girls</button>
-      <button class="filterBtn" id="f-gang" onclick="filterMatch('gang')">Gang</button>
-    </div>
-    <div style="display:flex;gap:8px;margin-top:10px">
-      <button class="btn btn2" style="margin:0" onclick="showPage('gang')">🔥 GANG WAR</button>
-      <button class="btn btn2" style="margin:0" onclick="showPage('city')">🏙️ CITY WAR</button>
-    </div>
-  </div>
+  <div class="hero"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800"><div class="heroTxt"><h2>👑 KING OF THE DAY</h2><p id="kingOfDay">Sara - 237 Votes</p></div></div>
+  <div class="ticker" id="ticker">🔥 LIVE: Ahmad Ko 5 Naye Vote Mile • Sara Aage Hai •</div>
+  <div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><h3>🔥 Live Battles <span class="small" id="liveCount"></span></h3><span id="cityFilterLabel" class="small" style="color:#ffc400;font-weight:800"></span></div><div class="tabRow"><button class="filterBtn on" id="f-all" onclick="filterMatch('all')">All</button><button class="filterBtn" id="f-boys" onclick="filterMatch('boys')">Boys</button><button class="filterBtn" id="f-girls" onclick="filterMatch('girls')">Girls</button><button class="filterBtn" id="f-gang" onclick="filterMatch('gang')">Gang</button></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn2" style="margin:0" onclick="showPage('gang')">🔥 GANG WAR</button><button class="btn btn2" style="margin:0" onclick="showPage('city')">🏙️ CITY WAR</button></div><button id="clearCityBtn" class="btn btn2 hidden" style="margin-top:10px" onclick="clearCityFilter()">❌ CITY FILTER HATAO - SAARE BATTLE DEKHO</button></div>
   <div id="matchList"></div>
-  <div class="card">
-    <h3>Status - 24 Hours</h3>
-    <div class="statusBox" id="statusBox">No Status Yet - Add Your Status</div>
-    <input id="statusInput" placeholder="Write Your Status...">
-    <button class="btn btn2" onclick="addStatus()">ADD STATUS</button>
-    <p class="small" id="statusViews">Views: 0</p>
-  </div>
+  <div class="card"><h3>Status - 24 Hours</h3><div class="statusBox" id="statusBox">No Status Yet</div><input id="statusInput" placeholder="Write Your Status..."><button class="btn btn2" onclick="addStatus()">ADD STATUS</button><p class="small" id="statusViews">Views: 0</p></div>
 </div>
 
-<div id="page-gang" class="hidden">
-  <div class="card center"><h2>🔥 CREATE YOUR GANG</h2><p class="small">Apni Gang Banao - Dosto Ko Add Karo</p></div>
-  <div class="card"><input id="gangCreateName" placeholder="Gang Ka Naam"><div class="uploadBox" onclick="document.getElementById('gangFile').click()">📸 Gang Photo Upload<br><span class="small">Tap To Upload</span><input type="file" id="gangFile" accept="image/*" style="display:none"></div><button class="btn" onclick="createGang()">CREATE GANG</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div>
-  <div class="card"><h3>My Gangs</h3><div id="gangList">Koi Gang Nahi Hai</div></div>
-</div>
+<div id="page-gang" class="hidden"><div class="card center"><h2>🔥 CREATE YOUR GANG</h2></div><div class="card"><input id="gangCreateName" placeholder="Gang Ka Naam"><div class="uploadBox" onclick="document.getElementById('gangFile').click()">📸 Gang Photo Lagao<br><span class="small" id="gangPhotoStatus">Koi Photo Nahi</span><input type="file" id="gangFile" accept="image/*" onchange="previewGangPhoto(event)" style="display:none"></div><img id="gangPreviewImg" style="width:100%;border-radius:14px;display:none;margin:8px 0"><button class="btn" onclick="createGang()">CREATE GANG</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div><div class="card"><h3>My Gangs</h3><div id="gangList">Koi Gang Nahi</div></div></div>
+<div id="page-city" class="hidden"><div class="card center"><h2>🏙️ SELECT YOUR CITY</h2><p class="small">City Select Karo - Sirf Usi City Ke Battle Dikhayenge</p></div><div class="card" id="cityList"></div><div class="card"><button class="btn btn2" onclick="clearCityFilter()">SAARE CITY DEKHO</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div></div>
+<div id="page-leaderboard" class="hidden"><div class="card center"><h2>🏆 LEADERBOARD</h2><div class="podium" id="podiumBox"></div></div><div class="card"><div id="leaderList"></div></div></div>
+<div id="page-create" class="hidden"><div class="card center"><h2>⚔️ CREATE BATTLE</h2><p class="small">Apna Battle Banao</p></div><div class="card"><p><b>Category</b></p><div class="tabRow" id="catRow"><button class="on" onclick="setCat(this,'Boys vs Boys')">Boys</button><button onclick="setCat(this,'Girls vs Girls')">Girls</button><button onclick="setCat(this,'Friends Battle')">Friends</button><button onclick="setCat(this,'Gang War')">Gang War</button></div><input id="p1Name" placeholder="Player 1 Name *"><input id="p2Name" placeholder="Player 2 Name *"><input id="gangName" placeholder="Gang / City Name"><div class="uploadBox" onclick="document.getElementById('createFile').click()">📸 Upload Battle Photo<input type="file" id="createFile" accept="image/*" onchange="previewImg(event,'p1Img')" style="display:none"></div><img id="p1Img" style="width:100%;border-radius:14px;display:none"><p id="createErr" class="err"></p><button class="btn" onclick="createMatch()">🔥 CREATE BATTLE</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div></div>
 
-<div id="page-city" class="hidden">
-  <div class="card center"><h2>🏙️ SELECT YOUR CITY</h2><p class="small">Apni City Chuno - City War Jeeto</p></div>
-  <div class="card" id="cityList"></div>
-  <div class="card"><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div>
-</div>
+<div id="page-detail" class="hidden"><div class="card"><div class="detailHead"><button onclick="showPage('profile')">⬅ BACK</button><h2 id="detailTitle" style="font-size:19px">Detail</h2></div><div id="detailBody"></div></div></div>
 
-<div id="page-leaderboard" class="hidden">
-  <div class="card center"><h2>🏆 LEADERBOARD</h2><p class="small">Top Players - This Week - Live Votes Se</p>
-    <div class="podium" id="podiumBox"></div>
-  </div>
-  <div class="card"><div id="leaderList"></div></div>
-</div>
-
-<div id="page-create" class="hidden">
-  <div class="card center"><h2>⚔️ CREATE BATTLE</h2><p class="small">Apna Battle Banao - Logo Se Vote Karwao</p></div>
-  <div class="card">
-    <p><b>Category</b></p>
-    <div class="tabRow" id="catRow">
-      <button class="on" onclick="setCat(this,'Boys vs Boys')">Boys</button>
-      <button onclick="setCat(this,'Girls vs Girls')">Girls</button>
-      <button onclick="setCat(this,'Friends Battle')">Friends</button>
-      <button onclick="setCat(this,'Gang War')">Gang War</button>
-    </div>
-    <input id="p1Name" placeholder="Player 1 Name">
-    <input id="p2Name" placeholder="Player 2 Name">
-    <input id="gangName" placeholder="Gang Name / City Name (For War)">
-    <div class="uploadBox" onclick="document.getElementById('createFile').click()">📸 Upload Battle Photo<br><span class="small">Tap To Upload From Gallery</span><input type="file" id="createFile" accept="image/*" onchange="previewImg(event,'p1Img')" style="display:none"></div>
-    <img id="p1Img" style="width:100%;border-radius:12px;display:none">
-    <button class="btn" onclick="createMatch()">🔥 CREATE BATTLE</button>
-    <p class="small center">Match Admin Approval Ke Baad Live Hoga</p>
-  </div>
-</div>
-
-<div id="page-userprofile" class="hidden">
-  <div class="profileTop"><div class="fireRing"><img id="uImg" src="https://via.placeholder.com/110"></div><h2 id="uName" style="margin-top:10px">User</h2><p class="small" id="uMeta">ID: 1002</p></div>
-  <div class="stats"><div><b id="uFollow">0</b>Follow</div><div><b id="uFollowers">0</b>Followers</div><div><b id="uWins">0</b>Wins</div></div>
-  <div class="card center"><p id="uBio">Battle King Player</p><button class="btn" id="likeBtn" onclick="toggleLike()">❤️ LIKE</button><button class="btn btn2" id="followBtn" onclick="toggleFollow()">➕ FOLLOW</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div>
-</div>
+<div id="page-userprofile" class="hidden"><div class="profileTop"><div class="fireRing"><img id="uImg" src="https://via.placeholder.com/110"></div><h2 id="uName" style="margin-top:10px">User</h2><p class="small" id="uMeta">ID: 1002</p></div><div class="stats"><div><b id="uFollow">0</b>Follow</div><div><b id="uFollowers">0</b>Followers</div><div><b id="uWins">0</b>Wins</div></div><div class="card center"><p id="uBio">Battle King Player</p><button class="btn" id="likeBtn" onclick="toggleLike()">❤️ LIKE</button><button class="btn btn2" id="followBtn" onclick="toggleFollow()">➕ FOLLOW</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div></div>
 
 <div id="page-profile" class="hidden">
-  <div class="profileTop">
-    <div class="fireRing"><img id="profImg" src="https://via.placeholder.com/110"></div>
-    <h2 id="profName" style="margin-top:10px">Guest User</h2>
-    <p class="small"><span id="profCity">City</span> | ID: <b id="profID" style="color:#ff7a00">1001</b> | <span id="profPhone">Number</span></p>
-    <button class="btn btn2" onclick="editProfile()">EDIT PROFILE</button>
-  </div>
-  <div class="stats">
-    <div><b id="followCount">0</b>Follow</div>
-    <div><b id="followerCount">0</b>Followers</div>
-    <div><b id="viewCount">0</b>Profile Views</div>
-  </div>
-  <div class="card">
-    <div style="display:flex;gap:10px;text-align:center"><div style="flex:1"><b style="color:#ff7a00;font-size:20px" id="winCount">0</b><br><span class="small">WINS</span></div><div style="flex:1"><b style="color:#ff3b30;font-size:20px">0</b><br><span class="small">LOSSES</span></div><div style="flex:1"><b style="color:#ffcc00;font-size:20px" id="totalVotes">0</b><br><span class="small">VOTES</span></div></div>
-    <p id="profBio" style="margin-top:10px">Bio: Battle King Player</p>
-    <input type="file" accept="image/*" onchange="changePhoto(event)">
-    <p class="small">Upload Photo From Gallery - Save Hogi</p>
-  </div>
+  <div class="profileTop"><div class="fireRing"><img id="profImg" src="https://via.placeholder.com/110"></div><h2 id="profName" style="margin-top:10px">User</h2><p class="small"><span id="profCity">City</span> | ID: <b id="profID" style="color:#ff6a00">1001</b> | <span id="profPhone">Number</span></p><button class="btn btn2" onclick="editProfile()">EDIT PROFILE</button></div>
+  <div class="stats"><div><b id="followCount">0</b>Follow</div><div><b id="followerCount">0</b>Followers</div><div><b id="viewCount">0</b>Views</div></div>
+  <div class="card"><div style="display:flex;gap:10px;text-align:center"><div style="flex:1"><b style="color:#ff6a00;font-size:20px" id="winCount">0</b><br><span class="small">WINS</span></div><div style="flex:1"><b style="color:#ff2d2d;font-size:20px" id="lossCount">0</b><br><span class="small">LOSSES</span></div><div style="flex:1"><b style="color:#ffc400;font-size:20px" id="totalVotes">0</b><br><span class="small">VOTES</span></div></div><p id="profBio" style="margin-top:10px">Bio: Battle King Player</p><input type="file" accept="image/*" onchange="changePhoto(event)"></div>
   <div class="card"><button class="btn" onclick="showPage('topup')">🪙 TOP UP COINS</button><button class="btn btn2" onclick="installApp()">📲 APP INSTALL</button></div>
   <div class="card" id="profileMenu"></div>
   <a class="waBox" href="https://whatsapp.com/channel/0029VbDa1RTChq6PtC1jkk3c" target="_blank">📢 JOIN WHATSAPP CHANNEL</a>
-  <div class="centerBtns">
-    <button class="btn" onclick="installApp()">📲 INSTALL APP</button>
-    <button class="btn btnRed" onclick="logout()">LOGOUT</button>
-  </div>
+  <div class="centerBtns"><button class="btn" onclick="installApp()">📲 INSTALL APP</button><button class="btn btnRed" onclick="logout()">LOGOUT</button></div>
 </div>
 
-<div id="page-topup" class="hidden">
-  <div class="card center"><h2>TOP UP COINS</h2><p>Send Money On EasyPaisa</p>
-    <div style="background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;padding:14px;border-radius:12px;margin:10px 0"><h3>EasyPaisa</h3><p>Name: <b>Atiq Ur Rehman</b></p><p>Number: <b>03430864009</b></p></div>
-  </div>
-  <div class="card">
-    <p>Your ID: <b id="topupID">1001</b> (Auto Filled)</p>
-    <select id="coinPack"><option value="100">100 Coins - 200 Rs</option><option value="500">500 Coins - 800 Rs</option><option value="1000">1000 Coins - 1500 Rs</option></select>
-    <input id="txnID" placeholder="Transaction ID"><input type="file" accept="image/*">
-    <button class="btn" onclick="sendTopup()">SEND REQUEST</button>
-    <button class="btn btn2" onclick="showPage('requests')">MY REQUESTS</button>
-  </div>
-</div>
+<div id="page-topup" class="hidden"><div class="card center"><h2>TOP UP COINS</h2><p>Send Money On EasyPaisa</p><div style="background:linear-gradient(90deg,#ffc400,#ff6a00);color:#000;padding:14px;border-radius:14px;margin:10px 0"><h3>EasyPaisa</h3><p>Name: <b>Atiq Ur Rehman</b></p><p>Number: <b>03430864009</b></p></div></div><div class="card"><p>Your ID: <b id="topupID">1001</b></p><select id="coinPack"><option value="100">100 Coins - 200 Rs</option><option value="500">500 Coins - 800 Rs</option><option value="1000">1000 Coins - 1500 Rs</option></select><input id="txnID" placeholder="Transaction ID *"><p id="topupErr" class="err"></p><input type="file" accept="image/*"><button class="btn" onclick="sendTopup()">SEND REQUEST</button><button class="btn btn2" onclick="showPage('requests')">MY REQUESTS</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK TO HOME</button></div></div>
+<div id="page-requests" class="hidden"><div class="card"><h3>My Requests</h3><div id="reqList">No Requests Yet</div><button class="btn btn2" onclick="showPage('profile')">⬅ BACK TO PROFILE</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK TO HOME</button></div></div>
+<div id="page-adminlogin" class="hidden"><div class="card center"><h2>Admin Login</h2><input id="adminPass" type="password" placeholder="Enter Admin Password"><button class="btn" onclick="checkAdmin()">OPEN ADMIN PANEL</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div></div>
+<div id="page-admin" class="hidden"><div class="card"><h2>Admin Panel</h2><div style="display:flex;gap:8px"><div style="flex:1;background:#222;padding:10px;border-radius:10px">Users<br><b id="aUsers">0</b></div><div style="flex:1;background:#222;padding:10px;border-radius:10px">Matches<br><b id="aMatches">0</b></div><div style="flex:1;background:#222;padding:10px;border-radius:10px">Earning<br><b>0 Rs</b></div></div></div><div class="card"><h3>Users</h3><div id="adminUsers"></div></div><div class="card"><h3>Topup Requests</h3><div id="adminReq"></div></div><div class="card"><h3>Matches</h3><div id="adminMatches"></div></div><button class="btn btnRed" onclick="showPage('home')">EXIT ADMIN</button></div>
 
-<div id="page-requests" class="hidden"><div class="card"><h3>My Requests</h3><div id="reqList">No Requests Yet</div></div></div>
-<div id="page-adminlogin" class="hidden"><div class="card center"><h2>Admin Login</h2><input id="adminPass" type="password" placeholder="Enter Admin Password"><button class="btn" onclick="checkAdmin()">OPEN ADMIN PANEL</button></div></div>
-
-<div id="page-admin" class="hidden">
-  <div class="card"><h2>Admin Panel</h2><p class="small">Dashboard - Users - Matches - Coins - Gifts - Reports</p>
-  <div style="display:flex;gap:8px"><div style="flex:1;background:#222;padding:10px;border-radius:10px">Total Users<br><b id="aUsers">0</b></div><div style="flex:1;background:#222;padding:10px;border-radius:10px">Total Matches<br><b id="aMatches">0</b></div><div style="flex:1;background:#222;padding:10px;border-radius:10px">Total Earning<br><b>0 Rs</b></div></div></div>
-  <div class="card"><h3>Users Control</h3><div id="adminUsers"></div></div>
-  <div class="card"><h3>Topup Requests</h3><div id="adminReq"></div></div>
-  <div class="card"><h3>Matches Control</h3><div id="adminMatches"></div></div>
-  <div class="card"><h3>Gifts Control</h3><p>Fire - 10 Coins | Crown - 50 Coins | Rose - 20 Coins | Diamond - 100 Coins</p><button class="btn btn2" onclick="showToast('Gift Price Updated')">UPDATE GIFTS</button></div>
-  <div class="card"><h3>Send Notification To All Users</h3><input id="notifText" placeholder="Message For All Users"><button class="btn" onclick="showToast('Notification Sent To All Users')">SEND NOTIFICATION</button></div>
-  <button class="btn btnRed" onclick="showPage('home')">EXIT ADMIN</button>
-</div>
-
-<div class="bottom">
-  <button class="active" onclick="showPage('home')">🏠<br>Home</button>
-  <button onclick="showPage('home')">⚔️<br>Battle</button>
-  <button class="createBtn" onclick="showPage('create')">+</button>
-  <button onclick="showPage('leaderboard')">🏆<br>Leaderboard</button>
-  <button onclick="showPage('profile')">👤<br>Profile</button>
-</div>
+<div class="bottom" id="bottomBar"><button class="active" onclick="showPage('home')"><b>🏠</b>Home</button><button onclick="showPage('home')"><b>⚔️</b>Battle</button><button class="createBtn" onclick="showPage('create')">⚔️<br>CREATE<br>BATTLE</button><button onclick="showPage('leaderboard')"><b>🏆</b>Leaderboard</button><button onclick="showPage('profile')"><b>👤</b>Profile</button></div>
 
 <script>
-// ===== V4 - ALL BUGS FIXED =====
-let user = JSON.parse(localStorage.getItem('bk_user')||'null');
-let matches = JSON.parse(localStorage.getItem('bk_matches')||'[]');
-let requests = JSON.parse(localStorage.getItem('bk_req')||'[]');
-let gangs = JSON.parse(localStorage.getItem('bk_gangs')||'[]');
-// FIX 1: Vote ab naam se save hoga - index se nahi
-let voted = JSON.parse(localStorage.getItem('bk_voted_v4')||'[]');
-let likedUsers = JSON.parse(localStorage.getItem('bk_liked')||'[]');
-let followedUsers = JSON.parse(localStorage.getItem('bk_followed')||'[]');
-// FIX 3: Status 24h - time ke sath
-let myStatus = localStorage.getItem('bk_status')||'';
-let statusTime = parseInt(localStorage.getItem('bk_status_time')||'0');
-if(myStatus && Date.now() - statusTime > 24*60*60*1000){ myStatus=''; localStorage.removeItem('bk_status'); localStorage.removeItem('bk_status_time'); }
-let nextID = parseInt(localStorage.getItem('bk_nextID')||'1001');
-let clicks=0, boostUsed=localStorage.getItem('bk_boost')==='1', deferredPrompt=null, currentViewUser=null, currentFilter='all', selectedCat='Boys vs Boys';
+let user=JSON.parse(localStorage.getItem('bk_user')||'null');
+let matches=JSON.parse(localStorage.getItem('bk_matches')||'[]');
+let requests=JSON.parse(localStorage.getItem('bk_req')||'[]');
+let gangsRaw=JSON.parse(localStorage.getItem('bk_gangs')||'[]');
+let gangs=gangsRaw.map(g=>typeof g==='string'?{name:g,photo:''}:g);
+let voted=JSON.parse(localStorage.getItem('bk_voted_v4')||'[]');
+let likedUsers=JSON.parse(localStorage.getItem('bk_liked')||'[]');
+let followedUsers=JSON.parse(localStorage.getItem('bk_followed')||'[]');
+let giftsSent=JSON.parse(localStorage.getItem('bk_gifts')||'[]');
+let feedbacks=JSON.parse(localStorage.getItem('bk_feedback')||'[]');
+let boostedList=JSON.parse(localStorage.getItem('bk_boosted_list')||'[]');
+let myWins=parseInt(localStorage.getItem('bk_my_wins')||'0');
+let myLosses=parseInt(localStorage.getItem('bk_my_losses')||'0');
+let createBattleImg='';
+let gangPhotoTemp='';
+let selectedCityFilter=localStorage.getItem('bk_city_filter')||'';
+let myStatus=localStorage.getItem('bk_status')||'';
+let statusTime=parseInt(localStorage.getItem('bk_status_time')||'0');
+if(myStatus&&Date.now()-statusTime>24*60*60*1000){myStatus='';localStorage.removeItem('bk_status');localStorage.removeItem('bk_status_time');}
+let nextID=parseInt(localStorage.getItem('bk_nextID')||'1001');
+let clicks=0,deferredPrompt=null,currentViewUser=null,currentFilter='all',selectedCat='Boys vs Boys';
 let cities=["Gojra","Lahore","Karachi","Faisalabad","Islamabad","Multan","Rawalpindi","Hyderabad"];
-if(!matches.length){ matches=[{p1:"Ahmad",p2:"Ali",type:"boys",v1:125,v2:98,img:"https://via.placeholder.com/80"},{p1:"Sara",p2:"Ayesha",type:"girls",v1:210,v2:185,img:"https://via.placeholder.com/80"}]; localStorage.setItem('bk_matches',JSON.stringify(matches)); }
-function matchKey(m){ return (m.p1+'_VS_'+m.p2).toLowerCase(); }
-function saveAll(){ localStorage.setItem('bk_user',JSON.stringify(user)); localStorage.setItem('bk_matches',JSON.stringify(matches)); localStorage.setItem('bk_req',JSON.stringify(requests)); localStorage.setItem('bk_gangs',JSON.stringify(gangs)); localStorage.setItem('bk_voted_v4',JSON.stringify(voted)); localStorage.setItem('bk_liked',JSON.stringify(likedUsers)); localStorage.setItem('bk_followed',JSON.stringify(followedUsers)); }
-function showToast(t){ let d=document.createElement('div'); d.className='welcome'; d.innerText=t; document.body.appendChild(d); setTimeout(()=>d.remove(),2500); }
-function showWelcome(){ let b=document.getElementById('welcomeBox'); b.classList.remove('hidden'); setTimeout(()=>b.classList.add('hidden'),3500); }
-function setCat(el,cat){ document.querySelectorAll('#catRow button').forEach(b=>b.classList.remove('on')); el.classList.add('on'); selectedCat=cat; }
-function getTopPlayers(){ let all=[]; matches.forEach(m=>{all.push({name:m.p1,votes:m.v1}); all.push({name:m.p2,votes:m.v2});}); all.sort((a,b)=>b.votes-a.votes); return all; }
-function showPage(p){
-  ['login','home','gang','city','leaderboard','create','userprofile','profile','topup','requests','adminlogin','admin'].forEach(x=>{let e=document.getElementById('page-'+x); if(e) e.classList.add('hidden');});
-  document.getElementById('page-'+p).classList.remove('hidden');
-  if(p==='home') renderMatches();
-  if(p==='profile') renderProfileMenu();
-  if(p==='requests') renderReq();
-  if(p==='admin') renderAdmin();
-  if(p==='gang') document.getElementById('gangList').innerHTML=gangs.length?gangs.map(g=>`<div class="listItem"><span>🔥 ${g}</span><b>MY GANG</b></div>`).join(''):'Koi Gang Nahi Hai';
-  if(p==='city') document.getElementById('cityList').innerHTML=cities.map(c=>`<div class="listItem" onclick="selectCity('${c}')"><span>${c}</span><span>></span></div>`).join('');
-  if(p==='leaderboard'){ let all=getTopPlayers(); document.getElementById('leaderList').innerHTML=all.map((a,i)=>`<div class="listItem"><span onclick="openUser('${a.name}')">${i+1}. ${a.name} ${i==0?'👑':''}</span><b>${a.votes} Votes</b></div>`).join('');
-    // FIX 4: Podium ab live votes se
-    let t0=all[0]||{name:'-',votes:0}, t1=all[1]||{name:'-',votes:0}, t2=all[2]||{name:'-',votes:0};
-    document.getElementById('podiumBox').innerHTML=`<div class="p2">🥈<br><b>${t1.name}</b><br>${t1.votes}</div><div class="p1">👑<br><b>${t0.name}</b><br>${t0.votes}</div><div class="p3">🥉<br><b>${t2.name}</b><br>${t2.votes}</div>`;
-  }
-  window.scrollTo(0,0);
+let realImgs=["https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop","https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=600&fit=crop","https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop","https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&h=600&fit=crop","https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&h=600&fit=crop","https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=600&fit=crop"];
+if(!matches.length){matches=[{p1:"Ahmad",p2:"Ali",type:"boys",city:"Gojra",v1:135,v2:110,img:realImgs[0],img2:realImgs[1]},{p1:"Sara",p2:"Ayesha",type:"girls",city:"Lahore",v1:237,v2:192,img:realImgs[2],img2:realImgs[3]},{p1:"Usman",p2:"Bilal",type:"boys",city:"Gojra",v1:98,v2:87,img:realImgs[4],img2:realImgs[5]}];localStorage.setItem('bk_matches',JSON.stringify(matches));}
+matches.forEach(m=>{if(!m.city)m.city="Gojra";});
+function matchKey(m){return (m.p1+'_VS_'+m.p2).toLowerCase();}
+function getMyPhoto(){return localStorage.getItem('bk_photo')||'';}
+function getPlayerImg(name,fallback){if(user&&name.toLowerCase()===user.name.toLowerCase()&&getMyPhoto())return getMyPhoto();return fallback;}
+function saveAll(){localStorage.setItem('bk_user',JSON.stringify(user));localStorage.setItem('bk_matches',JSON.stringify(matches));localStorage.setItem('bk_req',JSON.stringify(requests));localStorage.setItem('bk_gangs',JSON.stringify(gangs));localStorage.setItem('bk_voted_v4',JSON.stringify(voted));localStorage.setItem('bk_liked',JSON.stringify(likedUsers));localStorage.setItem('bk_followed',JSON.stringify(followedUsers));localStorage.setItem('bk_gifts',JSON.stringify(giftsSent));localStorage.setItem('bk_feedback',JSON.stringify(feedbacks));localStorage.setItem('bk_boosted_list',JSON.stringify(boostedList));localStorage.setItem('bk_my_wins',myWins.toString());localStorage.setItem('bk_my_losses',myLosses.toString());localStorage.setItem('bk_city_filter',selectedCityFilter);}
+function showToast(t){let d=document.createElement('div');d.className='welcome';d.innerText=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2500);}
+function showWelcome(){let b=document.getElementById('welcomeBox');b.classList.remove('hidden');setTimeout(()=>b.classList.add('hidden'),3500);}
+function setCat(el,cat){document.querySelectorAll('#catRow button').forEach(b=>b.classList.remove('on'));el.classList.add('on');selectedCat=cat;}
+function getTopPlayers(){let all=[];matches.forEach(m=>{all.push({name:m.p1,votes:m.v1});all.push({name:m.p2,votes:m.v2});});all.sort((a,b)=>b.votes-a.votes);return all;}
+function updateGate(){let l=!!user;document.getElementById('topbar').style.display=l?'flex':'none';document.getElementById('bottomBar').style.display=l?'flex':'none';}
+function showPage(p){if(!user&&p!=='login'&&p!=='adminlogin'){showToast('Pehle Signup Karo!');p='login';}['login','home','gang','city','leaderboard','create','userprofile','profile','topup','requests','adminlogin','admin','detail'].forEach(x=>{let e=document.getElementById('page-'+x);if(e)e.classList.add('hidden');});document.getElementById('page-'+p).classList.remove('hidden');updateGate();if(p==='home')renderMatches();if(p==='profile')renderProfileMenu();if(p==='requests')renderReq();if(p==='admin')renderAdmin();if(p==='gang')renderGangs();if(p==='city')renderCityList();if(p==='leaderboard'){let all=getTopPlayers();document.getElementById('leaderList').innerHTML=all.map((a,i)=>`<div class="listItem"><span onclick="openUser('${a.name}')">${i+1}. ${a.name} ${i==0?'👑':''}</span><b>${a.votes} Votes</b></div>`).join('');let t0=all[0]||{name:'-',votes:0},t1=all[1]||{name:'-',votes:0},t2=all[2]||{name:'-',votes:0};document.getElementById('podiumBox').innerHTML=`<div class="p2">🥈<br><b>${t1.name}</b><br>${t1.votes}</div><div class="p1">👑<br><b>${t0.name}</b><br>${t0.votes}</div><div class="p3">🥉<br><b>${t2.name}</b><br>${t2.votes}</div>`;document.getElementById('kingOfDay').innerText=t0.name+' - '+t0.votes+' Votes';}window.scrollTo(0,0);}
+function renderGangs(){if(!gangs.length){document.getElementById('gangList').innerHTML='Koi Gang Nahi';return;}document.getElementById('gangList').innerHTML=gangs.map(g=>`<div class="gangCard"><img src="${g.photo||'https://via.placeholder.com/56'}"><div style="flex:1"><b>🔥 ${g.name}</b><br><span class="small">MY GANG • ${g.photo?'Photo ✅':'No Photo'}</span></div><span>></span></div>`).join('');}
+function previewGangPhoto(e){let r=new FileReader();r.onload=()=>{gangPhotoTemp=r.result;document.getElementById('gangPreviewImg').src=r.result;document.getElementById('gangPreviewImg').style.display='block';document.getElementById('gangPhotoStatus').innerText='Photo Lag Gayi ✅';};r.readAsDataURL(e.target.files[0]);}
+function createGang(){let n=document.getElementById('gangCreateName').value.trim();if(!n){showToast('Gang Ka Naam Likho');return;}gangs.push({name:n,photo:gangPhotoTemp});gangPhotoTemp='';document.getElementById('gangCreateName').value='';document.getElementById('gangPreviewImg').style.display='none';document.getElementById('gangPhotoStatus').innerText='Koi Photo Nahi';saveAll();showToast('Gang Ban Gayi! 🔥 Photo Ke Sath!');showPage('home');}
+function renderCityList(){document.getElementById('cityList').innerHTML=cities.map(c=>`<div class="listItem ${selectedCityFilter===c?'cityActive':''}" onclick="selectCity('${c}')"><span>🏙️ ${c} ${selectedCityFilter===c?'✅':''}</span><span>${matches.filter(m=>(m.city||'Gojra')===c).length} Battles ></span></div>`).join('');}
+function selectCity(c){selectedCityFilter=c;if(user){user.city=c;}saveAll();showToast(c+' Selected! Sirf '+c+' Ke Battle Dikhayenge');showPage('home');}
+function clearCityFilter(){selectedCityFilter='';saveAll();showToast('City Filter Hata Diya - Saare Battle Dikhayenge');renderMatches();showPage('home');}
+function toggleSearch(){document.getElementById('searchBar').classList.toggle('hidden');}
+function doSearch(q){if(!q)return document.getElementById('searchResult').innerHTML='';let f=matches.filter(m=>m.p1.toLowerCase().includes(q.toLowerCase())||m.p2.toLowerCase().includes(q.toLowerCase()));document.getElementById('searchResult').innerHTML=f.length?f.map(m=>`<div onclick="openUser('${m.p1}')" style="padding:8px">${m.p1} vs ${m.p2} (${m.city||'Gojra'})</div>`).join(''):'Koi Result Nahi';}
+function openUser(name){currentViewUser=name;document.getElementById('uName').innerText=name;document.getElementById('uMeta').innerText='ID: '+(1000+name.length*7)+' | Gojra';document.getElementById('uBio').innerText='Bio: '+name+' - Battle King Player';document.getElementById('uFollowers').innerText=followedUsers.includes(name)?1:0;if(user&&name.toLowerCase()===user.name.toLowerCase()&&getMyPhoto())document.getElementById('uImg').src=getMyPhoto();else document.getElementById('uImg').src='https://via.placeholder.com/110';document.getElementById('uWins').innerText=(user&&name.toLowerCase()===user.name.toLowerCase())?myWins:0;updateLikeFollowBtns();showPage('userprofile');}
+function updateLikeFollowBtns(){document.getElementById('likeBtn').innerText=likedUsers.includes(currentViewUser)?'❤️ LIKED':'❤️ LIKE';document.getElementById('followBtn').innerText=followedUsers.includes(currentViewUser)?'✅ FOLLOWING':'➕ FOLLOW';}
+function toggleLike(){if(!currentViewUser)return;let i=likedUsers.indexOf(currentViewUser);if(i>=0)likedUsers.splice(i,1);else{likedUsers.push(currentViewUser);showToast('Liked! ❤️');}saveAll();updateLikeFollowBtns();}
+function toggleFollow(){if(!currentViewUser)return;let i=followedUsers.indexOf(currentViewUser);if(i>=0)followedUsers.splice(i,1);else{followedUsers.push(currentViewUser);showToast('Followed! ➕');}saveAll();updateLikeFollowBtns();}
+function register(){let name=document.getElementById('regName').value.trim();let city=document.getElementById('regCity').value.trim();let phone=document.getElementById('regPhone').value.trim();let pass=document.getElementById('regPass').value.trim();let age=document.getElementById('regAge').value.trim();let err=document.getElementById('loginErr');if(name.length<3){err.innerText='❌ Naam 3+ Harf Ka Likho!';return;}if(!city){err.innerText='❌ City Likho!';return;}if(phone.length!==11||!phone.startsWith('03')){err.innerText='❌ Sahi Mobile 0300... Likho!';return;}if(pass.length<4){err.innerText='❌ Password 4+ Harf Ka Rakho!';return;}if(!age||parseInt(age)<13){err.innerText='❌ Age 13+ Honi Chahiye!';return;}err.innerText='';let id=nextID;nextID++;localStorage.setItem('bk_nextID',nextID);user={name,city,phone,id,coins:20,pass:pass};saveAll();document.getElementById('myCoins').innerText=user.coins;document.getElementById('topupID').innerText=user.id;showPage('home');showWelcome();setTimeout(()=>{document.getElementById('dailyReward').classList.remove('hidden');},800);}
+function claimReward(){if(user){user.coins+=20;saveAll();document.getElementById('myCoins').innerText=user.coins;}document.getElementById('dailyReward').classList.add('hidden');showToast('+20 Coins! 🎁');}
+function filterMatch(t){currentFilter=t;document.querySelectorAll('.filterBtn').forEach(b=>b.classList.remove('on'));let el=document.getElementById('f-'+t);if(el)el.classList.add('on');renderMatches();}
+function renderMatches(){let list=matches.map((m,i)=>({...m,_i:i})).filter(m=>currentFilter==='all'||m.type===currentFilter);if(selectedCityFilter){list=list.filter(m=>(m.city||'Gojra')===selectedCityFilter);}document.getElementById('liveCount').innerText='• '+(120+Math.floor(Math.random()*40))+' Live';document.getElementById('cityFilterLabel').innerText=selectedCityFilter?'🏙️ '+selectedCityFilter:'';document.getElementById('clearCityBtn').classList.toggle('hidden',!selectedCityFilter);let h='';if(!list.length)h=`<div class="card center"><p>${selectedCityFilter?selectedCityFilter+' Me Koi Battle Nahi Hai':'Koi Match Nahi'}</p><p class="small">${selectedCityFilter?'Is City Me Pehla Battle Banao!':' '}</p><button class="btn" onclick="showPage('create')">⚔️ CREATE BATTLE</button></div>`;list.forEach((m)=>{let i=m._i;let votedThis=voted.includes(matchKey(m));let total=m.v1+m.v2||1;let p1=Math.round(m.v1/total*100);let img1=getPlayerImg(m.p1,m.img);let img2=getPlayerImg(m.p2,m.img2||m.img);let boosted=boostedList.includes(matchKey(m));h+=`<div class="battle"><div class="battleHead"><b>${m.type.toUpperCase()} BATTLE • 🏙️ ${m.city||'Gojra'}</b><span class="live">🔥 LIVE</span></div><div class="vsWrap"><div class="side" onclick="openUser('${m.p1}')"><img src="${img1}"><div class="info"><b>${m.p1}</b><span>🗳️ ${m.v1} Votes</span></div></div><div class="vsCircle">VS</div><div class="side" onclick="openUser('${m.p2}')"><img src="${img2}"><div class="info"><b>${m.p2}</b><span>🗳️ ${m.v2} Votes</span></div></div></div><div class="barTxt"><span>${m.p1} ${p1}%</span><span>${100-p1}% ${m.p2}</span></div><div class="bar"><i style="width:${p1}%"></i></div><div class="voteRow"><button class="voteBtn" ${votedThis?'disabled':''} onclick="vote(${i},1)">${votedThis?'VOTED ✓':'VOTE '+m.p1}</button><button class="voteBtn" ${votedThis?'disabled':''} onclick="vote(${i},2)">${votedThis?'VOTED ✓':'VOTE '+m.p2}</button></div><div class="giftRow"><button onclick="sendGift('🔥 Fire')">🔥 Fire</button><button onclick="sendGift('👑 Crown')">👑 Crown</button><button onclick="sendGift('🌹 Rose')">🌹 Rose</button><button onclick="sendGift('💎 Diamond')">💎 Diamond</button></div><div class="boostRow"><button onclick="boost(${i},1)">${boosted?'✅ BOOSTED':'⚡ BOOST '+m.p1+' +10'}</button><button onclick="boost(${i},2)">${boosted?'✅ BOOSTED':'⚡ BOOST '+m.p2+' +10'}</button></div></div>`;});document.getElementById('matchList').innerHTML=h;if(myStatus){document.getElementById('statusBox').innerText=myStatus+' - 24 Hours';document.getElementById('statusViews').innerText='Views: 12';}}
+function vote(i,who){let k=matchKey(matches[i]);if(voted.includes(k)){showToast('Already Voted!');return;}voted.push(k);if(who==1)matches[i].v1++;else matches[i].v2++;saveAll();renderMatches();showToast('Vote Done! ✅');}
+function boost(i,who){let k=matchKey(matches[i]);if(boostedList.includes(k)){showToast('Is Battle Me BOOST Ho Chuka Hai!');return;}boostedList.push(k);if(who==1)matches[i].v1+=10;else matches[i].v2+=10;saveAll();renderMatches();showToast('SUPER VOTE +10! 🔥');}
+function sendGift(g){if(!user)return;if(user.coins<10){showToast('Coins Finished');showPage('topup');return;}user.coins-=10;giftsSent.push(g+' - '+new Date().toLocaleDateString());saveAll();document.getElementById('myCoins').innerText=user.coins;showToast('Gift Sent: '+g);}
+function createMatch(){let p1=document.getElementById('p1Name').value.trim();let p2=document.getElementById('p2Name').value.trim();let gangVal=document.getElementById('gangName').value.trim();let e=document.getElementById('createErr');if(p1.length<2||p2.length<2){e.innerText='❌ Dono Naam Likho!';return;}e.innerText='';let useImg=createBattleImg||realImgs[Math.floor(Math.random()*realImgs.length)];let useImg2=createBattleImg||realImgs[Math.floor(Math.random()*realImgs.length)];if(user&&p1.toLowerCase()===user.name.toLowerCase()&&getMyPhoto())useImg=getMyPhoto();if(user&&p2.toLowerCase()===user.name.toLowerCase()&&getMyPhoto())useImg2=getMyPhoto();let battleCity=gangVal||(user?user.city:'Gojra');if(!cities.includes(battleCity))battleCity=user?user.city:'Gojra';matches.unshift({p1,p2,type:selectedCat.toLowerCase().includes('girl')?'girls':selectedCat.toLowerCase().includes('gang')?'gang':'boys',city:battleCity,v1:0,v2:0,img:useImg,img2:useImg2});createBattleImg='';document.getElementById('p1Img').style.display='none';document.getElementById('p1Name').value='';document.getElementById('p2Name').value='';document.getElementById('gangName').value='';saveAll();showToast('Battle Created! - '+battleCity);showPage('home');}
+function addStatus(){let t=document.getElementById('statusInput').value.trim();if(!t)return;myStatus=t;localStorage.setItem('bk_status',t);localStorage.setItem('bk_status_time',Date.now().toString());document.getElementById('statusBox').innerText=t+' - 24 Hours';document.getElementById('statusViews').innerText='Views: 12';document.getElementById('statusInput').value='';showToast('Status Added!');}
+function editProfile(){let n=prompt('Enter New Name',user?user.name:'');if(n&&user){user.name=n;saveAll();renderProfile();}}
+function changePhoto(e){let r=new FileReader();r.onload=()=>{document.getElementById('profImg').src=r.result;try{localStorage.setItem('bk_photo',r.result);}catch(err){showToast('Photo Badi Hai - Choti Photo Lagao');}};r.readAsDataURL(e.target.files[0]);}
+function previewImg(e,id){let r=new FileReader();r.onload=()=>{let im=document.getElementById(id);im.src=r.result;im.style.display='block';createBattleImg=r.result;};r.readAsDataURL(e.target.files[0]);}
+function renderProfile(){if(!user)return;document.getElementById('profName').innerText=user.name;document.getElementById('profCity').innerText=user.city;document.getElementById('profPhone').innerText=user.phone;document.getElementById('profID').innerText=user.id;document.getElementById('myCoins').innerText=user.coins;document.getElementById('followCount').innerText=followedUsers.length;document.getElementById('followerCount').innerText=likedUsers.length;document.getElementById('viewCount').innerText=12+likedUsers.length;document.getElementById('winCount').innerText=myWins;document.getElementById('lossCount').innerText=myLosses;let tv=0;matches.forEach(m=>tv+=m.v1+m.v2);document.getElementById('totalVotes').innerText=tv;let sp=localStorage.getItem('bk_photo');if(sp)document.getElementById('profImg').src=sp;}
+function renderProfileMenu(){renderProfile();let items=['Profile Views','Status','Matches','Gifts','Badge','Password','Feedback','Help','FAQ','About','Privacy Policy','Terms','Contact'];let h='';items.forEach(it=>{h+=`<div class="listItem" onclick="openDetail('${it}')"><span>${it}</span><span>></span></div>`});document.getElementById('profileMenu').innerHTML=h;}
+function openDetail(what){
+  document.getElementById('detailTitle').innerText=what;
+  let body='';
+  if(what==='Profile Views'){body=`<p class="small">Total Views: <b style="color:#ff6a00">${12+likedUsers.length}</b> - Kis Kis Ne Dekha:</p><div class="viewer"><img src="${realImgs[0]}"><div><b>Ahmad</b><br><span class="small">2 min ago • Gojra</span></div><span>👀</span></div><div class="viewer"><img src="${realImgs[2]}"><div><b>Sara</b><br><span class="small">15 min ago • Lahore</span></div><span>👀</span></div><div class="viewer"><img src="${realImgs[1]}"><div><b>Ali</b><br><span class="small">1 hour ago • Gojra</span></div><span>👀</span></div><div class="viewer"><img src="${realImgs[3]}"><div><b>Ayesha</b><br><span class="small">3 hours ago • Karachi</span></div><span>👀</span></div>`;}
+  if(what==='Status'){body=`<div class="statusBox">${myStatus||'Koi Status Nahi Hai'}</div><input id="detailStatus" placeholder="Naya Status Likho..."><button class="btn" onclick="saveDetailStatus()">STATUS LAGAO - 24 GHANTE</button><p class="small" style="margin-top:8px">Status 24 Ghante Baad Khud Khatam Ho Jayega</p>`;}
+  if(what==='Matches'){body=matches.map(m=>`<div class="listItem"><span>${m.p1} VS ${m.p2} <br><span class="small">${m.type} • 🏙️ ${m.city||'Gojra'} • ${m.v1+m.v2} Total Votes</span></span><b>${m.v1} : ${m.v2}</b></div>`).join('')+`<button class="btn" onclick="showPage('create')">⚔️ NAYA BATTLE BANAO</button>`;}
+  if(what==='Gifts'){body=giftsSent.length?giftsSent.map(g=>`<div class="listItem"><span>🎁 ${g}</span><span>Sent</span></div>`).join(''):`<div class="center"><p>Koi Gift Nahi Bheja Abhi</p><p class="small">Home Se Kisi Battle Pe Gift Bhejo</p></div>`+`<div class="listItem"><span>🔥 Fire Gift</span><b>10 Coins</b></div><div class="listItem"><span>👑 Crown Gift</span><b>50 Coins</b></div><div class="listItem"><span>🌹 Rose Gift</span><b>20 Coins</b></div><div class="listItem"><span>💎 Diamond Gift</span><b>100 Coins</b></div><button class="btn" onclick="showPage('home')">GIFT BHEJNE JAO</button>`;}
+  if(what==='Badge'){body=`<div class="listItem"><span>👑 Battle King Badge</span><b>${myWins>0?'Unlocked ✅':'Locked 🔒'}</b></div><p class="small">1 Battle Jeeto - Tumhare Wins: ${myWins}</p><div class="listItem"><span>🔥 Fire Starter</span><b>${voted.length>0?'Unlocked ✅':'Locked 🔒'}</b></div><p class="small">1 Vote Karo</p><div class="listItem"><span>🎁 Gift King</span><b>${giftsSent.length>0?'Unlocked ✅':'Locked 🔒'}</b></div><p class="small">1 Gift Bhejo</p><div class="listItem"><span>⭐ Star Player</span><b>${followedUsers.length>=2?'Unlocked ✅':'Locked 🔒'}</b></div><p class="small">2 Logon Ko Follow Karo</p><div class="listItem"><span>💎 Diamond Player</span><b>${user&&user.coins>=500?'Unlocked ✅':'Locked 🔒'}</b></div><p class="small">500 Coins Rakho</p>`;}
+  if(what==='Password'){body=`<p class="small">Current Password: <b>${user?.pass||'****'}</b></p><input id="newPass" type="password" placeholder="Naya Password Likho - 4+ Harf"><input id="newPass2" type="password" placeholder="Naya Password Dobara Likho"><p id="passErr" class="err"></p><button class="btn" onclick="changePassword()">PASSWORD CHANGE KARO</button>`;}
+  if(what==='Feedback'){body=`<textarea id="feedbackText" rows="4" placeholder="App Kaisi Lagi? Kya Behtar Ho Sakta Hai? Likho..."></textarea><button class="btn" onclick="saveFeedback()">FEEDBACK BHEJO</button><p style="margin-top:10px"><b>Tumhara Feedback:</b></p>${feedbacks.length?feedbacks.map(f=>`<div class="listItem"><span>${f}</span><span>✅</span></div>`).join(''):'<p class="small">Abhi Koi Feedback Nahi</p>'}`;}
+  if(what==='Help'){body=`<p><b>🆘 HELP CENTER</b></p><br><p><b>Vote Kaise Karun?</b><br>Home Pe Kisi Battle Pe VOTE Dabao - 1 Vote Free Hai</p><br><p><b>Coins Kaise Lun?</b><br>TOP UP Dabao - EasyPaisa 03430864009 Pe Paise Bhejo - Txn ID Likho - Admin Approve Karega</p><br><p><b>Battle Kaise Banaun?</b><br>CREATE BATTLE Dabao - 2 Naam Likho - Photo Lagao - CREATE Dabao</p><br><p><b>Gang Photo Kaise Lagau?</b><br>GANG WAR Me Ja Ke Photo Select Karo - Gang List Me Dikhayegi</p><br><p><b>City Filter Kaise Hataun?</b><br>Home Pe CITY FILTER HATAO Dabao</p><br><a class="waBox" href="https://wa.me/923430864009" target="_blank">📞 WHATSAPP PE RABTA KARO</a>`;}
+  if(what==='FAQ'){body=`<p><b>Q: App Free Hai?</b><br>A: Haan - Signup Free Hai - Vote Free Hai</p><br><p><b>Q: 1 Battle Me Kitne Vote Kar Sakte Hain?</b><br>A: Sirf 1 Vote - Lekin BOOST Se +10 Milte Hain</p><br><p><b>Q: Coins Kahan Use Hote Hain?</b><br>A: Gift Bhejne Aur BOOST Karne Me</p><br><p><b>Q: Winner Kaise Banta Hai?</b><br>A: Jis Ke Zyada Vote - Wo Winner - Admin Declare Karega</p><br><p><b>Q: City Filter Kya Hai?</b><br>A: City Select Karo To Sirf Usi City Ke Battle Dikhayenge</p>`;}
+  if(what==='About'){body=`<div class="center"><h2>BATTLE <span style="color:#ff6a00">KING</span> 👑</h2><p style="margin-top:10px">Version: V8.1 - FINAL</p><p>Pakistan Ka No.1 Voting Battle App</p><p class="small" style="margin-top:10px">Gojra Se Shuru - Pure Pakistan Tak!<br>Vote Karo - Jeeto - King Bano!</p><p style="margin-top:12px"><b>Admin:</b> Atiq Ur Rehman<br><b>City:</b> Gojra, Punjab<br><b>EasyPaisa:</b> 03430864009</p></div>`;}
+  if(what==='Privacy Policy'){body=`<p><b>PRIVACY POLICY - BATTLE KING</b></p><br><p>1. Hum Tumhara Naam, City Aur Number Sirf Account Ke Liye Lete Hain.</p><br><p>2. Tumhara Password Kisi Ko Nahi Dikhaya Jayega.</p><br><p>3. Tumhari Photo Sirf Tumhare Profile Pe Dikhayi Jayegi.</p><br><p>4. Tumhara Data Kisi Teesre Bande Ko Nahi Diya Jayega.</p><br><p>5. Tum Chaaho To Account Delete Karwa Sakte Ho - Contact Karo.</p><br><p>6. Coins / Payment Ki Detail Sirf Admin Dekhega.</p>`;}
+  if(what==='Terms'){body=`<p><b>TERMS & CONDITIONS</b></p><br><p>1. 13+ Age Wale Hi Account Bana Sakte Hain.</p><br><p>2. Ghalat Naam / Fake Photo Pe Account Block Ho Sakta Hai.</p><br><p>3. 1 Battle Me Sirf 1 Vote Allowed Hai.</p><br><p>4. Coins Wapis Nahi Honge - Topup Soch Samajh Ke Karo.</p><br><p>5. Gali / Ghalat Status Pe Account Block Hoga.</p><br><p>6. Winner Ka Faisla Admin Ka Hoga - Final Hoga.</p>`;}
+  if(what==='Contact'){body=`<div class="center"><h2>📞 CONTACT US</h2><p style="margin:10px 0">Koi Masla Hai? Direct Rabta Karo!</p></div><div class="listItem"><span>👤 Admin Name</span><b>Atiq Ur Rehman</b></div><div class="listItem"><span>📱 WhatsApp / EasyPaisa</span><b>03430864009</b></div><div class="listItem"><span>🏙️ City</span><b>Gojra</b></div><a class="waBox" href="https://wa.me/923430864009" target="_blank">💬 WHATSAPP KHOLO</a><a class="waBox" style="background:#ff6a00" href="https://whatsapp.com/channel/0029VbDa1RTChq6PtC1jkk3c" target="_blank">📢 WHATSAPP CHANNEL JOIN KARO</a>`;}
+  document.getElementById('detailBody').innerHTML=body;showPage('detail');
 }
-function selectCity(c){ if(user){user.city=c; saveAll();} showToast(c+' Selected! City War Ready!'); showPage('home'); }
-function createGang(){ let n=document.getElementById('gangCreateName').value.trim(); if(!n){showToast('Gang Ka Naam Likho');return;} gangs.push(n); saveAll(); showToast('Gang Ban Gayi! 🔥 '+n); showPage('home'); }
-function toggleSearch(){ document.getElementById('searchBar').classList.toggle('hidden'); }
-function doSearch(q){ if(!q) return document.getElementById('searchResult').innerHTML=''; let f=matches.filter(m=>m.p1.toLowerCase().includes(q.toLowerCase())||m.p2.toLowerCase().includes(q.toLowerCase())); document.getElementById('searchResult').innerHTML=f.length?f.map(m=>`<div onclick="openUser('${m.p1}')" style="padding:8px;cursor:pointer">${m.p1} vs ${m.p2}</div>`).join(''):'Koi Result Nahi Mila'; }
-function openUser(name){ currentViewUser=name; document.getElementById('uName').innerText=name; document.getElementById('uMeta').innerText='ID: '+(1000+name.length*7)+' | City: Gojra'; document.getElementById('uBio').innerText='Bio: '+name+' - Battle King Player'; document.getElementById('uFollowers').innerText=followedUsers.includes(name)?1:0; updateLikeFollowBtns(); showPage('userprofile'); }
-function updateLikeFollowBtns(){ document.getElementById('likeBtn').innerText=likedUsers.includes(currentViewUser)?'❤️ LIKED':'❤️ LIKE'; document.getElementById('likeBtn').className=likedUsers.includes(currentViewUser)?'btn btnRed':'btn'; document.getElementById('followBtn').innerText=followedUsers.includes(currentViewUser)?'✅ FOLLOWING':'➕ FOLLOW'; document.getElementById('followBtn').className=followedUsers.includes(currentViewUser)?'btn btnGreen':'btn btn2'; }
-function toggleLike(){ if(!currentViewUser) return; let i=likedUsers.indexOf(currentViewUser); if(i>=0) likedUsers.splice(i,1); else {likedUsers.push(currentViewUser); showToast('Liked! ❤️');} saveAll(); updateLikeFollowBtns(); }
-function toggleFollow(){ if(!currentViewUser) return; let i=followedUsers.indexOf(currentViewUser); if(i>=0) followedUsers.splice(i,1); else {followedUsers.push(currentViewUser); showToast('Followed! ➕');} saveAll(); updateLikeFollowBtns(); }
-function register(){ let name=document.getElementById('regName').value||'Guest'; let city=document.getElementById('regCity').value||'Gojra'; let phone=document.getElementById('regPhone').value||'03000000000'; let id=nextID; nextID++; localStorage.setItem('bk_nextID',nextID); user={name,city,phone,id,coins:0,follow:0,followers:0,views:0}; saveAll(); document.getElementById('myCoins').innerText=user.coins; document.getElementById('topupID').innerText=user.id; showPage('home'); showWelcome(); }
-function filterMatch(t){ currentFilter=t; document.querySelectorAll('.filterBtn').forEach(b=>b.classList.remove('on')); let el=document.getElementById('f-'+t); if(el) el.classList.add('on'); renderMatches(); }
-function renderMatches(){
-  let list=matches.map((m,i)=>({...m,_i:i})).filter(m=>currentFilter==='all'||m.type===currentFilter);
-  let h=''; if(!list.length) h='<div class="card center">Is Category Me Koi Match Nahi Hai</div>';
-  list.forEach((m)=>{ let i=m._i; let votedThis=voted.includes(matchKey(m));
-    h+=`<div class="card"><p><span class="liveDot"></span> <b style="color:#ff7a00">${m.type.toUpperCase()} BATTLE</b> <span class="badge">🔥 LIVE</span></p>
-    <div class="vs"><div><img src="${m.img}" onclick="openUser('${m.p1}')"><br><span class="playerName" onclick="openUser('${m.p1}')">${m.p1}</span><br><span style="color:#ffcc00">🗳️ ${m.v1} Votes</span><br><button class="voteBtn" ${votedThis?'disabled':''} onclick="vote(${i},1)">${votedThis?'VOTED ✓':'VOTE'}</button></div><div><h2 style="color:#ff7a00">VS</h2><p class="small">Ends in 2h</p></div><div><img src="${m.img}" onclick="openUser('${m.p2}')"><br><span class="playerName" onclick="openUser('${m.p2}')">${m.p2}</span><br><span style="color:#ffcc00">🗳️ ${m.v2} Votes</span><br><button class="voteBtn" ${votedThis?'disabled':''} onclick="vote(${i},2)">${votedThis?'VOTED ✓':'VOTE'}</button></div></div>
-    <div class="giftRow"><button onclick="sendGift('🔥 Fire - 10 Coins')">🔥 Fire</button><button onclick="sendGift('👑 Crown - 50 Coins')">👑 Crown</button><button onclick="sendGift('🌹 Rose - 20 Coins')">🌹 Rose</button><button onclick="sendGift('💎 Diamond - 100 Coins')">💎 Diamond</button></div>
-    <div style="display:flex;gap:8px;margin-top:10px"><button class="btn boostBtn" style="margin:0" onclick="boost(${i},1)">⚡ BOOST ${m.p1} +10</button><button class="btn boostBtn" style="margin:0" onclick="boost(${i},2)">⚡ BOOST ${m.p2} +10</button></div>
-    <div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn2" style="margin:0" onclick="shareMatch('${m.p1} vs ${m.p2}')">SHARE</button></div></div>`;
-  }); document.getElementById('matchList').innerHTML=h;
-  if(myStatus){ document.getElementById('statusBox').innerText=myStatus+' - 24 Hours'; document.getElementById('statusViews').innerText='Views: 12 - Viewers: Ahmad, Ali, Sara'; }
-}
-function vote(i,who){ let k=matchKey(matches[i]); if(voted.includes(k)){showToast('Already Voted! 1 Vote Only');return;} voted.push(k); if(who==1) matches[i].v1++; else matches[i].v2++; saveAll(); renderMatches(); showToast('Vote Done! ✅'); }
-// FIX 5: Boost ab dono players ko - alag alag
-function boost(i,who){ if(boostUsed){showToast('Boost Already Used - Only 1 Time');return;} boostUsed=true; localStorage.setItem('bk_boost','1'); if(who==1) matches[i].v1+=10; else matches[i].v2+=10; saveAll(); renderMatches(); showToast('SUPER VOTE Activated! +10 Votes!'); }
-function sendGift(g){ if(!user){showToast('Please Login First');return;} if(user.coins<10){showToast('Coins Finished - Please Topup');showPage('topup');return;} user.coins-=10; saveAll(); document.getElementById('myCoins').innerText=user.coins; showToast('Gift Sent: '+g); }
-function shareMatch(t){ let url=location.href; if(navigator.share){navigator.share({title:t,text:'Vote In This Battle!',url:url})} else {prompt('Copy Link And Share On WhatsApp / TikTok',url)} }
-function createMatch(){ let p1=document.getElementById('p1Name').value||'Player 1'; let p2=document.getElementById('p2Name').value||'Player 2'; matches.unshift({p1,p2,type:selectedCat.toLowerCase().includes('girl')?'girls':selectedCat.toLowerCase().includes('gang')?'gang':'boys',v1:0,v2:0,img:"https://via.placeholder.com/80"}); saveAll(); showToast('Battle Created - Sent For Admin Approval'); showPage('home'); }
-function addStatus(){ let t=document.getElementById('statusInput').value.trim(); if(!t) return; myStatus=t; localStorage.setItem('bk_status',t); localStorage.setItem('bk_status_time',Date.now().toString()); document.getElementById('statusBox').innerText=t+' - 24 Hours'; document.getElementById('statusViews').innerText='Views: 12 - Viewers: Ahmad, Ali, Sara'; document.getElementById('statusInput').value=''; showToast('Status Added For 24 Hours'); }
-function editProfile(){ let n=prompt('Enter New Name',user?user.name:''); if(n&&user){user.name=n; saveAll(); renderProfile();} }
-// FIX 2: Profile photo ab save hogi
-function changePhoto(e){ let r=new FileReader(); r.onload=()=>{document.getElementById('profImg').src=r.result; try{localStorage.setItem('bk_photo',r.result);}catch(err){showToast('Photo Badi Hai - Choti Photo Lagao');}}; r.readAsDataURL(e.target.files[0]); }
-function previewImg(e,id){ let r=new FileReader(); r.onload=()=>{let im=document.getElementById(id); im.src=r.result; im.style.display='block'}; r.readAsDataURL(e.target.files[0]); }
-function renderProfile(){ if(!user) return; document.getElementById('profName').innerText=user.name; document.getElementById('profCity').innerText=user.city; document.getElementById('profPhone').innerText=user.phone; document.getElementById('profID').innerText=user.id; document.getElementById('myCoins').innerText=user.coins; document.getElementById('followCount').innerText=followedUsers.length; document.getElementById('followerCount').innerText=likedUsers.length; let tv=0; matches.forEach(m=>tv+=m.v1+m.v2); document.getElementById('totalVotes').innerText=tv; let savedPhoto=localStorage.getItem('bk_photo'); if(savedPhoto) document.getElementById('profImg').src=savedPhoto; }
-function renderProfileMenu(){ renderProfile(); let items=['Profile Views','Status','Matches','Gifts','Badge','Password','Feedback','Help','FAQ','About','Privacy Policy','Terms','Contact','My Requests']; let h=''; items.forEach(it=>{ h+=`<div class="listItem" onclick="profileClick('${it}')"><span>${it}</span><span>></span></div>` }); document.getElementById('profileMenu').innerHTML=h; }
-function profileClick(it){ if(it==='My Requests') showPage('requests'); else showToast(it+' - Coming Soon'); }
-function logout(){ localStorage.removeItem('bk_user'); location.reload(); }
-function sendTopup(){ let pack=document.getElementById('coinPack').value; let txn=document.getElementById('txnID').value||'No Txn'; requests.push({id:user?user.id:1001,coins:pack,txn,status:'PENDING'}); saveAll(); showToast('Topup Request Sent!'); showPage('requests'); }
-function renderReq(){ if(!requests.length){document.getElementById('reqList').innerHTML='No Requests Yet';return;} document.getElementById('reqList').innerHTML=requests.map(r=>`<div class="listItem"><span>ID: ${r.id} - ${r.coins} Coins - Txn: ${r.txn}</span><b>${r.status}</b></div>`).join(''); }
-document.getElementById('secretLogo').addEventListener('click',()=>{ clicks++; if(clicks>=13){clicks=0; showPage('adminlogin');} });
-function checkAdmin(){ if(document.getElementById('adminPass').value==='726609'){ showPage('admin'); } else showToast('Wrong Password'); }
-function renderAdmin(){ document.getElementById('aUsers').innerText=user?1:0; document.getElementById('aMatches').innerText=matches.length; document.getElementById('adminUsers').innerHTML=user?`<div class="adminBox">ID: ${user.id} - ${user.name} - ${user.city} - ${user.phone} - Coins: ${user.coins} <button onclick="approveUser()">Approve</button> <button onclick="blockUser()">Block</button></div>`:'No Users Yet'; document.getElementById('adminReq').innerHTML=requests.map((r,i)=>`<div class="adminBox">ID: ${r.id} - ${r.coins} Coins - Txn: ${r.txn} - ${r.status} <button onclick="approveReq(${i})">Approve</button></div>`).join('')||'No Requests'; document.getElementById('adminMatches').innerHTML=matches.map((m,i)=>`<div class="adminBox">${m.p1} VS ${m.p2} - ${m.v1} : ${m.v2} <button onclick="declareWinner(${i},1)">${m.p1} Winner</button> <button onclick="declareWinner(${i},2)">${m.p2} Winner</button></div>`).join(''); }
-function approveUser(){showToast('User Approved');}
-function blockUser(){showToast('User Blocked');}
-function approveReq(i){ requests[i].status='APPROVED'; if(user){user.coins+=parseInt(requests[i].coins);} saveAll(); document.getElementById('myCoins').innerText=user?user.coins:0; renderAdmin(); showToast('Topup Approved - Coins Added'); }
-function declareWinner(i,w){ let winner=w==1?matches[i].p1:matches[i].p2; showToast('Winner Declared: '+winner); }
-if('serviceWorker' in navigator){ let swCode="self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>new Response('Offline')))});"; let blob=new Blob([swCode],{type:'text/javascript'}); let swUrl=URL.createObjectURL(blob); navigator.serviceWorker.register(swUrl).catch(()=>{}); }
-window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; document.getElementById('installBanner').classList.remove('hidden'); });
-function installApp(){ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; document.getElementById('installBanner').classList.add('hidden'); }); } else { showToast('Browser Menu > Add To Home Screen Se Install Karo'); } }
-if(user){ document.getElementById('myCoins').innerText=user.coins; document.getElementById('topupID').innerText=user.id; showPage('home'); } else { showPage('login'); }
+function saveDetailStatus(){let t=document.getElementById('detailStatus').value.trim();if(!t){showToast('Status Likho!');return;}myStatus=t;localStorage.setItem('bk_status',t);localStorage.setItem('bk_status_time',Date.now().toString());showToast('Status Lag Gaya!');showPage('home');}
+function changePassword(){let p1=document.getElementById('newPass').value.trim();let p2=document.getElementById('newPass2').value.trim();let e=document.getElementById('passErr');if(p1.length<4){e.innerText='❌ Password 4+ Harf Ka Rakho!';return;}if(p1!==p2){e.innerText='❌ Dono Password Same Nahi Hain!';return;}user.pass=p1;saveAll();showToast('Password Change Ho Gaya! ✅');showPage('profile');}
+function saveFeedback(){let t=document.getElementById('feedbackText').value.trim();if(!t){showToast('Feedback Likho!');return;}feedbacks.push(t);saveAll();showToast('Feedback Bhej Diya! Shukriya ❤️');openDetail('Feedback');}
+function logout(){localStorage.removeItem('bk_user');location.reload();}
+function sendTopup(){let txn=document.getElementById('txnID').value.trim();if(!txn){document.getElementById('topupErr').innerText='❌ Transaction ID Likho!';return;}let pack=document.getElementById('coinPack').value;requests.push({id:user?user.id:1001,coins:pack,txn,status:'PENDING'});saveAll();showToast('Request Sent!');showPage('requests');}
+function renderReq(){if(!requests.length){document.getElementById('reqList').innerHTML='No Requests Yet';return;}document.getElementById('reqList').innerHTML=requests.map(r=>`<div class="listItem"><span>ID: ${r.id} - ${r.coins} Coins</span><b>${r.status}</b></div>`).join('');}
+document.getElementById('secretLogo').addEventListener('click',()=>{clicks++;if(clicks>=13){clicks=0;showPage('adminlogin');}});
+function checkAdmin(){if(document.getElementById('adminPass').value==='726609'){showPage('admin');}else showToast('Wrong Password');}
+function renderAdmin(){document.getElementById('aUsers').innerText=user?1:0;document.getElementById('aMatches').innerText=matches.length;document.getElementById('adminUsers').innerHTML=user?`<div class="adminBox">ID: ${user.id} - ${user.name} - ${user.city} - ${user.phone} - Coins: ${user.coins} - Wins: ${myWins} <button onclick="approveUser()">Approve</button> <button onclick="blockUser()">Block</button></div>`:'No Users';document.getElementById('adminReq').innerHTML=requests.map((r,i)=>`<div class="adminBox">ID: ${r.id} - ${r.coins} Coins - ${r.status} <button onclick="approveReq(${i})">Approve</button></div>`).join('')||'No Requests';document.getElementById('adminMatches').innerHTML=matches.map((m,i)=>`<div class="adminBox">${m.p1} VS ${m.p2} - 🏙️ ${m.city||'Gojra'} - ${m.v1} : ${m.v2} <button onclick="declareWinner(${i},1)">${m.p1} Winner</button> <button onclick="declareWinner(${i},2)">${m.p2} Winner</button></div>`).join('');}
+function approveUser(){showToast('User Approved');}function blockUser(){showToast('User Blocked');}
+function approveReq(i){requests[i].status='APPROVED';if(user){user.coins+=parseInt(requests[i].coins);}saveAll();document.getElementById('myCoins').innerText=user?user.coins:0;renderAdmin();showToast('Approved!');}
+function declareWinner(i,w){let winner=w==1?matches[i].p1:matches[i].p2;let loser=w==1?matches[i].p2:matches[i].p1;if(user&&winner.toLowerCase()===user.name.toLowerCase()){myWins++;}else if(user&&loser.toLowerCase()===user.name.toLowerCase()){myLosses++;}saveAll();renderProfile();showToast('Winner: '+winner+' 👑 Wins: '+myWins);}
+if('serviceWorker' in navigator){let sw="self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>new Response('Offline')))});";let b=new Blob([sw],{type:'text/javascript'});navigator.serviceWorker.register(URL.createObjectURL(b)).catch(()=>{});}
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBanner').classList.remove('hidden');});
+function installApp(){if(deferredPrompt){deferredPrompt.prompt();}else{showToast('Browser Menu > Add To Home Screen');}}
+setTimeout(()=>{document.getElementById('splash').style.display='none';},1200);
+if(user){document.getElementById('myCoins').innerText=user.coins;document.getElementById('topupID').innerText=user.id;showPage('home');}else{showPage('login');}
 renderMatches();
+setInterval(()=>{let names=['Ahmad','Sara','Ali','Ayesha'];let n=names[Math.floor(Math.random()*names.length)];let t=document.getElementById('ticker');if(t)t.innerText='🔥 LIVE: '+n+' Ko Naye Vote Mile • '+(100+Math.floor(Math.random()*50))+' Dekh Rahe Hain • ';},5000);
 </script>
 </body>
 </html>
