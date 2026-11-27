@@ -3,25 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f0f1a">
 <title>BATTLE KING</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#0f0f1a;color:#fff;max-width:430px;margin:auto;min-height:100vh;padding-bottom:90px}
+body{background:#0f0f1a;color:#fff;max-width:430px;margin:auto;min-height:100vh;padding-bottom:95px}
 .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;background:#1a1a2e;position:sticky;top:0;z-index:10}
 .logo{font-size:22px;font-weight:900;cursor:pointer;user-select:none}
 .logo span{color:#ffcc00}
 .coins{background:#ffcc00;color:#000;padding:6px 12px;border-radius:20px;font-weight:700;font-size:14px}
 .topupBtn{background:#ff3b30;color:#fff;border:none;padding:7px 14px;border-radius:20px;font-weight:700;cursor:pointer}
+.searchBtn{background:#2a2a45;color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:17px;cursor:pointer}
 .card{background:#1e1e35;margin:12px;border-radius:16px;padding:14px}
 input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;border:1px solid #333;background:#2a2a45;color:#fff;outline:none}
 .btn{width:100%;padding:13px;border:none;border-radius:12px;background:#ffcc00;color:#000;font-weight:800;font-size:16px;cursor:pointer;margin-top:8px}
 .btn2{background:#2a2a45;color:#fff}
-.btnRed{background:#ff3b30;color:#fff}
+.btnRed{background:#ff3b30!important;color:#fff!important}
+.btnGreen{background:#00c853!important;color:#fff!important}
 .hidden{display:none!important}
 .vs{display:flex;align-items:center;gap:10px;margin:10px 0}
-.vs img{width:80px;height:80px;border-radius:14px;object-fit:cover;background:#333}
+.vs img{width:80px;height:80px;border-radius:14px;object-fit:cover;background:#333;cursor:pointer}
 .vs div{flex:1;text-align:center}
 .voteBtn{background:#00c853;color:#fff;border:none;padding:10px;border-radius:10px;width:100%;font-weight:800;cursor:pointer}
+.voteBtn:disabled{background:#444;color:#aaa}
 .giftRow{display:flex;gap:8px;justify-content:space-between;margin-top:10px}
 .giftRow button{flex:1;background:#2a2a45;border:1px solid #444;color:#fff;padding:8px;border-radius:10px;cursor:pointer}
 .bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#1a1a2e;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #333;z-index:20}
@@ -39,6 +43,17 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
 .small{font-size:13px;color:#aaa}
 .center{text-align:center}
 .adminBox{background:#fff;color:#000;padding:15px;border-radius:14px;margin:10px 0}
+.welcome{position:fixed;top:60px;left:50%;transform:translateX(-50%);width:90%;max-width:390px;background:linear-gradient(90deg,#ffcc00,#ff7a00);color:#000;padding:14px;border-radius:14px;text-align:center;font-weight:800;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:slideDown .5s}
+@keyframes slideDown{from{margin-top:-80px;opacity:0}to{margin-top:0;opacity:1}}
+.waBox{background:#25D366;color:#fff;padding:14px;border-radius:14px;text-align:center;margin:12px;display:block;text-decoration:none;font-weight:800}
+.centerBtns{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 12px 20px}
+.centerBtns button{width:85%;max-width:320px}
+.installBanner{background:#ffcc00;color:#000;margin:12px;padding:12px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-weight:800}
+.installBanner button{background:#000;color:#ffcc00;border:none;padding:8px 14px;border-radius:20px;font-weight:800}
+.searchBox{background:#1e1e35;margin:12px;border-radius:16px;padding:12px}
+.playerName{cursor:pointer;font-weight:800}
+.playerName:hover{color:#ffcc00}
+.filterActive{background:#ffcc00!important;color:#000!important}
 </style>
 </head>
 <body>
@@ -46,12 +61,20 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
 <div class="topbar">
   <div class="logo" id="secretLogo">BATTLE <span>KING</span></div>
   <div style="display:flex;gap:8px;align-items:center">
+    <button class="searchBtn" onclick="toggleSearch()">🔍</button>
     <div class="coins">🪙 <span id="myCoins">0</span></div>
     <button class="topupBtn" onclick="showPage('topup')">TOPUP</button>
   </div>
 </div>
 
-<!-- LOGIN -->
+<div id="welcomeBox" class="welcome hidden">🎉 WELCOME TO BATTLE KING! 👑<br><span style="font-size:13px;font-weight:600">Ab Apna Battle Banao - Vote Karo - King Bano!</span></div>
+<div id="installBanner" class="installBanner hidden">📲 INSTALL BATTLE WAR APP <button onclick="installApp()">INSTALL</button></div>
+
+<div id="searchBar" class="searchBox hidden">
+  <input id="searchInput" placeholder="Search Player - Gang - City..." oninput="doSearch(this.value)">
+  <div id="searchResult" class="small"></div>
+</div>
+
 <div id="page-login">
   <div class="card center"><h1>BATTLE KING</h1><p class="small">Login / Signup - Admin Will Approve</p></div>
   <div class="card">
@@ -66,22 +89,19 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
   </div>
 </div>
 
-<!-- HOME -->
 <div id="page-home" class="hidden">
   <div class="card">
     <div style="display:flex;gap:8px">
-      <button class="btn" style="margin:0" onclick="filterMatch('all')">All Matches</button>
-      <button class="btn btn2" style="margin:0" onclick="filterMatch('boys')">Boys</button>
-      <button class="btn btn2" style="margin:0" onclick="filterMatch('girls')">Girls</button>
+      <button class="btn filterBtn filterActive" id="f-all" style="margin:0" onclick="filterMatch('all')">All Matches</button>
+      <button class="btn btn2 filterBtn" id="f-boys" style="margin:0" onclick="filterMatch('boys')">Boys</button>
+      <button class="btn btn2 filterBtn" id="f-girls" style="margin:0" onclick="filterMatch('girls')">Girls</button>
     </div>
     <div style="display:flex;gap:8px;margin-top:8px">
-      <button class="btn btn2" style="margin:0" onclick="alert('Gang War - Create Your Gang')">GANG WAR</button>
-      <button class="btn btn2" style="margin:0" onclick="alert('City War - Select Your City')">CITY WAR</button>
+      <button class="btn btn2" style="margin:0" onclick="showPage('gang')">GANG WAR</button>
+      <button class="btn btn2" style="margin:0" onclick="showPage('city')">CITY WAR</button>
     </div>
   </div>
-
   <div id="matchList"></div>
-
   <div class="card">
     <h3>Status - 24 Hours</h3>
     <div class="statusBox" id="statusBox">No Status Yet - Add Your Status</div>
@@ -91,10 +111,20 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
   </div>
 </div>
 
-<!-- FAVOURITE -->
-<div id="page-fav" class="hidden"><div class="card"><h3>Favourite Matches</h3><p class="small">Your Saved Favourite Matches Will Show Here</p><div id="favList"></div></div></div>
+<div id="page-gang" class="hidden">
+  <div class="card center"><h2>🔥 CREATE YOUR GANG</h2><p class="small">Apni Gang Banao - Dosto Ko Add Karo</p></div>
+  <div class="card"><input id="gangCreateName" placeholder="Gang Ka Naam"><input type="file" accept="image/*"><button class="btn" onclick="createGang()">CREATE GANG</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div>
+  <div class="card"><h3>My Gangs</h3><div id="gangList">Koi Gang Nahi Hai</div></div>
+</div>
 
-<!-- CREATE -->
+<div id="page-city" class="hidden">
+  <div class="card center"><h2>🏙️ SELECT YOUR CITY</h2><p class="small">Apni City Chuno - City War Jeeto</p></div>
+  <div class="card" id="cityList"></div>
+  <div class="card"><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div>
+</div>
+
+<div id="page-leaderboard" class="hidden"><div class="card"><h3>🏆 Leaderboard - Top Players</h3><div id="leaderList"></div></div></div>
+
 <div id="page-create" class="hidden">
   <div class="card"><h3>Create Match</h3>
     <select id="matchType"><option>Boys vs Boys</option><option>Girls vs Girls</option><option>Friends Battle</option><option>Gang War</option><option>City War</option></select>
@@ -107,10 +137,12 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
   </div>
 </div>
 
-<!-- MY MATCHES -->
-<div id="page-mymatches" class="hidden"><div class="card"><h3>My Matches</h3><div id="myMatches"></div><p class="small">Match Result Will Show Here After Admin Declares Winner</p></div></div>
+<div id="page-userprofile" class="hidden">
+  <div class="profileTop"><img id="uImg" src="https://via.placeholder.com/110"><h2 id="uName">User</h2><p class="small" id="uMeta">ID: 1002</p></div>
+  <div class="stats"><div><b id="uFollow">0</b>Follow</div><div><b id="uFollowers">0</b>Followers</div><div><b id="uWins">0</b>Wins</div></div>
+  <div class="card center"><p id="uBio">Battle King Player</p><button class="btn" id="likeBtn" onclick="toggleLike()">❤️ LIKE</button><button class="btn btn2" id="followBtn" onclick="toggleFollow()">➕ FOLLOW</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div>
+</div>
 
-<!-- PROFILE -->
 <div id="page-profile" class="hidden">
   <div class="profileTop">
     <img id="profImg" src="https://via.placeholder.com/110">
@@ -129,172 +161,134 @@ input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;bo
     <p class="small">Upload Photo From Gallery</p>
   </div>
   <div class="card" id="profileMenu"></div>
+  <a class="waBox" href="https://whatsapp.com/channel/0029VbDa1RTChq6PtC1jkk3c" target="_blank">📢 JOIN WHATSAPP CHANNEL</a>
+  <div class="centerBtns">
+    <button class="btn" onclick="installApp()">📲 INSTALL APP</button>
+    <button class="btn btnRed" onclick="logout()">LOGOUT</button>
+  </div>
 </div>
 
-<!-- TOPUP -->
 <div id="page-topup" class="hidden">
   <div class="card center"><h2>TOPUP COINS</h2><p>Send Money On EasyPaisa</p>
-    <div style="background:#ffcc00;color:#000;padding:14px;border-radius:12px;margin:10px 0">
-      <h3>EasyPaisa</h3><p>Name: <b>Atiq Ur Rehman</b></p><p>Number: <b>03430864009</b></p>
-    </div>
+    <div style="background:#ffcc00;color:#000;padding:14px;border-radius:12px;margin:10px 0"><h3>EasyPaisa</h3><p>Name: <b>Atiq Ur Rehman</b></p><p>Number: <b>03430864009</b></p></div>
   </div>
   <div class="card">
     <p>Your ID: <b id="topupID">1001</b> (Auto Filled)</p>
     <select id="coinPack"><option value="100">100 Coins - 200 Rs</option><option value="500">500 Coins - 800 Rs</option><option value="1000">1000 Coins - 1500 Rs</option></select>
-    <input id="txnID" placeholder="Transaction ID">
-    <input type="file" accept="image/*" placeholder="Screenshot">
+    <input id="txnID" placeholder="Transaction ID"><input type="file" accept="image/*">
     <button class="btn" onclick="sendTopup()">SEND REQUEST</button>
     <button class="btn btn2" onclick="showPage('requests')">MY REQUESTS</button>
   </div>
 </div>
 
-<!-- MY REQUESTS -->
 <div id="page-requests" class="hidden"><div class="card"><h3>My Requests</h3><div id="reqList">No Requests Yet</div></div></div>
+<div id="page-adminlogin" class="hidden"><div class="card center"><h2>Admin Login</h2><input id="adminPass" type="password" placeholder="Enter Admin Password"><button class="btn" onclick="checkAdmin()">OPEN ADMIN PANEL</button></div></div>
 
-<!-- ADMIN LOGIN -->
-<div id="page-adminlogin" class="hidden">
-  <div class="card center"><h2>Admin Login</h2><p class="small">Secret Admin Panel</p>
-  <input id="adminPass" type="password" placeholder="Enter Admin Password">
-  <button class="btn" onclick="checkAdmin()">OPEN ADMIN PANEL</button></div>
-</div>
-
-<!-- ADMIN PANEL -->
 <div id="page-admin" class="hidden">
   <div class="card"><h2>Admin Panel</h2><p class="small">Dashboard - Users - Matches - Coins - Gifts - Reports - Settings</p>
-  <div style="display:flex;gap:8px"><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Users<br><b id="aUsers">0</b></div><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Matches<br><b id="aMatches">0</b></div><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Earning<br><b>0 Rs</b></div></div>
-  </div>
+  <div style="display:flex;gap:8px"><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Users<br><b id="aUsers">0</b></div><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Matches<br><b id="aMatches">0</b></div><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Earning<br><b>0 Rs</b></div></div></div>
   <div class="card"><h3>Users Control</h3><div id="adminUsers"></div></div>
   <div class="card"><h3>Topup Requests</h3><div id="adminReq"></div></div>
   <div class="card"><h3>Matches Control</h3><div id="adminMatches"></div></div>
-  <div class="card"><h3>Gifts Control</h3><p>Fire - 10 Coins | Crown - 50 Coins | Rose - 20 Coins | Diamond - 100 Coins</p><button class="btn btn2" onclick="alert('Gift Price Updated')">UPDATE GIFTS</button></div>
-  <div class="card"><h3>Send Notification To All Users</h3><input id="notifText" placeholder="Message For All Users"><button class="btn" onclick="alert('Notification Sent To All Users')">SEND NOTIFICATION</button></div>
+  <div class="card"><h3>Gifts Control</h3><p>Fire - 10 Coins | Crown - 50 Coins | Rose - 20 Coins | Diamond - 100 Coins</p><button class="btn btn2" onclick="showToast('Gift Price Updated')">UPDATE GIFTS</button></div>
+  <div class="card"><h3>Send Notification To All Users</h3><input id="notifText" placeholder="Message For All Users"><button class="btn" onclick="showToast('Notification Sent To All Users')">SEND NOTIFICATION</button></div>
   <button class="btn btnRed" onclick="showPage('home')">EXIT ADMIN</button>
 </div>
 
 <div class="bottom">
   <button class="active" onclick="showPage('home')">🏠<br>Home</button>
-  <button onclick="showPage('fav')">❤️<br>Favourite</button>
+  <button onclick="showPage('home')">⚔️<br>Battle</button>
   <button class="createBtn" onclick="showPage('create')">+</button>
-  <button onclick="showPage('mymatches')">⚔️<br>My Matches</button>
-  <button onclick="showPage('profile')">👤<br>My Profile</button>
+  <button onclick="showPage('leaderboard')">🏆<br>Leaderboard</button>
+  <button onclick="showPage('profile')">👤<br>Profile</button>
 </div>
 
 <script>
+// ===== STORAGE =====
 let user = JSON.parse(localStorage.getItem('bk_user')||'null');
 let matches = JSON.parse(localStorage.getItem('bk_matches')||'[]');
 let requests = JSON.parse(localStorage.getItem('bk_req')||'[]');
+let gangs = JSON.parse(localStorage.getItem('bk_gangs')||'[]');
+let voted = JSON.parse(localStorage.getItem('bk_voted')||'[]');
+let likedUsers = JSON.parse(localStorage.getItem('bk_liked')||'[]');
+let followedUsers = JSON.parse(localStorage.getItem('bk_followed')||'[]');
+let myStatus = localStorage.getItem('bk_status')||'';
 let nextID = parseInt(localStorage.getItem('bk_nextID')||'1001');
-let clicks=0, boostUsed=false;
+let clicks=0, boostUsed=localStorage.getItem('bk_boost')==='1', deferredPrompt=null, currentViewUser=null, currentFilter='all';
+let cities=["Gojra","Lahore","Karachi","Faisalabad","Islamabad","Multan","Rawalpindi","Hyderabad"];
 
-if(!matches.length){
-  matches=[
-    {p1:"Ahmad",p2:"Ali",type:"boys",v1:125,v2:98,img:"https://via.placeholder.com/80"},
-    {p1:"Sara",p2:"Ayesha",type:"girls",v1:210,v2:185,img:"https://via.placeholder.com/80"}
-  ];
-}
-
+if(!matches.length){ matches=[{p1:"Ahmad",p2:"Ali",type:"boys",v1:125,v2:98,img:"https://via.placeholder.com/80"},{p1:"Sara",p2:"Ayesha",type:"girls",v1:210,v2:185,img:"https://via.placeholder.com/80"}]; localStorage.setItem('bk_matches',JSON.stringify(matches)); }
+function saveAll(){ localStorage.setItem('bk_user',JSON.stringify(user)); localStorage.setItem('bk_matches',JSON.stringify(matches)); localStorage.setItem('bk_req',JSON.stringify(requests)); localStorage.setItem('bk_gangs',JSON.stringify(gangs)); localStorage.setItem('bk_voted',JSON.stringify(voted)); localStorage.setItem('bk_liked',JSON.stringify(likedUsers)); localStorage.setItem('bk_followed',JSON.stringify(followedUsers)); }
+function showToast(t){ let d=document.createElement('div'); d.className='welcome'; d.innerText=t; document.body.appendChild(d); setTimeout(()=>d.remove(),2500); }
+function showWelcome(){ let b=document.getElementById('welcomeBox'); b.classList.remove('hidden'); setTimeout(()=>b.classList.add('hidden'),3500); }
 function showPage(p){
-  ['login','home','fav','create','mymatches','profile','topup','requests','adminlogin','admin'].forEach(x=>document.getElementById('page-'+x).classList.add('hidden'));
+  ['login','home','gang','city','leaderboard','create','userprofile','profile','topup','requests','adminlogin','admin'].forEach(x=>{let e=document.getElementById('page-'+x); if(e) e.classList.add('hidden');});
   document.getElementById('page-'+p).classList.remove('hidden');
   if(p==='home') renderMatches();
   if(p==='profile') renderProfileMenu();
   if(p==='requests') renderReq();
   if(p==='admin') renderAdmin();
+  if(p==='gang') document.getElementById('gangList').innerHTML=gangs.length?gangs.map(g=>`<div class="listItem"><span>🔥 ${g}</span><b>MY GANG</b></div>`).join(''):'Koi Gang Nahi Hai';
+  if(p==='city') document.getElementById('cityList').innerHTML=cities.map(c=>`<div class="listItem" onclick="selectCity('${c}')"><span>${c}</span><span>></span></div>`).join('');
+  if(p==='leaderboard'){ let all=[]; matches.forEach(m=>{all.push({name:m.p1,votes:m.v1}); all.push({name:m.p2,votes:m.v2});}); all.sort((a,b)=>b.votes-a.votes); document.getElementById('leaderList').innerHTML=all.map((a,i)=>`<div class="listItem"><span onclick="openUser('${a.name}')">${i+1}. ${a.name}</span><b>${a.votes} Votes</b></div>`).join(''); }
   window.scrollTo(0,0);
 }
+function selectCity(c){ if(user){user.city=c; saveAll();} showToast(c+' Selected! City War Ready!'); showPage('home'); }
+function createGang(){ let n=document.getElementById('gangCreateName').value.trim(); if(!n){showToast('Gang Ka Naam Likho');return;} gangs.push(n); saveAll(); showToast('Gang Ban Gayi! 🔥 '+n); showPage('home'); }
+function toggleSearch(){ document.getElementById('searchBar').classList.toggle('hidden'); }
+function doSearch(q){ if(!q) return document.getElementById('searchResult').innerHTML=''; let f=matches.filter(m=>m.p1.toLowerCase().includes(q.toLowerCase())||m.p2.toLowerCase().includes(q.toLowerCase())); document.getElementById('searchResult').innerHTML=f.length?f.map(m=>`<div onclick="openUser('${m.p1}')" style="padding:8px;cursor:pointer">${m.p1} vs ${m.p2}</div>`).join(''):'Koi Result Nahi Mila'; }
+function openUser(name){ currentViewUser=name; document.getElementById('uName').innerText=name; document.getElementById('uMeta').innerText='ID: '+(1000+name.length*7)+' | City: Gojra'; document.getElementById('uBio').innerText='Bio: '+name+' - Battle King Player'; document.getElementById('uFollowers').innerText=followedUsers.includes(name)?1:0; updateLikeFollowBtns(); showPage('userprofile'); }
+function updateLikeFollowBtns(){ document.getElementById('likeBtn').innerText=likedUsers.includes(currentViewUser)?'❤️ LIKED':'❤️ LIKE'; document.getElementById('likeBtn').className=likedUsers.includes(currentViewUser)?'btn btnRed':'btn'; document.getElementById('followBtn').innerText=followedUsers.includes(currentViewUser)?'✅ FOLLOWING':'➕ FOLLOW'; document.getElementById('followBtn').className=followedUsers.includes(currentViewUser)?'btn btnGreen':'btn btn2'; }
+function toggleLike(){ if(!currentViewUser) return; let i=likedUsers.indexOf(currentViewUser); if(i>=0) likedUsers.splice(i,1); else {likedUsers.push(currentViewUser); showToast('Liked! ❤️');} saveAll(); updateLikeFollowBtns(); }
+function toggleFollow(){ if(!currentViewUser) return; let i=followedUsers.indexOf(currentViewUser); if(i>=0) followedUsers.splice(i,1); else {followedUsers.push(currentViewUser); showToast('Followed! ➕');} saveAll(); updateLikeFollowBtns(); }
 function register(){
-  let name=document.getElementById('regName').value||'Guest';
-  let city=document.getElementById('regCity').value||'Gojra';
-  let phone=document.getElementById('regPhone').value||'03000000000';
+  let name=document.getElementById('regName').value||'Guest'; let city=document.getElementById('regCity').value||'Gojra'; let phone=document.getElementById('regPhone').value||'03000000000';
   let id=nextID; nextID++; localStorage.setItem('bk_nextID',nextID);
-  user={name,city,phone,id,coins:0,follow:0,followers:0,views:0};
-  localStorage.setItem('bk_user',JSON.stringify(user));
-  document.getElementById('myCoins').innerText=user.coins;
-  document.getElementById('topupID').innerText=user.id;
-  alert('Account Created! Your ID Is '+user.id+' - Waiting For Admin Approval - You Can Use App Now');
-  showPage('home');
+  user={name,city,phone,id,coins:0,follow:0,followers:0,views:0}; saveAll();
+  document.getElementById('myCoins').innerText=user.coins; document.getElementById('topupID').innerText=user.id;
+  showPage('home'); showWelcome();
 }
+// ===== FILTER - FIXED =====
+function filterMatch(t){ currentFilter=t; document.querySelectorAll('.filterBtn').forEach(b=>b.classList.remove('filterActive')); document.getElementById('f-'+t).classList.add('filterActive'); renderMatches(); }
 function renderMatches(){
-  let h='';
-  matches.forEach((m,i)=>{
+  let list=matches.map((m,i)=>({...m,_i:i})).filter(m=>currentFilter==='all'||m.type===currentFilter);
+  let h=''; if(!list.length) h='<div class="card center">Is Category Me Koi Match Nahi Hai</div>';
+  list.forEach((m)=>{
+    let i=m._i; let votedThis=voted.includes(i);
     h+=`<div class="card"><p><b>${m.type.toUpperCase()} BATTLE</b> <span class="badge">LIVE</span></p>
-    <div class="vs"><div><img src="${m.img}"><br>${m.p1}<br>Votes: ${m.v1}<br><button class="voteBtn" onclick="vote(${i},1)">VOTE</button></div><div><h2>VS</h2></div><div><img src="${m.img}"><br>${m.p2}<br>Votes: ${m.v2}<br><button class="voteBtn" onclick="vote(${i},2)">VOTE</button></div></div>
+    <div class="vs"><div><img src="${m.img}" onclick="openUser('${m.p1}')"><br><span class="playerName" onclick="openUser('${m.p1}')">${m.p1}</span><br>Votes: ${m.v1}<br><button class="voteBtn" ${votedThis?'disabled':''} onclick="vote(${i},1)">${votedThis?'VOTED ✓':'VOTE'}</button></div><div><h2>VS</h2></div><div><img src="${m.img}" onclick="openUser('${m.p2}')"><br><span class="playerName" onclick="openUser('${m.p2}')">${m.p2}</span><br>Votes: ${m.v2}<br><button class="voteBtn" ${votedThis?'disabled':''} onclick="vote(${i},2)">${votedThis?'VOTED ✓':'VOTE'}</button></div></div>
     <div class="giftRow"><button onclick="sendGift('🔥 Fire - 10 Coins')">🔥 Fire</button><button onclick="sendGift('👑 Crown - 50 Coins')">👑 Crown</button><button onclick="sendGift('🌹 Rose - 20 Coins')">🌹 Rose</button><button onclick="sendGift('💎 Diamond - 100 Coins')">💎 Diamond</button></div>
     <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn2" style="margin:0" onclick="boost(${i})">BOOST +10 VOTES - Only 1 Time</button><button class="btn btn2" style="margin:0" onclick="shareMatch('${m.p1} vs ${m.p2}')">SHARE</button></div></div>`;
-  });
-  document.getElementById('matchList').innerHTML=h;
-  document.getElementById('myMatches').innerHTML=h;
-  document.getElementById('favList').innerHTML=h;
+  }); document.getElementById('matchList').innerHTML=h;
+  if(myStatus){ document.getElementById('statusBox').innerText=myStatus+' - 24 Hours'; document.getElementById('statusViews').innerText='Views: 12 - Viewers: Ahmad, Ali, Sara'; }
 }
-function vote(i,who){
-  if(who==1) matches[i].v1++; else matches[i].v2++;
-  localStorage.setItem('bk_matches',JSON.stringify(matches)); renderMatches();
-}
-function boost(i){
-  if(boostUsed){alert('Boost Already Used - Only 1 Time Allowed');return;}
-  boostUsed=true; matches[i].v1+=10; localStorage.setItem('bk_matches',JSON.stringify(matches)); renderMatches(); alert('Boost Activated! +10 Votes Added!');
-}
-function sendGift(g){ if(!user){alert('Please Login First');return;} if(user.coins<10){alert('Coins Finished - Please Topup');showPage('topup');return;} user.coins-=10; localStorage.setItem('bk_user',JSON.stringify(user)); document.getElementById('myCoins').innerText=user.coins; alert('Gift Sent: '+g); }
+// ===== VOTE - 1 TIME ONLY - FIXED =====
+function vote(i,who){ if(voted.includes(i)){showToast('Already Voted! 1 Vote Only');return;} voted.push(i); if(who==1) matches[i].v1++; else matches[i].v2++; saveAll(); renderMatches(); showToast('Vote Done! ✅'); }
+function boost(i){ if(boostUsed){showToast('Boost Already Used - Only 1 Time');return;} boostUsed=true; localStorage.setItem('bk_boost','1'); matches[i].v1+=10; saveAll(); renderMatches(); showToast('Boost Activated! +10 Votes!'); }
+function sendGift(g){ if(!user){showToast('Please Login First');return;} if(user.coins<10){showToast('Coins Finished - Please Topup');showPage('topup');return;} user.coins-=10; saveAll(); document.getElementById('myCoins').innerText=user.coins; showToast('Gift Sent: '+g); }
 function shareMatch(t){ let url=location.href; if(navigator.share){navigator.share({title:t,text:'Vote In This Battle!',url:url})} else {prompt('Copy Link And Share On WhatsApp / TikTok',url)} }
-function createMatch(){
-  let p1=document.getElementById('p1Name').value||'Player 1';
-  let p2=document.getElementById('p2Name').value||'Player 2';
-  let type=document.getElementById('matchType').value;
-  matches.unshift({p1,p2,type:type.toLowerCase().includes('girl')?'girls':'boys',v1:0,v2:0,img:"https://via.placeholder.com/80"});
-  localStorage.setItem('bk_matches',JSON.stringify(matches));
-  alert('Match Created - Sent For Admin Approval'); showPage('mymatches');
-}
-function addStatus(){ let t=document.getElementById('statusInput').value; if(!t) return; document.getElementById('statusBox').innerText=t+' - 24 Hours'; document.getElementById('statusViews').innerText='Views: 12 - Viewers: Ahmad, Ali, Sara'; alert('Status Added For 24 Hours'); }
-function editProfile(){ let n=prompt('Enter New Name',user?user.name:''); if(n&&user){user.name=n; localStorage.setItem('bk_user',JSON.stringify(user)); renderProfile();} }
+function createMatch(){ let p1=document.getElementById('p1Name').value||'Player 1'; let p2=document.getElementById('p2Name').value||'Player 2'; let type=document.getElementById('matchType').value; matches.unshift({p1,p2,type:type.toLowerCase().includes('girl')?'girls':'boys',v1:0,v2:0,img:"https://via.placeholder.com/80"}); saveAll(); showToast('Match Created - Sent For Admin Approval'); showPage('home'); }
+function addStatus(){ let t=document.getElementById('statusInput').value.trim(); if(!t) return; myStatus=t; localStorage.setItem('bk_status',t); document.getElementById('statusBox').innerText=t+' - 24 Hours'; document.getElementById('statusViews').innerText='Views: 12 - Viewers: Ahmad, Ali, Sara'; document.getElementById('statusInput').value=''; showToast('Status Added For 24 Hours'); }
+function editProfile(){ let n=prompt('Enter New Name',user?user.name:''); if(n&&user){user.name=n; saveAll(); renderProfile();} }
 function changePhoto(e){ let r=new FileReader(); r.onload=()=>{document.getElementById('profImg').src=r.result}; r.readAsDataURL(e.target.files[0]); }
 function previewImg(e,id){ let r=new FileReader(); r.onload=()=>{let im=document.getElementById(id); im.src=r.result; im.style.display='block'}; r.readAsDataURL(e.target.files[0]); }
-function renderProfile(){
-  if(!user) return;
-  document.getElementById('profName').innerText=user.name;
-  document.getElementById('profCity').innerText=user.city;
-  document.getElementById('profPhone').innerText=user.phone;
-  document.getElementById('profID').innerText=user.id;
-  document.getElementById('myCoins').innerText=user.coins;
-}
-function renderProfileMenu(){
-  renderProfile();
-  let items=['Profile Views','Status','Matches','Gifts','Badge','Password','Feedback','Help','FAQ','About','Privacy Policy','Terms','Contact','My Requests','Logout'];
-  let h='';
-  items.forEach(it=>{ h+=`<div class="listItem" onclick="profileClick('${it}')"><span>${it}</span><span>></span></div>` });
-  document.getElementById('profileMenu').innerHTML=h;
-}
-function profileClick(it){ if(it==='My Requests') showPage('requests'); else if(it==='Logout'){localStorage.removeItem('bk_user'); location.reload();} else alert(it+' - Coming Soon - Will Open Here'); }
-function sendTopup(){
-  let pack=document.getElementById('coinPack').value;
-  let txn=document.getElementById('txnID').value||'No Txn';
-  requests.push({id:user?user.id:1001,coins:pack,txn, status:'PENDING'});
-  localStorage.setItem('bk_req',JSON.stringify(requests));
-  alert('Topup Request Sent! ID: '+(user?user.id:'1001')+' - Wait For Admin Approval'); showPage('requests');
-}
-function renderReq(){
-  if(!requests.length){document.getElementById('reqList').innerHTML='No Requests Yet';return;}
-  document.getElementById('reqList').innerHTML=requests.map(r=>`<div class="listItem"><span>ID: ${r.id} - ${r.coins} Coins - Txn: ${r.txn}</span><b>${r.status}</b></div>`).join('');
-}
-function filterMatch(t){ renderMatches(); }
-document.getElementById('secretLogo').addEventListener('click',()=>{
-  clicks++; if(clicks>=13){clicks=0; showPage('adminlogin');}
-});
-function checkAdmin(){
-  if(document.getElementById('adminPass').value==='726609'){ showPage('admin'); }
-  else alert('Wrong Password');
-}
-function renderAdmin(){
-  document.getElementById('aUsers').innerText=user?1:0;
-  document.getElementById('aMatches').innerText=matches.length;
-  document.getElementById('adminUsers').innerHTML=user?`<div class="adminBox">ID: ${user.id} - ${user.name} - ${user.city} - ${user.phone} - Coins: ${user.coins} <button onclick="approveUser()">Approve</button> <button onclick="blockUser()">Block</button></div>`:'No Users Yet';
-  document.getElementById('adminReq').innerHTML=requests.map((r,i)=>`<div class="adminBox">ID: ${r.id} - ${r.coins} Coins - Txn: ${r.txn} - ${r.status} <button onclick="approveReq(${i})">Approve</button></div>`).join('')||'No Requests';
-  document.getElementById('adminMatches').innerHTML=matches.map((m,i)=>`<div class="adminBox">${m.p1} VS ${m.p2} - ${m.v1} : ${m.v2} <button onclick="declareWinner(${i},1)">${m.p1} Winner</button> <button onclick="declareWinner(${i},2)">${m.p2} Winner</button></div>`).join('');
-}
-function approveUser(){alert('User Approved');}
-function blockUser(){alert('User Blocked');}
-function approveReq(i){ requests[i].status='APPROVED'; localStorage.setItem('bk_req',JSON.stringify(requests)); if(user){user.coins+=parseInt(requests[i].coins); localStorage.setItem('bk_user',JSON.stringify(user)); document.getElementById('myCoins').innerText=user.coins;} renderAdmin(); alert('Topup Approved - Coins Added'); }
-function declareWinner(i,w){ let winner=w==1?matches[i].p1:matches[i].p2; alert('Winner Declared: '+winner+' - Result Will Show To All Users'); }
-
+function renderProfile(){ if(!user) return; document.getElementById('profName').innerText=user.name; document.getElementById('profCity').innerText=user.city; document.getElementById('profPhone').innerText=user.phone; document.getElementById('profID').innerText=user.id; document.getElementById('myCoins').innerText=user.coins; document.getElementById('followCount').innerText=followedUsers.length; document.getElementById('followerCount').innerText=likedUsers.length; }
+function renderProfileMenu(){ renderProfile(); let items=['Profile Views','Status','Matches','Gifts','Badge','Password','Feedback','Help','FAQ','About','Privacy Policy','Terms','Contact','My Requests']; let h=''; items.forEach(it=>{ h+=`<div class="listItem" onclick="profileClick('${it}')"><span>${it}</span><span>></span></div>` }); document.getElementById('profileMenu').innerHTML=h; }
+function profileClick(it){ if(it==='My Requests') showPage('requests'); else showToast(it+' - Coming Soon'); }
+function logout(){ localStorage.removeItem('bk_user'); location.reload(); }
+function sendTopup(){ let pack=document.getElementById('coinPack').value; let txn=document.getElementById('txnID').value||'No Txn'; requests.push({id:user?user.id:1001,coins:pack,txn,status:'PENDING'}); saveAll(); showToast('Topup Request Sent!'); showPage('requests'); }
+function renderReq(){ if(!requests.length){document.getElementById('reqList').innerHTML='No Requests Yet';return;} document.getElementById('reqList').innerHTML=requests.map(r=>`<div class="listItem"><span>ID: ${r.id} - ${r.coins} Coins - Txn: ${r.txn}</span><b>${r.status}</b></div>`).join(''); }
+document.getElementById('secretLogo').addEventListener('click',()=>{ clicks++; if(clicks>=13){clicks=0; showPage('adminlogin');} });
+function checkAdmin(){ if(document.getElementById('adminPass').value==='726609'){ showPage('admin'); } else showToast('Wrong Password'); }
+function renderAdmin(){ document.getElementById('aUsers').innerText=user?1:0; document.getElementById('aMatches').innerText=matches.length; document.getElementById('adminUsers').innerHTML=user?`<div class="adminBox">ID: ${user.id} - ${user.name} - ${user.city} - ${user.phone} - Coins: ${user.coins} <button onclick="approveUser()">Approve</button> <button onclick="blockUser()">Block</button></div>`:'No Users Yet'; document.getElementById('adminReq').innerHTML=requests.map((r,i)=>`<div class="adminBox">ID: ${r.id} - ${r.coins} Coins - Txn: ${r.txn} - ${r.status} <button onclick="approveReq(${i})">Approve</button></div>`).join('')||'No Requests'; document.getElementById('adminMatches').innerHTML=matches.map((m,i)=>`<div class="adminBox">${m.p1} VS ${m.p2} - ${m.v1} : ${m.v2} <button onclick="declareWinner(${i},1)">${m.p1} Winner</button> <button onclick="declareWinner(${i},2)">${m.p2} Winner</button></div>`).join(''); }
+function approveUser(){showToast('User Approved');}
+function blockUser(){showToast('User Blocked');}
+function approveReq(i){ requests[i].status='APPROVED'; if(user){user.coins+=parseInt(requests[i].coins);} saveAll(); document.getElementById('myCoins').innerText=user?user.coins:0; renderAdmin(); showToast('Topup Approved - Coins Added'); }
+function declareWinner(i,w){ let winner=w==1?matches[i].p1:matches[i].p2; showToast('Winner Declared: '+winner); }
+// ===== PWA - SERVICE WORKER + INSTALL =====
+if('serviceWorker' in navigator){ let swCode="self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>new Response('Offline')))});"; let blob=new Blob([swCode],{type:'text/javascript'}); let swUrl=URL.createObjectURL(blob); navigator.serviceWorker.register(swUrl).catch(()=>{}); }
+window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; document.getElementById('installBanner').classList.remove('hidden'); });
+function installApp(){ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; document.getElementById('installBanner').classList.add('hidden'); }); } else { showToast('Browser Menu > Add To Home Screen Se Install Karo'); } }
 if(user){ document.getElementById('myCoins').innerText=user.coins; document.getElementById('topupID').innerText=user.id; showPage('home'); } else { showPage('login'); }
 renderMatches();
 </script>
