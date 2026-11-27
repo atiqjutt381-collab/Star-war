@@ -3,275 +3,300 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BATTLE WAR</title>
+<title>BATTLE KING</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#000;color:#fff;padding-bottom:80px}
-.top{position:sticky;top:0;background:#000;padding:12px;text-align:center;border-bottom:2px solid #ff6a00;z-index:10}
-.logo{width:70px;height:70px;border-radius:50%;border:3px solid #ff6a00;object-fit:cover;background:#111}
-h1{color:#ff6a00;font-size:26px;letter-spacing:2px}
-h1 span{color:#fff}
-.sub{font-size:12px;color:#ccc}
-.card{background:#111;border:1px solid #333;border-radius:15px;padding:14px;margin:12px}
-input,select,textarea{width:100%;padding:12px;margin:6px 0;background:#222;border:1px solid #444;color:#fff;border-radius:10px}
-button{width:100%;padding:12px;background:#ff6a00;color:#fff;border:none;border-radius:10px;font-weight:bold;margin:6px 0;cursor:pointer;font-size:15px}
-button.gray{background:#333}
-button.green{background:#1db954}
-.battle{display:flex;gap:10px}
-.battle div{flex:1;text-align:center;background:#1a1a1a;border-radius:12px;padding:8px;border:2px solid #333}
-.battle img{width:100%;height:130px;object-fit:cover;border-radius:10px;border:2px solid #ff6a00}
-.vs{font-size:22px;color:#ff6a00;font-weight:bold}
-.fire{border:2px solid #ff6a00!important;box-shadow:0 0 12px #ff6a00}
-.badge{background:#ff6a00;padding:2px 8px;border-radius:20px;font-size:11px}
-.gold{color:gold}
-.nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#111;border-top:2px solid #ff6a00}
-.nav button{background:transparent;color:#ccc;font-size:12px;padding:10px 2px;margin:0}
-.nav button.active{color:#ff6a00}
-.hidden{display:none}
-.flex{display:flex;gap:8px}
-.flex button{flex:1}
-.small{font-size:12px;color:#bbb}
+body{background:#0f0f1a;color:#fff;max-width:430px;margin:auto;min-height:100vh;padding-bottom:90px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;background:#1a1a2e;position:sticky;top:0;z-index:10}
+.logo{font-size:22px;font-weight:900;cursor:pointer;user-select:none}
+.logo span{color:#ffcc00}
+.coins{background:#ffcc00;color:#000;padding:6px 12px;border-radius:20px;font-weight:700;font-size:14px}
+.topupBtn{background:#ff3b30;color:#fff;border:none;padding:7px 14px;border-radius:20px;font-weight:700;cursor:pointer}
+.card{background:#1e1e35;margin:12px;border-radius:16px;padding:14px}
+input,select,textarea{width:100%;padding:12px;margin:7px 0;border-radius:10px;border:1px solid #333;background:#2a2a45;color:#fff;outline:none}
+.btn{width:100%;padding:13px;border:none;border-radius:12px;background:#ffcc00;color:#000;font-weight:800;font-size:16px;cursor:pointer;margin-top:8px}
+.btn2{background:#2a2a45;color:#fff}
+.btnRed{background:#ff3b30;color:#fff}
+.hidden{display:none!important}
+.vs{display:flex;align-items:center;gap:10px;margin:10px 0}
+.vs img{width:80px;height:80px;border-radius:14px;object-fit:cover;background:#333}
+.vs div{flex:1;text-align:center}
+.voteBtn{background:#00c853;color:#fff;border:none;padding:10px;border-radius:10px;width:100%;font-weight:800;cursor:pointer}
+.giftRow{display:flex;gap:8px;justify-content:space-between;margin-top:10px}
+.giftRow button{flex:1;background:#2a2a45;border:1px solid #444;color:#fff;padding:8px;border-radius:10px;cursor:pointer}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#1a1a2e;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #333;z-index:20}
+.bottom button{background:none;border:none;color:#aaa;font-size:12px;cursor:pointer}
+.bottom button.active{color:#ffcc00}
+.createBtn{background:#ffcc00!important;color:#000!important;width:55px;height:55px;border-radius:50%;font-size:26px;margin-top:-28px;font-weight:900}
+.profileTop{text-align:center;padding:15px}
+.profileTop img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid #ffcc00;background:#333}
+.stats{display:flex;gap:10px;margin:12px}
+.stats div{flex:1;background:#2a2a45;padding:12px;border-radius:12px;text-align:center}
+.stats b{font-size:18px;display:block;color:#ffcc00}
+.listItem{background:#2a2a45;margin:7px 0;padding:13px;border-radius:12px;display:flex;justify-content:space-between;cursor:pointer}
+.badge{background:#ffcc00;color:#000;padding:3px 8px;border-radius:20px;font-size:12px;font-weight:800}
+.statusBox{border:2px dashed #ffcc00;border-radius:14px;padding:14px;text-align:center;margin:10px 0}
+.small{font-size:13px;color:#aaa}
 .center{text-align:center}
-.coin{color:#ff6a00;font-weight:bold}
-.comment{background:#222;padding:8px;border-radius:8px;margin:5px 0;font-size:13px}
+.adminBox{background:#fff;color:#000;padding:15px;border-radius:14px;margin:10px 0}
 </style>
 </head>
 <body>
 
-<div class="top">
-<img class="logo" src="https://i.imgur.com/7qY8Z0a.png" onerror="this.src='https://via.placeholder.com/70/ff6a00/000000?text=BW'" alt="BATTLE WAR LOGO">
-<h1>BATTLE <span>WAR</span> 🔥</h1>
-<div class="sub" id="topUser">Welcome to Battle War</div>
+<div class="topbar">
+  <div class="logo" id="secretLogo">BATTLE <span>KING</span></div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <div class="coins">🪙 <span id="myCoins">0</span></div>
+    <button class="topupBtn" onclick="showPage('topup')">TOPUP</button>
+  </div>
 </div>
 
-<!-- LOGIN / SIGNUP -->
-<div id="page-auth" class="card">
-<h2 class="center">Login / Sign Up</h2>
-<input id="fullName" placeholder="Full Name">
-<input id="phone" placeholder="Phone Number">
-<input id="pass" type="password" placeholder="Password">
-<label class="small"><input type="checkbox" id="agree" style="width:auto"> I Agree To Terms & Conditions</label>
-<button onclick="signup()">SIGN UP</button>
-<button class="gray" onclick="login()">LOGIN</button>
-<button class="gray" onclick="guestLogin()">Continue As Guest - Guest Vote</button>
-<p class="small center">Guest can vote without account. After vote, create your account and start Battle Challenge.</p>
-<p class="small center" onclick="showPage('terms')">Terms & Conditions | Privacy Policy | FAQ | Help</p>
+<!-- LOGIN -->
+<div id="page-login">
+  <div class="card center"><h1>BATTLE KING</h1><p class="small">Login / Signup - Admin Will Approve</p></div>
+  <div class="card">
+    <h3>Login / Create Account</h3>
+    <input id="regName" placeholder="Full Name">
+    <input id="regCity" placeholder="City">
+    <input id="regPhone" placeholder="Mobile Number">
+    <input id="regPass" type="password" placeholder="Password">
+    <input id="regAge" placeholder="Age">
+    <button class="btn" onclick="register()">CREATE ACCOUNT / LOGIN</button>
+    <p class="small center" style="margin-top:10px">Your ID Will Be Assigned Automatically - Starting From 1001<br>After Signup, Wait For Admin Approval.</p>
+  </div>
 </div>
 
 <!-- HOME -->
 <div id="page-home" class="hidden">
-<div class="card center">🔥 <b>DAILY TOP BATTLER</b><br><span id="dailyTop">No Battle Yet</span></div>
-<div class="card"><b>🔍 Search By Name</b><input id="searchInput" placeholder="Search By Name" oninput="renderBattles()"></div>
-<div class="card"><b>💰 My Coins: <span class="coin" id="myCoins">0</span></b> | <span id="myVip"></span> <span id="myVerified"></span><br>
-<button onclick="claimDaily()">Claim Daily 20 Coins</button>
-<button onclick="spin()">🎡 Lucky Spin - Spin Daily</button>
-<button class="green" onclick="invite()">Invite Friends - Get 50 Coins Per Friend</button>
-<p class="small" id="spinResult"></p></div>
-<div id="homeBattles"></div>
+  <div class="card">
+    <div style="display:flex;gap:8px">
+      <button class="btn" style="margin:0" onclick="filterMatch('all')">All Matches</button>
+      <button class="btn btn2" style="margin:0" onclick="filterMatch('boys')">Boys</button>
+      <button class="btn btn2" style="margin:0" onclick="filterMatch('girls')">Girls</button>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button class="btn btn2" style="margin:0" onclick="alert('Gang War - Create Your Gang')">GANG WAR</button>
+      <button class="btn btn2" style="margin:0" onclick="alert('City War - Select Your City')">CITY WAR</button>
+    </div>
+  </div>
+
+  <div id="matchList"></div>
+
+  <div class="card">
+    <h3>Status - 24 Hours</h3>
+    <div class="statusBox" id="statusBox">No Status Yet - Add Your Status</div>
+    <input id="statusInput" placeholder="Write Your Status...">
+    <button class="btn btn2" onclick="addStatus()">ADD STATUS</button>
+    <p class="small" id="statusViews">Views: 0 - Viewers List Will Show Here</p>
+  </div>
 </div>
 
-<!-- BATTLES -->
-<div id="page-battles" class="hidden">
-<div class="card"><b>🔴 Live Battles</b><p class="small">All live battles with live timer</p></div>
-<div id="liveBattles"></div>
-</div>
+<!-- FAVOURITE -->
+<div id="page-fav" class="hidden"><div class="card"><h3>Favourite Matches</h3><p class="small">Your Saved Favourite Matches Will Show Here</p><div id="favList"></div></div></div>
 
 <!-- CREATE -->
 <div id="page-create" class="hidden">
-<div class="card"><h3>Create Battle 🔥</h3>
-<select id="battleCat"><option>Boys vs Boys</option><option>Girls vs Girls</option><option>Friends Battle</option></select>
-<input type="text" id="oppName" placeholder="Opponent Name">
-<p class="small">Your Photo - Upload From Gallery</p>
-<input type="file" id="myPhoto" accept="image/*">
-<p class="small">Opponent Photo - Upload From Gallery</p>
-<input type="file" id="oppPhoto" accept="image/*">
-<select id="battleTime"><option value="60">Battle Time - 1 Hour</option><option value="1440">Battle Time - 1 Day</option></select>
-<label class="small"><input type="checkbox" id="fireFrame" checked style="width:auto"> Fire Frame On Photo 🔥</label>
-<button onclick="createBattle()">CREATE BATTLE</button>
-<button class="gray" onclick="challengeFriend()">1 vs 1 Private Battle - Challenge Friend Direct</button>
-</div>
+  <div class="card"><h3>Create Match</h3>
+    <select id="matchType"><option>Boys vs Boys</option><option>Girls vs Girls</option><option>Friends Battle</option><option>Gang War</option><option>City War</option></select>
+    <input id="p1Name" placeholder="Player 1 Name">
+    <input id="p2Name" placeholder="Player 2 Name">
+    <input id="gangName" placeholder="Gang Name / City Name (For War)">
+    <input type="file" accept="image/*" onchange="previewImg(event,'p1Img')">
+    <img id="p1Img" style="width:100%;border-radius:12px;display:none">
+    <button class="btn" onclick="createMatch()">CREATE MATCH - SEND FOR APPROVAL</button>
+  </div>
 </div>
 
-<!-- LEADERBOARD -->
-<div id="page-leaderboard" class="hidden">
-<div class="card"><h3>🏆 Leaderboard - Top Players</h3><div id="leaderList"></div></div>
-</div>
+<!-- MY MATCHES -->
+<div id="page-mymatches" class="hidden"><div class="card"><h3>My Matches</h3><div id="myMatches"></div><p class="small">Match Result Will Show Here After Admin Declares Winner</p></div></div>
 
 <!-- PROFILE -->
 <div id="page-profile" class="hidden">
-<div class="card center">
-<div style="font-size:50px">👤</div>
-<b id="profileName">Guest</b><br><span id="profilePhone"></span><br>
-<span id="profileVip"></span> <span id="profileVerified"></span>
-<p>Wins: <b id="myWins">0</b> | Losses: <b id="myLoss">0</b> | Total Votes: <b id="myTotalVotes">0</b></p>
-<button onclick="showPage('topup')">TOP UP</button>
-<button class="green" onclick="installApp()">APP INSTALL BUTTON</button>
-<button class="gray" onclick="openWhatsApp()">WhatsApp Channel</button>
-</div>
-<div class="card"><b>My Battles</b><div id="myBattles"></div></div>
-<div class="card"><b>My History</b><div id="myHistory"></div></div>
-<div class="card"><button class="gray" onclick="showPage('terms')">Terms & Conditions</button><button class="gray" onclick="showPage('terms')">Privacy Policy</button><button class="gray" onclick="showPage('terms')">FAQ</button><button class="gray" onclick="showPage('terms')">Help / Contact Us</button></div>
+  <div class="profileTop">
+    <img id="profImg" src="https://via.placeholder.com/110">
+    <h2 id="profName">Guest User</h2>
+    <p class="small"><span id="profCity">City</span> | ID: <b id="profID" style="color:#ffcc00">1001</b> | <span id="profPhone">Number</span></p>
+    <button class="btn btn2" onclick="editProfile()">EDIT PROFILE</button>
+  </div>
+  <div class="stats">
+    <div><b id="followCount">0</b>Follow</div>
+    <div><b id="followerCount">0</b>Followers</div>
+    <div><b id="viewCount">0</b>Profile Views</div>
+  </div>
+  <div class="card">
+    <p id="profBio">Bio: Battle King Player</p>
+    <input type="file" accept="image/*" onchange="changePhoto(event)">
+    <p class="small">Upload Photo From Gallery</p>
+  </div>
+  <div class="card" id="profileMenu"></div>
 </div>
 
 <!-- TOPUP -->
 <div id="page-topup" class="hidden">
-<div class="card"><h3>💰 Top Up - Real</h3>
-<p class="small">Easypaisa - Atiq Ur Rehman - 03430864009<br>Send Payment - Send Screenshot - Admin Approve - Coins Added</p>
-<div class="flex"><button onclick="selectPlan(50)">50</button><button onclick="selectPlan(100)">100</button><button onclick="selectPlan(200)">200</button><button onclick="selectPlan(500)">500</button></div>
-<p>Selected Plan: <b id="selectedPlan">50</b></p>
-<input type="file" id="payShot" accept="image/*">
-<button onclick="submitTopup()">SEND SCREENSHOT - REQUEST TOP UP</button>
-<p class="small" id="topupMsg"></p>
-</div>
-</div>
-
-<!-- TERMS -->
-<div id="page-terms" class="hidden">
-<div class="card"><h3>Terms & Conditions</h3><p class="small">Battle War Terms: Play fair. No bad photo. Admin can delete battle or block user. Coins are for voting and battles only. No Withdraw.</p>
-<h3 style="margin-top:12px">Privacy Policy</h3><p class="small">Your phone and photos are safe and used only for battles.</p>
-<h3 style="margin-top:12px">FAQ</h3><p class="small">Q: How to vote? A: 1 Vote = 1 Coin. Super Vote = 10 Votes = 10 Coins.<br>Q: Winner prize? A: 500 Coins + Crown.</p>
-<h3 style="margin-top:12px">Help / Contact Us</h3><p class="small">WhatsApp Channel for help.</p>
-<button class="gray" onclick="showPage('home')">Back</button></div>
+  <div class="card center"><h2>TOPUP COINS</h2><p>Send Money On EasyPaisa</p>
+    <div style="background:#ffcc00;color:#000;padding:14px;border-radius:12px;margin:10px 0">
+      <h3>EasyPaisa</h3><p>Name: <b>Atiq Ur Rehman</b></p><p>Number: <b>03430864009</b></p>
+    </div>
+  </div>
+  <div class="card">
+    <p>Your ID: <b id="topupID">1001</b> (Auto Filled)</p>
+    <select id="coinPack"><option value="100">100 Coins - 200 Rs</option><option value="500">500 Coins - 800 Rs</option><option value="1000">1000 Coins - 1500 Rs</option></select>
+    <input id="txnID" placeholder="Transaction ID">
+    <input type="file" accept="image/*" placeholder="Screenshot">
+    <button class="btn" onclick="sendTopup()">SEND REQUEST</button>
+    <button class="btn btn2" onclick="showPage('requests')">MY REQUESTS</button>
+  </div>
 </div>
 
-<!-- ADMIN -->
+<!-- MY REQUESTS -->
+<div id="page-requests" class="hidden"><div class="card"><h3>My Requests</h3><div id="reqList">No Requests Yet</div></div></div>
+
+<!-- ADMIN LOGIN -->
+<div id="page-adminlogin" class="hidden">
+  <div class="card center"><h2>Admin Login</h2><p class="small">Secret Admin Panel</p>
+  <input id="adminPass" type="password" placeholder="Enter Admin Password">
+  <button class="btn" onclick="checkAdmin()">OPEN ADMIN PANEL</button></div>
+</div>
+
+<!-- ADMIN PANEL -->
 <div id="page-admin" class="hidden">
-<div class="card"><h3>🛠 Admin Panel - Full Control</h3>
-<p>Total Users: <b id="totalUsers">0</b> | Total Payments: <b id="totalPayments">0</b></p>
-<div id="adminTopups"></div>
-<div id="adminUsers"></div>
-<div id="adminBattles"></div>
-</div>
+  <div class="card"><h2>Admin Panel</h2><p class="small">Dashboard - Users - Matches - Coins - Gifts - Reports - Settings</p>
+  <div style="display:flex;gap:8px"><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Users<br><b id="aUsers">0</b></div><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Matches<br><b id="aMatches">0</b></div><div style="flex:1;background:#2a2a45;padding:10px;border-radius:10px">Total Earning<br><b>0 Rs</b></div></div>
+  </div>
+  <div class="card"><h3>Users Control</h3><div id="adminUsers"></div></div>
+  <div class="card"><h3>Topup Requests</h3><div id="adminReq"></div></div>
+  <div class="card"><h3>Matches Control</h3><div id="adminMatches"></div></div>
+  <div class="card"><h3>Gifts Control</h3><p>Fire - 10 Coins | Crown - 50 Coins | Rose - 20 Coins | Diamond - 100 Coins</p><button class="btn btn2" onclick="alert('Gift Price Updated')">UPDATE GIFTS</button></div>
+  <div class="card"><h3>Send Notification To All Users</h3><input id="notifText" placeholder="Message For All Users"><button class="btn" onclick="alert('Notification Sent To All Users')">SEND NOTIFICATION</button></div>
+  <button class="btn btnRed" onclick="showPage('home')">EXIT ADMIN</button>
 </div>
 
-<div class="nav">
-<button id="nav-home" onclick="showPage('home')">🏠 Home</button>
-<button id="nav-battles" onclick="showPage('battles')">⚔️ Battles</button>
-<button id="nav-create" onclick="showPage('create')">➕ Create</button>
-<button id="nav-leaderboard" onclick="showPage('leaderboard')">🏆 Leaderboard</button>
-<button id="nav-profile" onclick="showPage('profile')">👤 Profile</button>
+<div class="bottom">
+  <button class="active" onclick="showPage('home')">🏠<br>Home</button>
+  <button onclick="showPage('fav')">❤️<br>Favourite</button>
+  <button class="createBtn" onclick="showPage('create')">+</button>
+  <button onclick="showPage('mymatches')">⚔️<br>My Matches</button>
+  <button onclick="showPage('profile')">👤<br>My Profile</button>
 </div>
 
 <script>
-let users=JSON.parse(localStorage.getItem('bw_users')||'[]');
-let battles=JSON.parse(localStorage.getItem('bw_battles')||'[]');
-let topups=JSON.parse(localStorage.getItem('bw_topups')||'[]');
-let current=JSON.parse(localStorage.getItem('bw_current')||'null');
-let plan=50;
-let myCoins=parseInt(localStorage.getItem('bw_coins')||'100');
+let user = JSON.parse(localStorage.getItem('bk_user')||'null');
+let matches = JSON.parse(localStorage.getItem('bk_matches')||'[]');
+let requests = JSON.parse(localStorage.getItem('bk_req')||'[]');
+let nextID = parseInt(localStorage.getItem('bk_nextID')||'1001');
+let clicks=0, boostUsed=false;
 
-function save(){localStorage.setItem('bw_users',JSON.stringify(users));localStorage.setItem('bw_battles',JSON.stringify(battles));localStorage.setItem('bw_topups',JSON.stringify(topups));localStorage.setItem('bw_current',JSON.stringify(current));localStorage.setItem('bw_coins',myCoins);}
+if(!matches.length){
+  matches=[
+    {p1:"Ahmad",p2:"Ali",type:"boys",v1:125,v2:98,img:"https://via.placeholder.com/80"},
+    {p1:"Sara",p2:"Ayesha",type:"girls",v1:210,v2:185,img:"https://via.placeholder.com/80"}
+  ];
+}
 
-function signup(){
-let n=document.getElementById('fullName').value, p=document.getElementById('phone').value, pw=document.getElementById('pass').value;
-if(!n||!p||!pw) return alert('Fill Full Name, Phone, Password');
-if(!document.getElementById('agree').checked) return alert('Please Agree To Terms & Conditions');
-if(users.find(u=>u.phone==p)) return alert('Already Registered - Please Login');
-users.push({name:n,phone:p,pass:pw,wins:0,loss:0,votes:0,vip:false,verified:false});
-current={name:n,phone:p}; save(); alert('Account Created! Welcome to BATTLE WAR'); showPage('home');
-}
-function login(){
-let p=document.getElementById('phone').value, pw=document.getElementById('pass').value;
-let u=users.find(u=>u.phone==p && u.pass==pw);
-if(!u) return alert('Wrong Phone or Password');
-current={name:u.name,phone:p}; save(); showPage('home');
-}
-function guestLogin(){current={name:'Guest',phone:'Guest'}; save(); showPage('home'); alert('Guest Vote Allowed - After Vote Create Your Account And Start Battle Challenge');}
 function showPage(p){
-['auth','home','battles','create','leaderboard','profile','topup','terms','admin'].forEach(x=>{let e=document.getElementById('page-'+x); if(e) e.classList.add('hidden')});
-document.getElementById('page-'+p).classList.remove('hidden');
-document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
-let nb=document.getElementById('nav-'+p); if(nb) nb.classList.add('active');
-if(p=='home'||p=='battles') renderBattles();
-if(p=='profile') renderProfile();
-if(p=='leaderboard') renderLeader();
-if(p=='admin') renderAdmin();
-if(current) document.getElementById('topUser').innerText='Hi '+current.name+' | Coins: '+myCoins;
-document.getElementById('myCoins').innerText=myCoins;
+  ['login','home','fav','create','mymatches','profile','topup','requests','adminlogin','admin'].forEach(x=>document.getElementById('page-'+x).classList.add('hidden'));
+  document.getElementById('page-'+p).classList.remove('hidden');
+  if(p==='home') renderMatches();
+  if(p==='profile') renderProfileMenu();
+  if(p==='requests') renderReq();
+  if(p==='admin') renderAdmin();
+  window.scrollTo(0,0);
 }
-function readFile(id,cb){let f=document.getElementById(id).files[0]; if(!f) return cb('https://via.placeholder.com/300/ff6a00/000000?text=BATTLE+WAR'); let r=new FileReader(); r.onload=e=>cb(e.target.result); r.readAsDataURL(f);}
-function createBattle(){
-let opp=document.getElementById('oppName').value||'Opponent';
-let cat=document.getElementById('battleCat').value;
-let mins=parseInt(document.getElementById('battleTime').value);
-readFile('myPhoto',a=>{readFile('oppPhoto',b=>{
-let me=current?current.name:'Guest';
-battles.unshift({id:Date.now(),me:me,opp:opp,cat:cat,img1:a,img2:b,v1:0,v2:0,end:Date.now()+mins*60000,comments:[],fire:document.getElementById('fireFrame').checked});
-save(); alert('Battle Created! Share Link To Get Votes'); showPage('home');
-})});
+function register(){
+  let name=document.getElementById('regName').value||'Guest';
+  let city=document.getElementById('regCity').value||'Gojra';
+  let phone=document.getElementById('regPhone').value||'03000000000';
+  let id=nextID; nextID++; localStorage.setItem('bk_nextID',nextID);
+  user={name,city,phone,id,coins:0,follow:0,followers:0,views:0};
+  localStorage.setItem('bk_user',JSON.stringify(user));
+  document.getElementById('myCoins').innerText=user.coins;
+  document.getElementById('topupID').innerText=user.id;
+  alert('Account Created! Your ID Is '+user.id+' - Waiting For Admin Approval - You Can Use App Now');
+  showPage('home');
 }
-function challengeFriend(){let n=prompt('Enter Friend Name To Challenge Direct - 1 vs 1 Private Battle'); if(n){document.getElementById('oppName').value=n; alert('Challenge Sent To '+n+' - Private Battle Ready'); showPage('create');}}
-function renderBattles(){
-let q=(document.getElementById('searchInput')?.value||'').toLowerCase();
-let html='';
-let live=battles.filter(b=>(b.me+b.opp).toLowerCase().includes(q));
-if(!live.length) html='<div class="card center">No Battle Yet - Create Your First Battle!</div>';
-live.forEach(b=>{
-let left=Math.max(0,Math.floor((b.end-Date.now())/60000));
-let winner=b.v1>b.v2?b.me:b.v2>b.v1?b.opp:'Tie';
-html+=`<div class="card"><div class="small">${b.cat} | ⏰ Live Timer: ${left} Min Left | Winner Gets 500 Coins + 👑</div>
-<div class="battle"><div><img class="${b.fire?'fire':''}" src="${b.img1}"><b>${b.me}</b><br>Votes: ${b.v1}<br><button onclick="vote(${b.id},1)">Vote - 1 Coin</button><button onclick="vote(${b.id},2)">Super Vote - 10 Coins</button></div><div class="vs">VS</div><div><img class="${b.fire?'fire':''}" src="${b.img2}"><b>${b.opp}</b><br>Votes: ${b.v2}<br><button onclick="vote(${b.id},1,'opp')">Vote - 1 Coin</button><button onclick="vote(${b.id},2,'opp')">Super Vote - 10 Coins</button></div></div>
-<div class="flex"><button class="gray" onclick="shareBattle(${b.id})">Share Battle Link</button><button class="gray" onclick="shareResult(${b.id})">Share Winner 👑</button><button class="gray" onclick="reportBattle(${b.id})">Report Bad Photo</button></div>
-<div class="flex"><input id="c${b.id}" placeholder="Live Comment"><button onclick="addComment(${b.id})">Comment</button></div>
-<div>${b.comments.map(c=>`<div class="comment">${c} <span style="color:#ff6a00" onclick="blockUser('${b.me}')">Block User</span></div>`).join('')}</div></div>`;
-});
-document.getElementById('homeBattles').innerHTML=html;
-document.getElementById('liveBattles').innerHTML=html;
-document.getElementById('dailyTop').innerText=live.length?live.sort((a,b)=>(b.v1+b.v2)-(a.v1+a.v2))[0].me+' - Top Battler Today':'No Battle Yet';
+function renderMatches(){
+  let h='';
+  matches.forEach((m,i)=>{
+    h+=`<div class="card"><p><b>${m.type.toUpperCase()} BATTLE</b> <span class="badge">LIVE</span></p>
+    <div class="vs"><div><img src="${m.img}"><br>${m.p1}<br>Votes: ${m.v1}<br><button class="voteBtn" onclick="vote(${i},1)">VOTE</button></div><div><h2>VS</h2></div><div><img src="${m.img}"><br>${m.p2}<br>Votes: ${m.v2}<br><button class="voteBtn" onclick="vote(${i},2)">VOTE</button></div></div>
+    <div class="giftRow"><button onclick="sendGift('🔥 Fire - 10 Coins')">🔥 Fire</button><button onclick="sendGift('👑 Crown - 50 Coins')">👑 Crown</button><button onclick="sendGift('🌹 Rose - 20 Coins')">🌹 Rose</button><button onclick="sendGift('💎 Diamond - 100 Coins')">💎 Diamond</button></div>
+    <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn2" style="margin:0" onclick="boost(${i})">BOOST +10 VOTES - Only 1 Time</button><button class="btn btn2" style="margin:0" onclick="shareMatch('${m.p1} vs ${m.p2}')">SHARE</button></div></div>`;
+  });
+  document.getElementById('matchList').innerHTML=h;
+  document.getElementById('myMatches').innerHTML=h;
+  document.getElementById('favList').innerHTML=h;
 }
-function vote(id,type,side){
-let b=battles.find(x=>x.id==id); if(!b) return;
-let cost=type==1?1:10; let count=type==1?1:10;
-if(myCoins<cost) return alert('Not Enough Coins - Please Top Up');
-myCoins-=cost;
-if(side=='opp') b.v2+=count; else b.v1+=count;
-save(); renderBattles();
-if(current && current.name=='Guest'){alert('Guest Vote Done! Now Create Your Account And Start Battle Challenge'); showPage('auth');}
-else alert('Vote Done! Someone Voted For You Notification Sent');
-if(b.v1+b.v2>20){alert('Battle Reminder: Battle Is About To End!');}
+function vote(i,who){
+  if(who==1) matches[i].v1++; else matches[i].v2++;
+  localStorage.setItem('bk_matches',JSON.stringify(matches)); renderMatches();
 }
-function addComment(id){let inp=document.getElementById('c'+id); if(!inp.value) return; let b=battles.find(x=>x.id==id); b.comments.push((current?current.name:'Guest')+': '+inp.value); inp.value=''; save(); renderBattles();}
-function reportBattle(id){alert('Reported! Admin Will Check Bad Photo');}
-function blockUser(n){alert(n+' Blocked!');}
-function shareBattle(id){let link=location.href+'#battle-'+id; navigator.clipboard?.writeText(link); alert('Battle Share Link Copied! Send To Friends For Direct Vote: '+link);}
-function shareResult(id){let b=battles.find(x=>x.id==id); let w=b.v1>=b.v2?b.me:b.opp; alert('WINNER 👑 '+w+' - Share This Photo On Status!');}
-function claimDaily(){myCoins+=20; save(); alert('20 Daily Free Coins Added!'); showPage('home');}
-function spin(){let win=[10,20,50,100,0][Math.floor(Math.random()*5)]; myCoins+=win; document.getElementById('spinResult').innerText='You Won '+win+' Coins!'; save(); showPage('home');}
-function invite(){let link=location.href+'?invite='+(current?current.name:'Guest'); navigator.clipboard?.writeText(link); myCoins+=50; save(); alert('Invite Link Copied! 50 Coins Per Friend Added: '+link);}
-function selectPlan(v){plan=v; document.getElementById('selectedPlan').innerText=v;}
-function submitTopup(){topups.push({phone:current?current.phone:'Guest',plan:plan,status:'Pending'}); save(); document.getElementById('topupMsg').innerText='Top Up Request Sent! Admin Will Approve - Coins Will Be Added'; alert('Top Up Request Sent - Admin Approve Ke Baad Coins Add Honge');}
+function boost(i){
+  if(boostUsed){alert('Boost Already Used - Only 1 Time Allowed');return;}
+  boostUsed=true; matches[i].v1+=10; localStorage.setItem('bk_matches',JSON.stringify(matches)); renderMatches(); alert('Boost Activated! +10 Votes Added!');
+}
+function sendGift(g){ if(!user){alert('Please Login First');return;} if(user.coins<10){alert('Coins Finished - Please Topup');showPage('topup');return;} user.coins-=10; localStorage.setItem('bk_user',JSON.stringify(user)); document.getElementById('myCoins').innerText=user.coins; alert('Gift Sent: '+g); }
+function shareMatch(t){ let url=location.href; if(navigator.share){navigator.share({title:t,text:'Vote In This Battle!',url:url})} else {prompt('Copy Link And Share On WhatsApp / TikTok',url)} }
+function createMatch(){
+  let p1=document.getElementById('p1Name').value||'Player 1';
+  let p2=document.getElementById('p2Name').value||'Player 2';
+  let type=document.getElementById('matchType').value;
+  matches.unshift({p1,p2,type:type.toLowerCase().includes('girl')?'girls':'boys',v1:0,v2:0,img:"https://via.placeholder.com/80"});
+  localStorage.setItem('bk_matches',JSON.stringify(matches));
+  alert('Match Created - Sent For Admin Approval'); showPage('mymatches');
+}
+function addStatus(){ let t=document.getElementById('statusInput').value; if(!t) return; document.getElementById('statusBox').innerText=t+' - 24 Hours'; document.getElementById('statusViews').innerText='Views: 12 - Viewers: Ahmad, Ali, Sara'; alert('Status Added For 24 Hours'); }
+function editProfile(){ let n=prompt('Enter New Name',user?user.name:''); if(n&&user){user.name=n; localStorage.setItem('bk_user',JSON.stringify(user)); renderProfile();} }
+function changePhoto(e){ let r=new FileReader(); r.onload=()=>{document.getElementById('profImg').src=r.result}; r.readAsDataURL(e.target.files[0]); }
+function previewImg(e,id){ let r=new FileReader(); r.onload=()=>{let im=document.getElementById(id); im.src=r.result; im.style.display='block'}; r.readAsDataURL(e.target.files[0]); }
 function renderProfile(){
-if(!current) return;
-document.getElementById('profileName').innerText=current.name;
-document.getElementById('profilePhone').innerText=current.phone;
-let u=users.find(x=>x.phone==current.phone);
-document.getElementById('myWins').innerText=u?u.wins:0;
-document.getElementById('myLoss').innerText=u?u.loss:0;
-document.getElementById('myTotalVotes').innerText=u?u.votes:0;
-document.getElementById('profileVip').innerHTML=u&&u.vip?'🏅 VIP Badge - Golden Tick':''; 
-document.getElementById('profileVerified').innerHTML=u&&u.verified?'✅ Verified Blue Tick':'';
-document.getElementById('myVip').innerHTML=u&&u.vip?'VIP 🏅':'';
-document.getElementById('myVerified').innerHTML=u&&u.verified?'✅ Verified':'';
-document.getElementById('myBattles').innerHTML=battles.filter(b=>b.me==current.name).map(b=>b.me+' VS '+b.opp+' - '+b.v1+' : '+b.v2).join('<br>')||'No Battles Yet';
-document.getElementById('myHistory').innerHTML='Wins - Losses - Total Votes Shown Above';
+  if(!user) return;
+  document.getElementById('profName').innerText=user.name;
+  document.getElementById('profCity').innerText=user.city;
+  document.getElementById('profPhone').innerText=user.phone;
+  document.getElementById('profID').innerText=user.id;
+  document.getElementById('myCoins').innerText=user.coins;
 }
-function renderLeader(){
-let sorted=[...users].sort((a,b)=>b.votes-a.votes);
-document.getElementById('leaderList').innerHTML=sorted.length?sorted.map((u,i)=>`<div>${i+1}. ${u.name} - Votes: ${u.votes} ${u.vip?'🏅 VIP':''}</div>`).join(''):'No Players Yet - Be First!';
+function renderProfileMenu(){
+  renderProfile();
+  let items=['Profile Views','Status','Matches','Gifts','Badge','Password','Feedback','Help','FAQ','About','Privacy Policy','Terms','Contact','My Requests','Logout'];
+  let h='';
+  items.forEach(it=>{ h+=`<div class="listItem" onclick="profileClick('${it}')"><span>${it}</span><span>></span></div>` });
+  document.getElementById('profileMenu').innerHTML=h;
+}
+function profileClick(it){ if(it==='My Requests') showPage('requests'); else if(it==='Logout'){localStorage.removeItem('bk_user'); location.reload();} else alert(it+' - Coming Soon - Will Open Here'); }
+function sendTopup(){
+  let pack=document.getElementById('coinPack').value;
+  let txn=document.getElementById('txnID').value||'No Txn';
+  requests.push({id:user?user.id:1001,coins:pack,txn, status:'PENDING'});
+  localStorage.setItem('bk_req',JSON.stringify(requests));
+  alert('Topup Request Sent! ID: '+(user?user.id:'1001')+' - Wait For Admin Approval'); showPage('requests');
+}
+function renderReq(){
+  if(!requests.length){document.getElementById('reqList').innerHTML='No Requests Yet';return;}
+  document.getElementById('reqList').innerHTML=requests.map(r=>`<div class="listItem"><span>ID: ${r.id} - ${r.coins} Coins - Txn: ${r.txn}</span><b>${r.status}</b></div>`).join('');
+}
+function filterMatch(t){ renderMatches(); }
+document.getElementById('secretLogo').addEventListener('click',()=>{
+  clicks++; if(clicks>=13){clicks=0; showPage('adminlogin');}
+});
+function checkAdmin(){
+  if(document.getElementById('adminPass').value==='726609'){ showPage('admin'); }
+  else alert('Wrong Password');
 }
 function renderAdmin(){
-document.getElementById('totalUsers').innerText=users.length;
-document.getElementById('totalPayments').innerText=topups.length;
-document.getElementById('adminTopups').innerHTML='<b>Top Up Requests:</b>'+topups.map((t,i)=>`<div>${t.phone} - Plan ${t.plan} - ${t.status} <button onclick="approveTopup(${i})">Approve Top Up</button></div>`).join('')||'No Requests';
-document.getElementById('adminUsers').innerHTML='<b>Users:</b>'+users.map((u,i)=>`<div>${u.name} - ${u.phone} <button onclick="blockUserAdmin(${i})">Block User</button></div>`).join('')||'No Users';
-document.getElementById('adminBattles').innerHTML='<b>Battles:</b>'+battles.map((b,i)=>`<div>${b.me} VS ${b.opp} <button onclick="deleteBattle(${i})">Delete Battle</button></div>`).join('')||'No Battles';
+  document.getElementById('aUsers').innerText=user?1:0;
+  document.getElementById('aMatches').innerText=matches.length;
+  document.getElementById('adminUsers').innerHTML=user?`<div class="adminBox">ID: ${user.id} - ${user.name} - ${user.city} - ${user.phone} - Coins: ${user.coins} <button onclick="approveUser()">Approve</button> <button onclick="blockUser()">Block</button></div>`:'No Users Yet';
+  document.getElementById('adminReq').innerHTML=requests.map((r,i)=>`<div class="adminBox">ID: ${r.id} - ${r.coins} Coins - Txn: ${r.txn} - ${r.status} <button onclick="approveReq(${i})">Approve</button></div>`).join('')||'No Requests';
+  document.getElementById('adminMatches').innerHTML=matches.map((m,i)=>`<div class="adminBox">${m.p1} VS ${m.p2} - ${m.v1} : ${m.v2} <button onclick="declareWinner(${i},1)">${m.p1} Winner</button> <button onclick="declareWinner(${i},2)">${m.p2} Winner</button></div>`).join('');
 }
-function approveTopup(i){myCoins+=topups[i].plan; topups[i].status='Approved'; if(topups[i].plan>=500){let u=users.find(x=>x.phone==topups[i].phone); if(u) u.vip=true;} save(); alert('Top Up Approved - Coins Added!'); renderAdmin();}
-function blockUserAdmin(i){users.splice(i,1); save(); renderAdmin();}
-function deleteBattle(i){battles.splice(i,1); save(); renderAdmin();}
-function openWhatsApp(){window.open('https://whatsapp.com/channel/0029VbDa1RTChq6PtC1jkk3c','_blank');}
-function installApp(){alert('App Install - Add To Home Screen From Browser Menu');}
-if(current) showPage('home'); else showPage('auth');
+function approveUser(){alert('User Approved');}
+function blockUser(){alert('User Blocked');}
+function approveReq(i){ requests[i].status='APPROVED'; localStorage.setItem('bk_req',JSON.stringify(requests)); if(user){user.coins+=parseInt(requests[i].coins); localStorage.setItem('bk_user',JSON.stringify(user)); document.getElementById('myCoins').innerText=user.coins;} renderAdmin(); alert('Topup Approved - Coins Added'); }
+function declareWinner(i,w){ let winner=w==1?matches[i].p1:matches[i].p2; alert('Winner Declared: '+winner+' - Result Will Show To All Users'); }
+
+if(user){ document.getElementById('myCoins').innerText=user.coins; document.getElementById('topupID').innerText=user.id; showPage('home'); } else { showPage('login'); }
+renderMatches();
 </script>
 </body>
 </html>
