@@ -1,121 +1,255 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#080808"><title>BATTLE KING</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BATTLE KING 👑🔥</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#080808;color:#fff;max-width:430px;margin:auto;min-height:100vh;padding-bottom:90px}
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#0a0a0a;position:sticky;top:0;z-index:50}
-.logo{font-size:22px;font-weight:900}.logo span{color:#ff6a00}
-.coins{background:linear-gradient(90deg,#ffc400,#ff6a00);color:#000;padding:7px 12px;border-radius:20px;font-weight:900;font-size:13px}
-.topupBtn{background:#ff6a00;color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:800}
-.card{background:#121212;margin:14px;border-radius:22px;padding:14px;border:1px solid #1f1f1f}
-input,select,textarea{width:100%;padding:13px;margin:7px 0;border-radius:13px;border:1px solid #2a2a2a;background:#1a1a1a;color:#fff;outline:none;font-size:14px}
-.btn{width:100%;padding:14px;border:none;border-radius:15px;background:linear-gradient(90deg,#ff7a00,#ff3d00);color:#fff;font-weight:900;font-size:15px;margin-top:8px;cursor:pointer}
-.btn2{background:#1e1e1e!important;border:1px solid #2a2a2a!important}
-.btnGold{background:linear-gradient(90deg,#ffc400,#ff6a00)!important;color:#000!important}
-.hidden{display:none!important}.small{font-size:12px;color:#999}.center{text-align:center}
-.battle{margin:14px;background:#121212;border-radius:24px;overflow:hidden;border:1px solid #222}
-.battleHead{display:flex;justify-content:space-between;padding:12px 14px;align-items:center}
-.live{background:#ff2d2d;color:#fff;font-size:11px;font-weight:900;padding:5px 10px;border-radius:20px}
-/* LEFT / RIGHT - FINAL */
-.vsWrap{display:flex;height:260px;position:relative}
-.vsWrap .side{flex:1;position:relative;overflow:hidden}
-.vsWrap .side img{width:100%;height:100%;object-fit:cover}
-.vsWrap .side:after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95),transparent 55%)}
-.vsWrap .info{position:absolute;left:0;right:0;bottom:10px;z-index:2;text-align:center}
-.vsWrap .info b{font-size:18px;display:block;text-shadow:0 2px 8px #000}.vsWrap .info span{font-size:13px;color:#ffc400;font-weight:800}
-.vsCircle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:54px;background:#fff;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;z-index:3;box-shadow:0 0 0 4px rgba(255,106,0,.4)}
-.bar{height:8px;background:#2a2a2a;margin:0 14px;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#ffc400,#ff6a00)}
-.barTxt{display:flex;justify-content:space-between;padding:8px 14px 2px;font-size:12px;color:#aaa}
-/* DONO PICS KE NEECHE BUTTON */
-.voteRow{display:flex;gap:10px;padding:12px}
-.voteBtn{flex:1;padding:15px;border:none;border-radius:14px;font-weight:900;font-size:15px;color:#fff;cursor:pointer}
-.voteBtnLeft{background:linear-gradient(90deg,#ff5da2,#ff2d7a)!important}
-.voteBtnRight{background:linear-gradient(90deg,#00c2ff,#007bff)!important}
-.voteBtn:disabled{background:#2a2a2a!important;color:#888!important}
-.giftRow{display:flex;gap:8px;padding:0 14px 10px}.giftRow button{flex:1;background:#1e1e1e;border:1px solid #2a2a2a;color:#fff;padding:10px 2px;border-radius:12px;font-size:12px}
-.boostRow{display:flex;gap:8px;padding:0 14px 12px}.boostRow button{flex:1;background:#1a1200!important;border:1px solid #ff6a00!important;color:#ffc400!important;padding:10px;border-radius:12px;font-weight:800;font-size:12px}
-.chatBox{background:#0f0f0f;margin:0 14px 14px;border-radius:14px;padding:10px;border:1px solid #222}
-.chatMsg{font-size:13px;padding:5px 0;border-bottom:1px solid #1a1a1a}
-.tabRow{display:flex;gap:8px;margin-top:10px}.tabRow button{flex:1;padding:11px;border-radius:12px;border:1px solid #2a2a2a;background:#1e1e1e;color:#fff;font-weight:800}.tabRow button.on{background:linear-gradient(90deg,#ff7a00,#ff3d00);border:none}
-.podium{display:flex;align-items:flex-end;gap:10px;justify-content:center;margin:16px 0}.podium div{text-align:center;flex:1;border-radius:16px 16px 0 0;padding:10px 4px}.p1{background:linear-gradient(180deg,#ffc400,#ff6a00);color:#000;height:128px}.p2{background:#d1d1d1;color:#000;height:96px}.p3{background:#c97b3a;color:#fff;height:76px}
-.listItem{background:#1e1e1e;margin:8px 0;padding:13px;border-radius:13px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.profileTop{text-align:center;padding:18px 12px}.fireRing{width:124px;height:124px;border-radius:50%;padding:4px;background:conic-gradient(#ff6a00,#ffc400,#ff3d00,#ff6a00);display:inline-block}.fireRing img{width:116px;height:116px;border-radius:50%;object-fit:cover;border:4px solid #000}
-.stats{display:flex;gap:10px;margin:14px}.stats div{flex:1;background:#141414;padding:13px;border-radius:15px;text-align:center}.stats b{font-size:20px;color:#ff6a00;display:block}
-.uploadBox{border:2px dashed #ffc400;border-radius:16px;padding:18px;text-align:center;background:#1a1200;margin:8px 0}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#0f0f0f;display:flex;justify-content:space-around;padding:10px 0 8px;border-top:1px solid #222;z-index:50;align-items:flex-end}.bottom button{background:none;border:none;color:#777;font-size:11px}.bottom button.active{color:#ff6a00}.bottom b{font-size:19px;display:block}
-.createBtn{background:linear-gradient(180deg,#ff7a00,#ff3d00)!important;color:#fff!important;padding:10px 12px!important;border-radius:16px!important;font-size:11px!important;font-weight:900!important;margin-top:-22px!important;box-shadow:0 8px 20px rgba(255,106,0,.6)!important}
-.welcome{position:fixed;top:64px;left:50%;transform:translateX(-50%);width:90%;max-width:390px;background:linear-gradient(90deg,#ffc400,#ff6a00);color:#000;padding:13px;border-radius:15px;text-align:center;font-weight:900;z-index:99}
-.waBox{background:#22c55e;color:#fff;padding:14px;border-radius:15px;text-align:center;margin:14px;display:block;text-decoration:none;font-weight:900}
-.splash{position:fixed;inset:0;background:#080808;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}.splash h1{font-size:42px}.splash h1 span{color:#ff6a00}
-.err{color:#ff5a5a;font-size:13px;font-weight:700}
-.resultCard{background:linear-gradient(180deg,#1a0f00,#121212);border:2px solid #ff6a00;border-radius:18px;padding:16px;margin:12px;text-align:center}
-</style></head><body>
-<div id="splash" class="splash"><h1>BATTLE <span>KING</span></h1><p>🔥 VOTE. WIN. RULE. 🔥</p></div>
-<div class="topbar" id="topbar"><div class="logo" id="secretLogo">BATTLE <span>KING</span></div><div style="display:flex;gap:7px;align-items:center"><button onclick="showNoti()" style="background:#1c1c1c;color:#fff;border:1px solid #2a2a2a;width:36px;height:36px;border-radius:50%">🔔</button><div class="coins">🪙 <span id="myCoins">0</span></div><button class="topupBtn" onclick="showPage('topup')">TOP UP</button></div></div>
-<div id="welcomeBox" class="welcome hidden">🎉 WELCOME TO BATTLE KING! 👑</div>
-<div id="page-login"><div class="card center"><h1 style="font-size:34px">BATTLE <span style="color:#ff6a00">KING</span></h1><p class="small">Login / Signup</p><p style="margin-top:8px">🇵🇰 Pakistan Biggest Photo Battle</p></div><div class="card"><h3>Login / Create Account</h3><input id="regName" placeholder="Full Name *"><input id="regPhone" placeholder="Mobile Number * 0300..."><input id="regPass" type="password" placeholder="Password *"><p id="loginErr" class="err"></p><button class="btn" onclick="register()">CREATE ACCOUNT / LOGIN</button><p class="small center" style="margin-top:8px">Bina Signup Ke App Nahi Khulegi</p></div></div>
-<div id="page-home" class="hidden"><div class="card"><h3>🔥 Live Battles <span class="small" id="liveCount"></span></h3><div class="tabRow"><button class="filterBtn on" id="f-all" onclick="filterMatch('all')">All</button><button class="filterBtn" id="f-boys" onclick="filterMatch('boys')">Boys</button><button class="filterBtn" id="f-girls" onclick="filterMatch('girls')">Girls</button><button class="filterBtn" id="f-gang" onclick="filterMatch('gang')">Gang</button></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn2" style="margin:0" onclick="showPage('create')">⚔️ CREATE BATTLE</button><button class="btn btn2" style="margin:0" onclick="claimDaily()">🎁 DAILY +5</button></div><div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn2" style="margin:0" onclick="doRefer()">👥 REFER +10</button><button class="btn btn2" style="margin:0" onclick="showPage('leaderboard')">🏆 LEADERBOARD</button></div></div><div id="matchList"></div><div class="card"><h3>Status - 24 Hours</h3><div id="statusBox" style="border:2px dashed #ff6a00;border-radius:14px;padding:14px;text-align:center;margin:8px 0">No Status Yet</div><input id="statusInput" placeholder="Write Your Status..."><button class="btn btn2" onclick="addStatus()">ADD STATUS</button></div></div>
-<div id="page-create" class="hidden"><div class="card center"><h2 style="color:#ffc400">⚔️ CREATE BATTLE</h2><p class="small">Apna Battle Banao - 12 Hours Live</p></div><div class="card"><p><b>Category - Sirf 3</b></p><div class="tabRow" id="catRow"><button class="on" onclick="setCat(this,'Boys vs Boys')">Boys</button><button onclick="setCat(this,'Girls vs Girls')">Girls</button><button onclick="setCat(this,'Gang War')">Gang War</button></div><input id="p1Name" placeholder="Player 1 Name * - LEFT"><div class="uploadBox" onclick="document.getElementById('file1').click()">📸 Player 1 Photo - LEFT<input type="file" id="file1" accept="image/*" onchange="previewImg(event,'p1Img','p1')" style="display:none"></div><img id="p1Img" style="width:100%;border-radius:12px;display:none"><input id="p2Name" placeholder="Player 2 Name * - RIGHT"><div class="uploadBox" onclick="document.getElementById('file2').click()">📸 Player 2 Photo - RIGHT<input type="file" id="file2" accept="image/*" onchange="previewImg(event,'p2Img','p2')" style="display:none"></div><img id="p2Img" style="width:100%;border-radius:12px;display:none"><input id="prizeInput" placeholder="Prize (Optional) e.g. 500 Rs"><p id="createErr" class="err"></p><button class="btn btnGold" onclick="createMatch()">🔥 CREATE BATTLE - 12 HOURS</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div></div>
-<div id="page-leaderboard" class="hidden"><div class="card center"><h2>🏆 LEADERBOARD</h2><div class="podium" id="podiumBox"></div></div><div class="card"><div id="leaderList"></div></div></div>
-<div id="page-profile" class="hidden"><div class="profileTop"><div class="fireRing"><img id="profImg" src="https://via.placeholder.com/110"></div><h2 id="profName" style="margin-top:8px">User</h2><p class="small">ID: <b id="profID" style="color:#ff6a00">1001</b> | <span id="profPhone">Number</span> | 👑 <span id="profRank">Rookie</span></p><button class="btn btn2" onclick="editProfile()">EDIT PROFILE</button></div><div class="stats"><div><b id="winCount">0</b>Wins</div><div><b id="lossCount">0</b>Losses</div><div><b id="totalVotes">0</b>Votes</div></div><div class="card"><p id="profBio">Bio: Battle King Player</p><input type="file" accept="image/*" onchange="changePhoto(event)"></div><div class="card"><button class="btn" onclick="showPage('topup')">🪙 TOP UP COINS</button><button class="btn btn2" onclick="showPage('coinstore')">🛒 COIN STORE</button></div><div class="card" id="profileMenu"></div><a class="waBox" href="https://whatsapp.com/channel/0029VbDa1RTChq6PtC1jkk3c" target="_blank">📢 JOIN WHATSAPP CHANNEL</a><div style="display:flex;flex-direction:column;gap:8px;padding:0 14px 20px"><button class="btn btn2" onclick="installApp()">📲 INSTALL APP</button><button class="btn" style="background:#ff2d2d!important" onclick="logout()">LOGOUT</button></div></div>
-<div id="page-topup" class="hidden"><div class="card center"><h2>TOP UP COINS</h2><p>Send Money On EasyPaisa</p><div style="background:linear-gradient(90deg,#ffc400,#ff6a00);color:#000;padding:13px;border-radius:13px;margin:10px 0"><h3>EasyPaisa</h3><p>Name: <b>Atiq Ur Rehman</b></p><p>Number: <b>03430864009</b></p></div></div><div class="card"><p>Your ID: <b id="topupID">1001</b></p><select id="coinPack"><option value="100">100 Coins - 200 Rs</option><option value="500">500 Coins - 800 Rs</option><option value="1000">1000 Coins - 1500 Rs</option></select><input id="txnID" placeholder="Transaction ID *"><p id="topupErr" class="err"></p><button class="btn" onclick="sendTopup()">SEND REQUEST</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div></div>
-<div id="page-coinstore" class="hidden"><div class="card center"><h2>🛒 COIN STORE</h2></div><div class="card"><div class="listItem"><span>🔥 Fire Gift</span><b>10 Coins</b></div><div class="listItem"><span>👑 Crown Gift</span><b>20 Coins</b></div><div class="listItem"><span>💎 Diamond Gift</span><b>50 Coins</b></div><div class="listItem"><span>⚡ Boost +10 Votes</span><b>30 Coins</b></div><button class="btn" onclick="showPage('topup')">🪙 BUY COINS</button><button class="btn btn2" onclick="showPage('home')">⬅ BACK</button></div></div>
-<div id="page-detail" class="hidden"><div class="card"><h2 id="detailTitle">Detail</h2><div id="detailBody"></div><button class="btn btn2" onclick="showPage('profile')">⬅ BACK TO PROFILE</button></div></div>
-<div id="page-adminlogin" class="hidden"><div class="card center"><h2>Admin Login</h2><input id="adminPass" type="password" placeholder="Enter Admin Password"><button class="btn" onclick="checkAdmin()">OPEN ADMIN PANEL</button></div></div>
-<div id="page-admin" class="hidden"><div class="card"><h2 style="color:#ff6a00">👑 ADMIN PANEL</h2><div id="adminBox"></div><button class="btn" style="background:#ff2d2d!important" onclick="showPage('home')">EXIT ADMIN</button></div></div>
-<div class="bottom" id="bottomBar"><button class="active" onclick="showPage('home')"><b>🔥</b>Home</button><button onclick="showPage('leaderboard')"><b>🏆</b>Leaderboard</button><button class="createBtn" onclick="showPage('create')">⚔️<br>CREATE<br>BATTLE</button><button onclick="showPage('profile')"><b>👤</b>Profile</button><button onclick="showPage('topup')"><b>🪙</b>Topup</button></div>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#050505;--card:#141414;--card2:#1e1e1e;--orange:#ff6a00;--orange2:#ff9500;--gold:#ffb300;--white:#fff;--muted:#9a9a9a;--green:#00e676;--red:#ff2d55}
+body{background:var(--bg);color:var(--white);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;padding-bottom:90px}
+button{cursor:pointer;border:none;font-family:inherit}
+img{object-fit:cover}
+/* HEADER */
+.header{position:sticky;top:0;z-index:100;background:rgba(5,5,5,.95);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #2a1500}
+.logo-box{display:flex;align-items:center;gap:8px}
+.logo-box img{width:42px;height:42px;border-radius:12px;border:2px solid var(--orange);box-shadow:0 0 15px #ff6a00}
+.logo-box b{font-size:19px;letter-spacing:.5px}
+.logo-box b span{color:var(--orange)}
+.logo-box small{display:block;font-size:9px;color:var(--muted);letter-spacing:2px}
+.top-right{display:flex;align-items:center;gap:8px}
+.coins{background:#221407;border:1px solid var(--orange);padding:7px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;font-weight:800;font-size:13px}
+.topup-btn{background:linear-gradient(90deg,#ff6a00,#ff9500);color:#fff;padding:8px 14px;border-radius:20px;font-weight:900;font-size:12px;box-shadow:0 4px 15px #ff6a0055}
+.topup-btn:active{transform:scale(.95)}
+/* FIRE EFFECT */
+.fire-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at bottom left,rgba(255,106,0,.18),transparent 50%),radial-gradient(ellipse at bottom right,rgba(255,60,0,.15),transparent 50%),radial-gradient(ellipse at top,rgba(255,149,0,.08),transparent 40%)}
+.page{display:none;position:relative;z-index:1;animation:fade .3s}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 #ff6a0066}50%{box-shadow:0 0 0 8px transparent}}
+@keyframes fireGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
+/* HOME */
+.hero{margin:14px;background:linear-gradient(180deg,#2a1200,#120600);border:1px solid #ff6a00aa;border-radius:20px;padding:16px;position:relative;overflow:hidden}
+.hero:before{content:'🔥';position:absolute;right:10px;top:5px;font-size:40px;opacity:.4}
+.hero-label{background:var(--orange);color:#fff;font-size:11px;font-weight:900;padding:4px 10px;border-radius:20px;display:inline-block}
+.hero h2{font-size:26px;margin:10px 0 4px}
+.hero h2 span{color:var(--gold)}
+.hero p{color:#ccc;font-size:13px}
+.king-card{display:flex;gap:12px;margin-top:14px;background:#00000088;border-radius:16px;padding:10px;align-items:center}
+.king-card img{width:70px;height:70px;border-radius:50%;border:3px solid var(--gold);animation:fireGlow 2s infinite}
+.king-card b{font-size:16px}
+.king-card small{color:var(--gold);font-size:12px}
+.crown-btn{margin-left:auto;background:var(--gold);color:#000;padding:8px 12px;border-radius:20px;font-weight:900;font-size:12px}
+.section-title{padding:14px 14px 6px;display:flex;justify-content:space-between;align-items:center}
+.section-title b{font-size:17px}
+.section-title span{color:var(--orange);font-size:12px;font-weight:700}
+.live-badge{background:#ff2d55;color:#fff;font-size:10px;padding:3px 8px;border-radius:20px;font-weight:900;animation:pulse 1.5s infinite}
+.battle-card{margin:8px 14px;background:var(--card);border:1px solid #2b2b2b;border-radius:18px;padding:12px}
+.vs-row{display:flex;align-items:center;gap:10px}
+.vs-row img{width:64px;height:64px;border-radius:14px;border:2px solid var(--orange)}
+.vs-circle{width:42px;height:42px;background:linear-gradient(135deg,#ff6a00,#ff2d55);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;box-shadow:0 0 20px #ff6a00}
+.vs-row .name{font-weight:800;font-size:14px}
+.vs-row small{color:var(--muted);font-size:11px}
+.bar{height:8px;background:#333;border-radius:10px;overflow:hidden;margin:10px 0;display:flex}
+.bar i{display:block;height:100%}
+.bar .a{background:var(--orange);width:62%}
+.bar .b{background:#00a8ff;width:38%}
+.vote-row{display:flex;gap:8px}
+.vote-btn{flex:1;padding:11px;border-radius:12px;font-weight:900;color:#fff;font-size:13px}
+.vote-btn.o{background:var(--orange)} .vote-btn.b{background:#007bff}
+.gift-row{display:flex;gap:8px;margin-top:10px;overflow-x:auto;padding-bottom:2px}
+.gift{flex-shrink:0;background:var(--card2);border:1px solid #333;padding:8px 10px;border-radius:14px;text-align:center;font-size:11px;min-width:62px}
+.gift div{font-size:22px}
+.gift span{color:var(--gold);font-weight:800}
+.trend{margin:8px 14px;background:var(--card);border-radius:16px;padding:12px;display:flex;gap:12px;align-items:center}
+.trend img{width:52px;height:52px;border-radius:50%;border:2px solid var(--orange)}
+.trend .rank{font-size:22px;font-weight:900;color:var(--orange);width:28px;text-align:center}
+.follow{margin-left:auto;background:var(--orange);color:#fff;padding:7px 14px;border-radius:20px;font-weight:800;font-size:12px}
+/* GENERIC CARD */
+.card{margin:10px 14px;background:var(--card);border:1px solid #262626;border-radius:18px;padding:14px}
+.card h3{font-size:16px;margin-bottom:8px}
+.input{width:100%;background:#0f0f0f;border:1px solid #333;color:#fff;padding:13px;border-radius:12px;margin:6px 0;outline:none;font-size:14px}
+.input:focus{border-color:var(--orange)}
+.btn-orange{width:100%;background:linear-gradient(90deg,#ff6a00,#ff9500);color:#fff;padding:14px;border-radius:14px;font-weight:900;font-size:15px;margin-top:8px}
+.btn-outline{width:100%;background:transparent;border:1px solid var(--orange);color:var(--orange);padding:12px;border-radius:14px;font-weight:800;margin-top:8px}
+.coin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.coin-pkg{background:#1a1a1a;border:1px solid #333;border-radius:16px;padding:14px;text-align:center;position:relative}
+.coin-pkg.active{border-color:var(--orange);background:#2a1400;box-shadow:0 0 15px #ff6a0044}
+.coin-pkg .big{font-size:28px}
+.coin-pkg b{font-size:16px;display:block;margin:4px 0}
+.coin-pkg small{color:var(--muted)}
+.coin-pkg .price{color:var(--gold);font-weight:900;margin-top:6px}
+.best{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--orange);font-size:9px;padding:2px 8px;border-radius:10px;font-weight:900}
+.pay-row{display:flex;gap:8px;margin-top:10px}
+.pay{flex:1;padding:12px;border-radius:12px;background:#1a1a1a;border:1px solid #333;color:#fff;font-weight:800}
+.pay.active{border-color:var(--green);background:#0a2a12}
+/* PROFILE */
+.profile-head{text-align:center;padding:18px 14px 6px}
+.profile-head img{width:110px;height:110px;border-radius:50%;border:4px solid var(--orange);box-shadow:0 0 25px #ff6a00;animation:float 3s infinite}
+.profile-head h2{margin-top:10px}
+.profile-head p{color:var(--muted);font-size:13px}
+.stats{display:flex;gap:10px;margin:14px}
+.stat{flex:1;background:var(--card);border-radius:14px;padding:12px;text-align:center}
+.stat b{font-size:18px;color:var(--gold);display:block}
+.stat span{font-size:11px;color:var(--muted)}
+.gallery{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0 14px}
+.gallery img{width:100%;height:110px;border-radius:12px;border:1px solid #333}
+/* NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#0a0a0a;border-top:1px solid #2a2a2a;display:flex;z-index:200;padding:6px 0 calc(6px + env(safe-area-inset-bottom))}
+.nav-item{flex:1;text-align:center;padding:6px 2px;color:#888;font-size:11px;font-weight:700;background:none}
+.nav-item.active{color:var(--orange)}
+.nav-item div{font-size:22px}
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:300;display:none;align-items:flex-end;justify-content:center}
+.modal.show{display:flex}
+.modal-box{background:#171717;width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:20px 16px 30px;animation:fade .3s}
+.close{float:right;font-size:22px;background:none;color:#fff}
+.toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;padding:10px 18px;border-radius:20px;font-weight:800;z-index:400;display:none;font-size:13px;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="fire-bg"></div>
+<div class="toast" id="toast"></div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo-box" onclick="showPage('home')">
+    <img src="logo.png" alt="B" onerror="this.src='https://via.placeholder.com/42/ff6a00/fff?text=B'">
+    <div><b>BATTLE <span>KING</span></b><small>👑 TOFAAN APP</small></div>
+  </div>
+  <div class="top-right">
+    <div class="coins">🪙 <span id="coinBal">1,240</span></div>
+    <button class="topup-btn" onclick="showPage('topup')">+ TOP UP</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <span class="hero-label">🔥 TODAY'S TOFAAN</span>
+    <h2>KING OF <span>THE DAY 👑</span></h2>
+    <p>Vote karo - Gift bhejo - King banao! Har din naya King!</p>
+    <div class="king-card">
+      <img src="https://i.pravatar.cc/150?img=12" alt="king">
+      <div><b>Ahmed King 👑</b><br><small>⭐ 12,450 Votes • 856 Gifts</small><br><small style="color:#fff">🏆 #1 - Mangla, Azad Kashmir</small></div>
+      <button class="crown-btn" onclick="vote('Ahmed King')">VOTE 👑</button>
+    </div>
+  </div>
+  <div class="section-title"><b>🔴 LIVE BATTLES</b><span>View All →</span></div>
+  <div class="battle-card">
+    <div style="display:flex;justify-content:space-between"><span class="live-badge">● LIVE • 2.4k Watching</span><span style="color:var(--muted);font-size:12px">Ends in 02:14:33</span></div>
+    <div class="vs-row" style="margin-top:12px">
+      <div style="text-align:center;flex:1"><img src="https://i.pravatar.cc/150?img=13"><div class="name">Ali 🔥</div><small>8,240 Votes</small></div>
+      <div class="vs-circle">VS</div>
+      <div style="text-align:center;flex:1"><img src="https://i.pravatar.cc/150?img=32"><div class="name">Usman 👑</div><small>5,120 Votes</small></div>
+    </div>
+    <div class="bar"><i class="a"></i><i class="b"></i></div>
+    <div class="vote-row"><button class="vote-btn o" onclick="vote('Ali')">VOTE ALI 🔥</button><button class="vote-btn b" onclick="vote('Usman')">VOTE USMAN 👑</button></div>
+    <div class="gift-row">
+      <div class="gift" onclick="sendGift('🔥 Fire',10)"><div>🔥</div>Fire<br><span>10 🪙</span></div>
+      <div class="gift" onclick="sendGift('🌹 Rose',25)"><div>🌹</div>Rose<br><span>25 🪙</span></div>
+      <div class="gift" onclick="sendGift('👑 Crown',100)"><div>👑</div>Crown<br><span>100 🪙</span></div>
+      <div class="gift" onclick="sendGift('🦁 Lion',500)"><div>🦁</div>Lion<br><span>500 🪙</span></div>
+      <div class="gift" onclick="sendGift('💎 Diamond',1000)"><div>💎</div>Diamond<br><span>1000 🪙</span></div>
+      <div class="gift" onclick="sendGift('🚀 Rocket',2000)"><div>🚀</div>Rocket<br><span>2000 🪙</span></div>
+    </div>
+  </div>
+  <div class="section-title"><b>🔥 TRENDING KINGS</b><span>Top 10</span></div>
+  <div id="trending"></div>
+  <div class="card" style="text-align:center"><h3>🎮 GANG WAR - LIVE!</h3><p style="color:var(--muted);font-size:13px">Phoenix 🐦‍🔥 vs Shadow 🖤 - 1,200 log dekh rahe hain</p><button class="btn-orange" onclick="showPage('gang')">JOIN GANG WAR ⚔️</button></div>
+</div>
+
+<!-- BATTLE -->
+<div class="page" id="page-battle">
+  <div class="section-title"><b>⚔️ BATTLE ARENA</b><span class="live-badge">● LIVE</span></div>
+  <div class="battle-card" style="border-color:var(--orange)">
+    <div class="vs-row"><div style="text-align:center;flex:1"><img src="https://i.pravatar.cc/150?img=59" style="width:80px;height:80px"><div class="name">Bilal Fire 🔥</div><small>Level 12 • 45 Wins</small></div><div class="vs-circle" style="width:56px;height:56px;font-size:18px">VS</div><div style="text-align:center;flex:1"><img src="https://i.pravatar.cc/150?img=68" style="width:80px;height:80px"><div class="name">Hamza King 👑</div><small>Level 15 • 67 Wins</small></div></div>
+    <div class="bar" style="height:12px;margin-top:14px"><i class="a" style="width:58%"></i><i class="b" style="width:42%"></i></div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:800"><span style="color:var(--orange)">Bilal: 9,850</span><span>Hamza: 7,120</span></div>
+    <div class="vote-row" style="margin-top:12px"><button class="vote-btn o" onclick="vote('Bilal')">VOTE BILAL</button><button class="vote-btn b" onclick="vote('Hamza')">VOTE HAMZA</button></div>
+    <div class="gift-row"><div class="gift" onclick="sendGift('🔥 Fire',10)"><div>🔥</div>10 🪙</div><div class="gift" onclick="sendGift('👑 Crown',100)"><div>👑</div>100 🪙</div><div class="gift" onclick="sendGift('🦁 Lion',500)"><div>🦁</div>500 🪙</div><div class="gift" onclick="sendGift('💎 Diamond',1000)"><div>💎</div>1000 🪙</div></div>
+  </div>
+  <div class="card"><h3>➕ NEW BATTLE START KARO</h3><input class="input" id="oppName" placeholder="Opponent ka naam likho..."><button class="btn-orange" onclick="startBattle()">⚔️ BATTLE CHALLENGE BHEJO</button><button class="btn-outline" onclick="showToast('📸 Photo upload - Coming in App Version')">📸 APNI PHOTO UPLOAD KARO</button></div>
+</div>
+
+<!-- GANG WAR -->
+<div class="page" id="page-gang">
+  <div class="card" style="text-align:center;background:linear-gradient(180deg,#2a1200,#0f0f0f);border-color:var(--orange)"><span class="live-badge">🔴 GANG WAR LIVE • 1,240 Watching</span><h3 style="margin-top:10px;font-size:20px">PHOENIX 🐦‍🔥 vs SHADOW 🖤</h3><p style="color:var(--muted);font-size:13px">Jeetne wali Gang ko 5000 Coins Bonus!</p></div>
+  <div class="card"><div style="display:flex;justify-content:space-between"><b>🐦‍🔥 PHOENIX - 18,450</b><b>SHADOW - 15,230 🖤</b></div><div class="bar" style="height:14px"><i class="a" style="width:55%"></i><i class="b" style="width:45%"></i></div><button class="btn-orange" onclick="sendGift('⚔️ Gang Gift',100)">⚔️ APNI GANG KO GIFT BHEJO</button></div>
+  <div class="card"><h3>👥 MERI GANG - FIRE LEGENDS</h3><p style="color:var(--muted);font-size:13px">Members: 24/30 • Rank: #2 • Power: 98,500</p><button class="btn-outline" onclick="showToast('🔗 Gang Invite Link Copy Ho Gaya!')">🔗 FRIENDS KO INVITE KARO</button></div>
+</div>
+
+<!-- LEADERBOARD -->
+<div class="page" id="page-leader">
+  <div class="card" style="text-align:center"><h3>🏆 TOP 3 KINGS - THIS WEEK</h3><div style="display:flex;justify-content:center;align-items:flex-end;gap:12px;margin-top:14px"><div><img src="https://i.pravatar.cc/100?img=5" style="width:60px;height:60px;border-radius:50%;border:2px solid silver"><div>🥈 Ali</div><small>9,200</small></div><div><div style="font-size:28px">👑</div><img src="https://i.pravatar.cc/100?img=12" style="width:80px;height:80px;border-radius:50%;border:3px solid gold"><div><b>Ahmed</b></div><small>12,450 ⭐</small></div><div><img src="https://i.pravatar.cc/100?img=8" style="width:60px;height:60px;border-radius:50%;border:2px solid #cd7f32"><div>🥉 Usman</div><small>8,100</small></div></div></div>
+  <div id="leaderList"></div>
+</div>
+
+<!-- PROFILE -->
+<div class="page" id="page-profile">
+  <div class="profile-head"><img src="https://i.pravatar.cc/150?img=12"><h2>Ahmed King 👑 <span style="color:#00e676;font-size:14px">✓</span></h2><p>@ahmedking • Mangla, Azad Kashmir • Level 18 🔥</p></div>
+  <div class="stats"><div class="stat"><b>156</b><span>Wins</span></div><div class="stat"><b>45.2k</b><span>Votes</span></div><div class="stat"><b id="profileCoins">1,240</b><span>Coins</span></div></div>
+  <div class="card"><h3>🏅 BADGES</h3><p>👑 King • 🔥 Fire Star • 🥇 Gold • 💎 Diamond • ⚔️ Gang Leader</p></div>
+  <div class="section-title"><b>📸 MY PHOTOS</b><span>+ Add</span></div>
+  <div class="gallery"><img src="https://picsum.photos/300/300?1"><img src="https://picsum.photos/300/300?2"><img src="https://picsum.photos/300/300?3"><img src="https://picsum.photos/300/300?4"><img src="https://picsum.photos/300/300?5"><img src="https://picsum.photos/300/300?6"></div>
+  <div class="card"><button class="btn-orange" onclick="showPage('topup')">🪙 COINS TOPUP KARO</button><button class="btn-outline" onclick="showToast('⚙️ Settings - App me full hoga')">⚙️ SETTINGS</button><button class="btn-outline" onclick="showToast('🚪 Logout ho gaya')">🚪 LOGOUT</button></div>
+</div>
+
+<!-- TOPUP -->
+<div class="page" id="page-topup">
+  <div class="card" style="text-align:center;border-color:var(--orange)"><div style="font-size:40px">🪙</div><h3>YOUR BALANCE</h3><div style="font-size:32px;font-weight:900;color:var(--gold)"><span id="topupBal">1,240</span> Coins</div><p style="color:var(--muted);font-size:13px">1 Coin = 1 Rs • Bonus on bigger pack!</p></div>
+  <div class="card"><h3>💎 COIN PACKAGES</h3><div class="coin-grid">
+    <div class="coin-pkg" onclick="selectPkg(this,100,100)"><div class="big">🪙</div><b>100 Coins</b><small>Starter</small><div class="price">Rs 100</div></div>
+    <div class="coin-pkg active" onclick="selectPkg(this,500,450)"><span class="best">BEST SELLER</span><div class="big">🪙🪙</div><b>500 Coins</b><small>Save Rs 50</small><div class="price">Rs 450</div></div>
+    <div class="coin-pkg" onclick="selectPkg(this,1000,800)"><div class="big">👑</div><b>1000 Coins</b><small>Save Rs 200</small><div class="price">Rs 800</div></div>
+    <div class="coin-pkg" onclick="selectPkg(this,5000,3500)"><span class="best">VIP 👑</span><div class="big">💎</div><b>5000 Coins</b><small>Save Rs 1500</small><div class="price">Rs 3500</div></div>
+  </div>
+  <h3 style="margin-top:14px">💳 PAYMENT METHOD</h3>
+  <div class="pay-row"><button class="pay active" onclick="selectPay(this,'Easypaisa')">🟢 Easypaisa</button><button class="pay" onclick="selectPay(this,'JazzCash')">🟠 JazzCash</button><button class="pay" onclick="selectPay(this,'Bank')">🏦 Bank</button></div>
+  <input class="input" id="payNum" placeholder="Apna Easypaisa / JazzCash Number - 03XX XXXXXXX">
+  <button class="btn-orange" onclick="buyCoins()">🪙 BUY NOW - <span id="buyLabel">500 Coins - Rs 450</span></button>
+  <p style="text-align:center;color:var(--muted);font-size:11px;margin-top:10px">✅ 100% Secure • Instant Coins • 24/7 Support</p></div>
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+  <button class="nav-item active" onclick="showPage('home',this)"><div>🏠</div>Home</button>
+  <button class="nav-item" onclick="showPage('battle',this)"><div>⚔️</div>Battle</button>
+  <button class="nav-item" onclick="showPage('gang',this)"><div>🔥</div>Gang War</button>
+  <button class="nav-item" onclick="showPage('leader',this)"><div>🏆</div>Leaderboard</button>
+  <button class="nav-item" onclick="showPage('profile',this)"><div>👤</div>Profile</button>
+</div>
+
+<!-- GIFT MODAL -->
+<div class="modal" id="giftModal"><div class="modal-box"><button class="close" onclick="closeModal()">✕</button><h3 id="giftTitle">🎁 Gift Bhejo</h3><p id="giftDesc" style="color:var(--muted);margin:8px 0"></p><button class="btn-orange" onclick="confirmGift()">✅ CONFIRM - SEND GIFT</button></div></div>
+
 <script>
-let user=JSON.parse(localStorage.getItem('bk_user')||'null');
-let matches=JSON.parse(localStorage.getItem('bk_matches')||'[]');
-let voted=JSON.parse(localStorage.getItem('bk_voted_v4')||'[]');
-let boostedList=JSON.parse(localStorage.getItem('bk_boosted_list')||'[]');
-let chats=JSON.parse(localStorage.getItem('bk_chats')||'{}');
-let myWins=parseInt(localStorage.getItem('bk_my_wins')||'0'),myLosses=parseInt(localStorage.getItem('bk_my_losses')||'0');
-let p1ImgTemp='',p2ImgTemp='',nextID=parseInt(localStorage.getItem('bk_nextID')||'1001'),clicks=0,currentFilter='all',selectedCat='Boys vs Boys';
-let realImgs=["https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600","https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600","https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600","https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600"];
-if(!matches.length){let n=Date.now();matches=[{p1:"Maya",p2:"Knox",type:"girls",v1:124,v2:76,img:realImgs[2],img2:realImgs[0],createdAt:n,endsAt:n+12*3600*1000,status:"live",winner:"",winCounted:false,prize:"500 Rs"},{p1:"Ahmad",p2:"Ali",type:"boys",v1:135,v2:110,img:realImgs[0],img2:realImgs[1],createdAt:n,endsAt:n+12*3600*1000,status:"live",winner:"",winCounted:false,prize:""}];localStorage.setItem('bk_matches',JSON.stringify(matches));}
-function saveAll(){localStorage.setItem('bk_user',JSON.stringify(user));localStorage.setItem('bk_matches',JSON.stringify(matches));localStorage.setItem('bk_voted_v4',JSON.stringify(voted));localStorage.setItem('bk_boosted_list',JSON.stringify(boostedList));localStorage.setItem('bk_chats',JSON.stringify(chats));localStorage.setItem('bk_my_wins',myWins);localStorage.setItem('bk_my_losses',myLosses);}
-function showToast(t){let d=document.createElement('div');d.className='welcome';d.innerText=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2500);}
-function matchKey(m){return (m.p1+'_VS_'+m.p2).toLowerCase();}
-function formatTimer(ms){if(ms<=0)return "00:00:00";let s=Math.floor(ms/1000);return String(Math.floor(s/3600)).padStart(2,'0')+":"+String(Math.floor((s%3600)/60)).padStart(2,'0')+":"+String(s%60).padStart(2,'0');}
-function checkFinish(){let changed=false;matches.forEach(m=>{if(m.status==='live'&&Date.now()>=m.endsAt){m.status='finished';m.winner=m.v1>=m.v2?m.p1:m.p2;if(!m.winCounted){m.winCounted=true;if(user&&m.winner.toLowerCase()===user.name.toLowerCase())myWins++;else if(user){let loser=m.winner===m.p1?m.p2:m.p1;if(loser.toLowerCase()===user.name.toLowerCase())myLosses++;}}changed=true;}});if(changed)saveAll();return changed;}
-function showPage(p){if(!user&&p!=='login'&&p!=='adminlogin'){showToast('Pehle Signup Karo!');p='login';}['login','home','create','leaderboard','profile','topup','coinstore','detail','adminlogin','admin'].forEach(x=>{let e=document.getElementById('page-'+x);if(e)e.classList.add('hidden');});document.getElementById('page-'+p).classList.remove('hidden');document.getElementById('topbar').style.display=user?'flex':'none';document.getElementById('bottomBar').style.display=user?'flex':'none';if(p==='home')renderMatches();if(p==='profile')renderProfileMenu();if(p==='leaderboard')renderLeader();window.scrollTo(0,0);}
-function setCat(el,c){document.querySelectorAll('#catRow button').forEach(b=>b.classList.remove('on'));el.classList.add('on');selectedCat=c;}
-function filterMatch(t){currentFilter=t;document.querySelectorAll('.filterBtn').forEach(b=>b.classList.remove('on'));let el=document.getElementById('f-'+t);if(el)el.classList.add('on');renderMatches();}
-function renderMatches(){checkFinish();let list=matches.map((m,i)=>({...m,_i:i})).filter(m=>currentFilter==='all'||m.type===currentFilter);document.getElementById('liveCount').innerText='• '+matches.filter(m=>m.status==='live').length+' Live';let h='';list.forEach(m=>{let i=m._i;let votedThis=voted.includes(matchKey(m));let total=m.v1+m.v2||1;let p1=Math.round(m.v1/total*100);let k=matchKey(m);let cList=chats[k]||["🔥 Maya is winning!","Knox comeback? 👀"];
-if(m.status==='finished'){h+=`<div class="battle"><div class="battleHead"><b>🏆 FINISHED - ${m.type.toUpperCase()}</b><span class="live" style="background:#22c55e">FINISHED</span></div><div class="resultCard"><div style="font-size:42px">👑</div><h2>WINNER - <span style="color:#ff6a00">${m.winner}</span></h2><p style="color:#ffc400;font-weight:900;margin-top:6px">${m.winner===m.p1?m.v1:m.v2} Votes - WIN! 🔥</p><p class="small">${m.p1} ${m.v1} : ${m.v2} ${m.p2}</p><button class="btn btnGold" onclick="shareBattle(${i})">🔗 SHARE WINNER</button></div></div>`;}else{
-h+=`<div class="battle"><div class="battleHead"><b>🔥 PHOTO BATTLE ${m.type.toUpperCase()}</b><span class="live" data-ends="${m.endsAt}">LIVE • ${formatTimer(m.endsAt-Date.now())}</span></div>
-<div class="vsWrap"><div class="side"><img src="${m.img}"><div class="info"><b>${m.p1}</b><span>🗳️ ${m.v1} Votes • ${p1}%</span></div></div><div class="vsCircle">VS</div><div class="side"><img src="${m.img2}"><div class="info"><b>${m.p2}</b><span>🗳️ ${m.v2} Votes • ${100-p1}%</span></div></div></div>
-<div class="barTxt"><span>${m.p1} ${p1}%</span><span>${100-p1}% ${m.p2}</span></div><div class="bar"><i style="width:${p1}%"></i></div>
-<div class="voteRow"><button class="voteBtn voteBtnLeft" ${votedThis?'disabled':''} onclick="vote(${i},1)">${votedThis?'VOTED ✓':'VOTE '+m.p1}</button><button class="voteBtn voteBtnRight" ${votedThis?'disabled':''} onclick="vote(${i},2)">${votedThis?'VOTED ✓':'VOTE '+m.p2}</button></div>
-<p class="center small" style="padding:0 0 8px">${m.prize?('🏆 Prize: '+m.prize):'Button Dabao - Vote Ho Jaye Ga!'}</p>
-<div class="giftRow"><button onclick="sendGift('🔥 Fire')">🔥 Fire</button><button onclick="sendGift('👑 Crown')">👑 Crown</button><button onclick="sendGift('🌹 Rose')">🌹 Rose</button><button onclick="sendGift('💎 Diamond')">💎 Diamond</button></div><div class="boostRow"><button onclick="boost(${i},1)">⚡ BOOST ${m.p1} +10</button><button onclick="boost(${i},2)">⚡ BOOST ${m.p2} +10</button></div><div class="chatBox"><b>💬 LIVE BATTLE CHAT</b>${cList.map(c=>`<div class="chatMsg">${c}</div>`).join('')}<input id="chat-${i}" placeholder="Type message..."><button class="btn btn2" onclick="sendChat(${i})">SEND CHAT</button></div></div>`;}});document.getElementById('matchList').innerHTML=h;}
-function updateTimersOnly(){let need=false;document.querySelectorAll('.live[data-ends]').forEach(el=>{let ends=parseInt(el.dataset.ends);let rem=ends-Date.now();if(rem<=0)need=true;else el.innerText='LIVE • '+formatTimer(rem);});if(need){if(checkFinish())renderMatches();}}
-function vote(i,w){if(matches[i].status==='finished'){showToast('Battle Khatam!');return;}if(voted.includes(matchKey(matches[i]))){showToast('Already Voted!');return;}voted.push(matchKey(matches[i]));if(w==1)matches[i].v1++;else matches[i].v2++;saveAll();renderMatches();showToast('Vote Done! ✅');}
-function boost(i,w){if(matches[i].status==='finished'){showToast('Battle Khatam!');return;}let k=matchKey(matches[i]);if(boostedList.includes(k)){showToast('Already Boosted!');return;}boostedList.push(k);if(w==1)matches[i].v1+=10;else matches[i].v2+=10;saveAll();renderMatches();showToast('Boost +10! 🔥');}
-function shareBattle(i){let m=matches[i];let t='🏆 BATTLE KING! '+m.p1+' VS '+m.p2+' - Vote Karo! 🔥';if(navigator.share)navigator.share({title:'BATTLE KING',text:t});else window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');}
-function sendChat(i){let inp=document.getElementById('chat-'+i);let t=inp.value.trim();if(!t)return;let k=matchKey(matches[i]);if(!chats[k])chats[k]=[];chats[k].push((user?user.name:'You')+': '+t);saveAll();renderMatches();showToast('Chat Sent! 💬');}
-function sendGift(g){if(!user)return;if(user.coins<10){showToast('Coins Finished');showPage('topup');return;}user.coins-=10;saveAll();document.getElementById('myCoins').innerText=user.coins;showToast('Gift Sent: '+g);}
-function createMatch(){let p1=document.getElementById('p1Name').value.trim();let p2=document.getElementById('p2Name').value.trim();let prize=document.getElementById('prizeInput').value.trim();if(p1.length<2||p2.length<2){document.getElementById('createErr').innerText='❌ Dono Naam Likho!';return;}let n=Date.now();matches.unshift({p1,p2,type:selectedCat.toLowerCase().includes('girl')?'girls':selectedCat.toLowerCase().includes('gang')?'gang':'boys',v1:0,v2:0,img:p1ImgTemp||realImgs[0],img2:p2ImgTemp||realImgs[1],createdAt:n,endsAt:n+12*3600*1000,status:"live",winner:"",winCounted:false,prize});p1ImgTemp='';p2ImgTemp='';saveAll();showToast('Battle Created! 🔥');showPage('home');}
-function previewImg(e,id,who){let r=new FileReader();r.onload=()=>{document.getElementById(id).src=r.result;document.getElementById(id).style.display='block';if(who==='p1')p1ImgTemp=r.result;else p2ImgTemp=r.result;};r.readAsDataURL(e.target.files[0]);}
-function register(){let name=document.getElementById('regName').value.trim();let phone=document.getElementById('regPhone').value.trim();let pass=document.getElementById('regPass').value.trim();let err=document.getElementById('loginErr');if(name.length<3){err.innerText='❌ Naam 3+ Harf Ka Likho!';return;}if(phone.length!==11||!phone.startsWith('03')){err.innerText='❌ Sahi Mobile 0300... Likho!';return;}if(pass.length<4){err.innerText='❌ Password 4+ Rakho!';return;}let id=nextID++;localStorage.setItem('bk_nextID',nextID);user={name,phone,id,coins:20,pass};saveAll();document.getElementById('myCoins').innerText=user.coins;document.getElementById('topupID').innerText=user.id;showPage('home');document.getElementById('welcomeBox').classList.remove('hidden');setTimeout(()=>document.getElementById('welcomeBox').classList.add('hidden'),3000);}
-function claimDaily(){if(!user)return;user.coins+=5;saveAll();document.getElementById('myCoins').innerText=user.coins;showToast('Daily Claim +5 Coins! 🎁');}
-function doRefer(){if(!user)return;user.coins+=10;saveAll();document.getElementById('myCoins').innerText=user.coins;showToast('Refer +10 Coins! 👥');}
-function showNoti(){showToast('🔔 Notification: New Battle Live! Maya vs Knox - Vote Karo!');}
-function addStatus(){let t=document.getElementById('statusInput').value.trim();if(!t)return;document.getElementById('statusBox').innerText=t+' - 24 Hours';showToast('Status Added!');}
-function editProfile(){let n=prompt('Enter New Name',user?user.name:'');if(n&&user){user.name=n;saveAll();renderProfileMenu();}}
-function changePhoto(e){let r=new FileReader();r.onload=()=>{document.getElementById('profImg').src=r.result;localStorage.setItem('bk_photo',r.result);};r.readAsDataURL(e.target.files[0]);}
-function renderProfileMenu(){if(!user)return;document.getElementById('profName').innerText=user.name;document.getElementById('profPhone').innerText=user.phone;document.getElementById('profID').innerText=user.id;document.getElementById('myCoins').innerText=user.coins;document.getElementById('winCount').innerText=myWins;document.getElementById('lossCount').innerText=myLosses;let tv=0;matches.forEach(m=>tv+=m.v1+m.v2);document.getElementById('totalVotes').innerText=tv;document.getElementById('profRank').innerText=myWins>5?'👑 King':myWins>0?'🔥 Fighter':'Rookie';let sp=localStorage.getItem('bk_photo');if(sp)document.getElementById('profImg').src=sp;let items=['Profile Views','Status','Matches','Gifts','Badge','Password','Feedback','Help','FAQ','About','Privacy Policy','Terms','Contact'];document.getElementById('profileMenu').innerHTML=items.map(it=>`<div class="listItem" onclick="openDetail('${it}')"><span>${it}</span><span>></span></div>`).join('');}
-function openDetail(w){document.getElementById('detailTitle').innerText=w;let b='';if(w==='Password')b=`<input id="newPass" type="password" placeholder="Naya Password"><button class="btn" onclick="changePass()">CHANGE PASSWORD</button>`;else if(w==='Help')b=`<p>Vote: Home Pe VOTE Dabao<br>Battle: CREATE - 2 Naam + 2 Photo<br>Timer: 12 Hours Baad Auto Result</p><a class="waBox" href="https://wa.me/923430864009" target="_blank">📞 WHATSAPP PE RABTA KARO</a>`;else if(w==='FAQ')b=`<p><b>Q: App Free Hai?</b><br>A: Haan<br><br><b>Q: Winner Kaise Banta Hai?</b><br>A: 12 Hours Baad Zyada Vote Wala</p>`;else if(w==='About')b=`<div class="center"><h2>BATTLE <span style="color:#ff6a00">KING</span> 👑</h2><p>Version: FINAL V13 - LEFT/RIGHT<br>Pakistan Biggest Photo Battle<br>Admin: Atiq Ur Rehman<br>EasyPaisa: 03430864009</p></div>`;else if(w==='Contact')b=`<div class="center"><h2>📞 CONTACT</h2><p>Admin: Atiq Ur Rehman<br>WhatsApp: 03430864009</p></div><a class="waBox" href="https://wa.me/923430864009" target="_blank">💬 WHATSAPP KHOLO</a>`;else if(w==='Feedback')b=`<textarea id="fbTxt" placeholder="App Kaisi Lagi?"></textarea><button class="btn" onclick="showToast('Feedback Bhej Diya! ❤️')">FEEDBACK BHEJO</button>`;else b=`<p>${w} - Working! ✅<br><br>BATTLE KING - VOTE. WIN. RULE.</p>`;document.getElementById('detailBody').innerHTML=b;showPage('detail');}
-function changePass(){let p=document.getElementById('newPass').value.trim();if(p.length<4){showToast('Password 4+ Rakho!');return;}user.pass=p;saveAll();showToast('Password Change Ho Gaya! ✅');showPage('profile');}
-function renderLeader(){let all=[];matches.forEach(m=>{all.push({name:m.p1,votes:m.v1});all.push({name:m.p2,votes:m.v2});});all.sort((a,b)=>b.votes-a.votes);document.getElementById('leaderList').innerHTML=all.map((a,i)=>`<div class="listItem"><span>${i+1}. ${a.name} ${i==0?'👑':''}</span><b>${a.votes} Votes</b></div>`).join('');let t0=all[0]||{name:'-',votes:0},t1=all[1]||{name:'-',votes:0},t2=all[2]||{name:'-',votes:0};document.getElementById('podiumBox').innerHTML=`<div class="p2">🥈<br><b>${t1.name}</b><br>${t1.votes}</div><div class="p1">👑<br><b>${t0.name}</b><br>${t0.votes}</div><div class="p3">🥉<br><b>${t2.name}</b><br>${t2.votes}</div>`;}
-function sendTopup(){let txn=document.getElementById('txnID').value.trim();if(!txn){document.getElementById('topupErr').innerText='❌ Transaction ID Likho!';return;}showToast('Request Sent! Admin Approve Kare Ga ✅');showPage('home');}
-function logout(){localStorage.removeItem('bk_user');location.reload();}
-function installApp(){showToast('Browser Menu > Add To Home Screen 📲');}
-document.getElementById('secretLogo').addEventListener('click',()=>{clicks++;if(clicks>=13){clicks=0;showPage('adminlogin');}});
-function checkAdmin(){if(document.getElementById('adminPass').value==='726609'){document.getElementById('adminBox').innerHTML=`Users: ${user?1:0}<br>Matches: ${matches.length}<br>Live: ${matches.filter(m=>m.status==='live').length}<br><br>${matches.map((m,i)=>`${m.p1} VS ${m.p2} - ${m.v1}:${m.v2} <button class="btn btn2" onclick="declareW(${i},1)">${m.p1} Winner</button>`).join('<br>')}`;showPage('admin');}else showToast('Wrong Password');}
-function declareW(i,w){matches[i].status='finished';matches[i].winner=w==1?matches[i].p1:matches[i].p2;saveAll();showToast('Winner: '+matches[i].winner+' 👑');}
-setTimeout(()=>{document.getElementById('splash').style.display='none';},1100);
-if(user){document.getElementById('myCoins').innerText=user.coins;document.getElementById('topupID').innerText=user.id;showPage('home');}else{showPage('login');}
-setInterval(updateTimersOnly,1000);
-</script></body></html>
+let coins=1240, selectedCoins=500, selectedPrice=450, selectedPay='Easypaisa', pendingGift=null, pendingPrice=0;
+const users=[{n:'Ahmed King 👑',v:'12,450',img:12},{n:'Ali Fire 🔥',v:'9,200',img:5},{n:'Usman 👑',v:'8,100',img:32},{n:'Bilal 🔥',v:'7,850',img:59},{n:'Hamza King',v:'6,400',img:68},{n:'Zain ⭐',v:'5,900',img:11}];
+function renderLists(){
+  document.getElementById('trending').innerHTML=users.map((u,i)=>`<div class="trend"><div class="rank">${i+1}</div><img src="https://i.pravatar.cc/100?img=${u.img}"><div><b>${u.n}</b><br><small style="color:var(--muted)">${u.v} Votes</small></div><button class="follow" onclick="vote('${u.n}')">VOTE</button></div>`).join('');
+  document.getElementById('leaderList').innerHTML=users.map((u,i)=>`<div class="trend"><div class="rank">#${i+1}</div><img src="https://i.pravatar.cc/100?img=${u.img}"><div><b>${u.n}</b><br><small style="color:var(--muted)">Level ${15-i} • ${u.v} Votes</small></div><b style="color:var(--gold);margin-left:auto">${u.v} ⭐</b></div>`).join('');
+}
+function showPage(p,el){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+  if(el) el.classList.add('active'); else {const m={home:0,battle:1,gang:2,leader:3,profile:4,topup:4}; document.querySelectorAll('.nav-item')[m[p]||0].classList.add('active');}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2500)}
+function updateCoins(){document.getElementById('coinBal').textContent=coins.toLocaleString();document.getElementById('topupBal').textContent=coins.toLocaleString();document.getElementById('profileCoins').textContent=coins.toLocaleString();}
+function vote(name){coins+=5;updateCoins();showToast(`✅ ${name} ko VOTE mil gaya! +5 Coins Bonus`)}
+function sendGift(name,price){if(coins<price){showToast('❌ Coins kam hain! TOPUP karo');showPage('topup');return} pendingGift=name;pendingPrice=price;document.getElementById('giftTitle').textContent='🎁 '+name+' Gift';document.getElementById('giftDesc').textContent=`${name} - ${price} Coins • Balance: ${coins} Coins`;document.getElementById('giftModal').classList.add('show')}
+function confirmGift(){coins-=pendingPrice;updateCoins();closeModal();showToast(`🎉 ${pendingGift} Gift Send Ho Gaya! 🔥`)}
+function closeModal(){document.getElementById('giftModal').classList.remove('show')}
+function startBattle(){const n=document.getElementById('oppName').value.trim();if(!n){showToast('⚠️ Pehle Opponent ka naam likho');return}showToast(`⚔️ ${n} ko Challenge bhej diya!`);document.getElementById('oppName').value=''}
+function selectPkg(el,c,p){document.querySelectorAll('.coin-pkg').forEach(x=>x.classList.remove('active'));el.classList.add('active');selectedCoins=c;selectedPrice=p;document.getElementById('buyLabel').textContent=`${c} Coins - Rs ${p}`}
+function selectPay(el,m){document.querySelectorAll('.pay').forEach(x=>x.classList.remove('active'));el.classList.add('active');selectedPay=m}
+function buyCoins(){const num=document.getElementById('payNum').value.trim();if(num.length<11){showToast('⚠️ Sahi Number likho - 03XX XXXXXXX');return}coins+=selectedCoins;updateCoins();showToast(`🎉 ${selectedCoins} Coins Add Ho Gaye! ${selectedPay} ✅`);document.getElementById('payNum').value='';showPage('home')}
+document.getElementById('giftModal').addEventListener('click',e=>{if(e.target.id==='giftModal')closeModal()});
+renderLists();updateCoins();
+</script>
+</body>
+</html>
